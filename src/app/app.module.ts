@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ContentBlockComponent } from './content-block/content.block.component';
+import { MainPageComponent } from './content-pages/main/main.page.component';
 import { NavBarComponent } from './nav-bar/nav.bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    ContentBlockComponent
+    ContentBlockComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule
