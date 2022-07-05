@@ -1,5 +1,5 @@
-<div>
-    <div class="header">
-        Главная страница
+<div class="container">
+    <div class="row" *ngFor="let block of getBlocks()">
+        <block-component [block]="block"></block-component>
     </div>
 </div>

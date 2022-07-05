@@ -1,0 +1,31 @@
+.card {
+    background-color: #2f2f2f;
+    width: 200px;
+    height: 250px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-radius: 15px;
+
+    p{
+        text-align: left;
+        font-size: large;
+        margin-left: 15%;
+    }
+
+    .img {
+        overflow: hidden;
+        margin: 0 auto;
+        margin-top: 5%;
+        border-radius: 15px;
+        width: 150px;
+        height: 150px;
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+

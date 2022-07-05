@@ -1,0 +1,9 @@
+<div class="container">
+    <p>{{ getTitle() }}</p>
+
+    <ul class="hlist">
+        <li *ngFor="let card of getCards()">
+            <card-component [card]="card"></card-component>
+        </li>
+    </ul>
+</div>

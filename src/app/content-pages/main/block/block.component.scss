@@ -1,0 +1,22 @@
+.container {
+    display: inline-block;
+    font-size: xx-large;
+    color: white;
+    padding-left: 3%;
+    padding-top: 1%;
+
+    //TODO: make beautiful horizontal scroll
+    // overflow-x: auto;
+    // overflow-y: hidden;
+}
+
+.hlist {
+    display: flex;
+    margin: 0 auto;
+    li {
+        padding-right: 5%;
+        list-style-type: none;
+    }   
+}
+
+
