@@ -4,6 +4,7 @@ import { FindPageComponent } from "./find/find.page.component";
 import { MainPageComponent } from "./main/main.page.component";
 import { PageComponent } from "./page.component";
 import { PageController } from "./page.controller";
+import { PlaylistPageComponent } from "./playlist/playlist.page.component";
 import { StreamPageComponent } from "./stream/stream.page.component";
 
 
@@ -36,6 +37,13 @@ export abstract class PageSelector {
             return;
         this.currentPage = StreamPageComponent;
         PageController.setPage(StreamPageComponent);
+    }
+
+    public static selectPlaylistPage() {
+        if(this.currentPage == PlaylistPageComponent)
+            return;
+        this.currentPage = PlaylistPageComponent;
+        PageController.setPage(PlaylistPageComponent);
     }
 
 }

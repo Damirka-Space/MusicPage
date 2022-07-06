@@ -1,12 +1,10 @@
-import { Directive, OnInit } from "@angular/core";
 import { PageController } from "./page.controller";
 
 
-@Directive()
-export class PageComponent implements OnInit {
+export class PageComponent{
     protected params!: any[];
 
-    ngOnInit(): void {
+    constructor() {
         this.params = PageController.getParams();
     }
 

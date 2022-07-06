@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { AfterViewInit, Component } from "@angular/core";
 import { PageComponent } from "../page.component";
+import { Playlist } from "./playlist";
 
 @Component({
     selector: 'playlist-page-component',
@@ -8,8 +9,24 @@ import { PageComponent } from "../page.component";
 })
 export class PlaylistPageComponent extends PageComponent {
 
+    private playlist!: Playlist;
+
     constructor() {
         super();
-        
+        this.playlist = this.params.pop();
+        console.log(this.playlist);
     }
+
+    public getTitle() {
+        return this.playlist.getTitle();
+    }
+
+    public getImageUrl() {
+        return this.playlist.getImageUrl();
+    }
+
+    public getDescription() {
+        return this.playlist.getDescription();
+    }
+
 }

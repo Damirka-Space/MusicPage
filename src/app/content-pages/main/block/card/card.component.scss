@@ -1,31 +1,59 @@
 .card {
-    background-color: #2f2f2f;
-    width: 200px;
+    background-color: #252525;
+    width: 190px;
     height: 250px;
-
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-radius: 15px;
+    border-radius: 10px;
 
-    p{
-        text-align: left;
-        font-size: large;
-        margin-left: 15%;
+    cursor: pointer;
+
+    transition: background-color 0.5s ease-out 100ms;
+
+    &:hover {
+        background-color: #3A3A3A;
     }
 
+
     .img {
-        overflow: hidden;
         margin: 0 auto;
-        margin-top: 5%;
-        border-radius: 15px;
+        margin-top: 10%;
+        border-radius: 10px;
         width: 150px;
         height: 150px;
 
         img {
-            width: 150px;
-            height: 150px;
+            border-radius: inherit;
+            width: inherit;
+            height: inherit;
         }
+    }
+
+    .info {
+        width: 150px;        
+        margin: 0 auto;
+
+        .title {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #EFEFEF;
+            font-size: large;
+            margin-top: 10%;    
+        }
+        
+        .description {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+
+            font-size: medium;
+            color: #BFBFBF;
+        
+        }
+
+        
+        
     }
 }
 

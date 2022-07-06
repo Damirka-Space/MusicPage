@@ -1,7 +1,10 @@
-<div class="card">
+<div class="card" (click)="onClick()">
     <div class="img">
         <img src="{{ card.getImageUrl() }}">
     </div>
-    <p>{{ card.getTitle() }}</p>
-    <p>{{ card.getDescription() }}</p>
+    
+    <div class="info">
+        <div class="title">{{ card.getTitle() }}</div>
+        <div class="description">{{ card.getDescription() }}</div>
+    </div>
 </div>
