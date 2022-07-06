@@ -8,6 +8,6 @@ import { PageComponent } from "../page.component";
     templateUrl: 'find.page.component.html',
     styleUrls: ['find.page.component.scss']
 })
-export class FindPageComponent implements PageComponent {
+export class FindPageComponent extends PageComponent {
 
 }

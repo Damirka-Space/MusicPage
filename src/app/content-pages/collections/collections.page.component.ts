@@ -6,6 +6,6 @@ import { PageComponent } from "../page.component";
     templateUrl: 'collections.page.component.html',
     styleUrls: ['collections.page.component.scss']
 })
-export class CollectionsPageComponent implements PageComponent {
+export class CollectionsPageComponent extends PageComponent {
     
 }

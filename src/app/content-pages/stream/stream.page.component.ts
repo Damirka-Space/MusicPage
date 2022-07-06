@@ -7,6 +7,6 @@ import { PageComponent } from "../page.component"
     templateUrl: 'stream.page.component.html',
     styleUrls: ['stream.page.component.scss']
 })
-export class StreamPageComponent implements PageComponent {
+export class StreamPageComponent extends PageComponent {
 
 }

@@ -11,11 +11,13 @@ import { Card } from "./block/card/card";
     templateUrl: 'main.page.component.html',
     styleUrls: ['main.page.component.scss']
 })
-export class MainPageComponent implements PageComponent{
+export class MainPageComponent extends PageComponent {
 
     @Output() protected blocks: Block[];
 
     constructor() {
+        super();
+
         this.blocks = [];
         let block = new Block("Abracadabra");
         block.addCard(Card.nullCard());
