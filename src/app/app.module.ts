@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { ContentBlockComponent } from './content-block/content.block.component';
@@ -10,6 +12,9 @@ import { CardComponent } from './content-pages/main/block/card/card.component';
 import { MainPageComponent } from './content-pages/main/main.page.component';
 import { StreamPageComponent } from './content-pages/stream/stream.page.component';
 import { NavBarComponent } from './nav-bar/nav.bar.component';
+import { PlaylistTableComponent } from './content-pages/playlist/table/playlist.table.component';
+import { PlaylistPageComponent } from './content-pages/playlist/playlist.page.component';
+
 
 @NgModule({
   declarations: [
@@ -21,10 +26,14 @@ import { NavBarComponent } from './nav-bar/nav.bar.component';
     FindPageComponent,
     CollectionsPageComponent,
     BlockComponent,
-    CardComponent
+    CardComponent,
+    PlaylistPageComponent,
+    PlaylistTableComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

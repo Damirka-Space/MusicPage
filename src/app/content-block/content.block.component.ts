@@ -1,7 +1,6 @@
-import { Component, Type, ViewChild, ViewContainerRef } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from "@angular/core";
 import { PageComponent } from "../content-pages/page.component";
 import { PageController } from "../content-pages/page.controller";
-
 
 
 @Component({
@@ -9,9 +8,13 @@ import { PageController } from "../content-pages/page.controller";
     templateUrl: 'content.block.component.html',
     styleUrls: ['content.block.component.scss']
 })
-export class ContentBlockComponent {
+export class ContentBlockComponent implements AfterViewInit{
     @ViewChild('container', { read: ViewContainerRef })
-    container!: ViewContainerRef;
+    private container!: ViewContainerRef;
+
+    @ViewChild('div') 
+    _div!: ElementRef;
+    private static div: HTMLElement;
 
     constructor() {
         PageController.setContentBlockComponent(this);
@@ -19,8 +22,20 @@ export class ContentBlockComponent {
 
     public setComponent(componentClass: Type<PageComponent>) {
         // Create component dynamically inside the ng-template
-        this.container.clear();
+        this.container.remove();
         this.container.createComponent(componentClass);
+    }
+
+    ngAfterViewInit() {
+        ContentBlockComponent.div = this._div.nativeElement;
+    }
+
+    public static getScrollByPercentage() {
+        return this.div.scrollTop / (this.div.scrollHeight - this.div.clientHeight) * 100;
+    }
+
+    public static getScrollableDiv() {
+        return this.div;
     }
 
 }

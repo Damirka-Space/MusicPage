@@ -1,12 +1,11 @@
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(rgba(229, 43, 80, 1), rgba(229, 43, 80, 0.5), #1f1f1f, #1f1f1f);
 
     .header {
-        width: 100vw;
-        height: 50vh;
-        
-        background: linear-gradient(rgba(229, 43, 80, 1), #1F1F1F);
+        height: 37vh;
 
         img {
             float: left;
@@ -19,7 +18,7 @@
             border-radius: 15px;
 
             //box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-            box-shadow: rgba(229, 43, 80, 0.4) 5px 5px, rgba(229, 43, 80, 0.3) 10px 10px, rgba(229, 43, 80, 0.2) 15px 15px, rgba(229, 43, 80, 0.1) 20px 20px, rgba(229, 43, 80, 0.05) 25px 25px;
+            box-shadow: rgba(229, 43, 80, 0.5) 5px 5px, rgba(229, 43, 80, 0.4) 10px 10px, rgba(229, 43, 80, 0.3) 15px 15px, rgba(229, 43, 80, 0.2) 20px 20px, rgba(229, 43, 80, 0.1) 25px 25px;
 
         }
 
@@ -48,5 +47,14 @@
                 color: #efefef;
             }
         }
+    }
+
+    .playlist {
+        height: fit-content + 100px;
+        background:rgba(31, 31, 31, 0.1);
+    }
+
+    .list {
+        
     }
 }

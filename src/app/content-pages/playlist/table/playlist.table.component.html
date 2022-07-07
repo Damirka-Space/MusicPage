@@ -1,0 +1,41 @@
+<div #div ></div>
+<table mat-table [dataSource]="getTracks()" class="mat-elevation-z8 table">
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> № </th>
+      <td mat-cell *matCellDef="let track" class="left"> {{track.getId()}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef > НАЗВАНИЕ </th>
+      <td mat-cell *matCellDef="let track"> 
+        <div class="track">
+            <img src="{{track.getImageUrl()}}" class="img">
+            <p class="clickable">{{ track.getTitle() }}</p>
+            <p>—</p>
+            <p class="clickable">{{ track.getAuthor() }}</p>
+        </div> 
+    </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="album">
+      <th mat-header-cell *matHeaderCellDef> АЛЬБОМ </th>
+      <td mat-cell *matCellDef="let track"> 
+        <div><p class="clickable"> {{track.getAlbum()}} </p> </div>
+    </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> ДЛИТЕЛЬНОСТЬ </th>
+      <td mat-cell *matCellDef="let track" class="right"> 
+        <p> {{track.getTime()}} </p> </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" [ngClass]="{'colored-header': isColored()}"></tr>
+    <tr 
+        (click)="onClick(row)"
+        [class.row-is-clicked]="selectedTrack == row"
+        mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+    
+  </table>
+  

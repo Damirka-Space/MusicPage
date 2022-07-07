@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from "@angular/core";
+import { Component } from "@angular/core";
 import { PageComponent } from "../page.component";
 import { Playlist } from "./playlist";
 
@@ -14,7 +14,6 @@ export class PlaylistPageComponent extends PageComponent {
     constructor() {
         super();
         this.playlist = this.params.pop();
-        console.log(this.playlist);
     }
 
     public getTitle() {
