@@ -1,7 +1,19 @@
 .content {
-    background-color: #1f1f1f;
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
 
+    .header {
+        position: fixed;
+        left: 15%;
+        width: 85%;
+        height: 10vh;
+    }
+
+    .container {
+        padding-top: 10vh;
+        min-height: 100%;
+        height: max-content;
+    }
 }
+

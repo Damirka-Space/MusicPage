@@ -33,6 +33,7 @@ export class MainPageComponent extends PageComponent {
         let block3 = new Block("Abracadabra3");
         block3.addCard(Card.nullCard());
         this.blocks.push(block3);
+        
     }
 
     public getBlocks() {

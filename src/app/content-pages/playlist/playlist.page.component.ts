@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import { LinearGradientBackgroundColorHEX } from "../background.color";
+import { ColorHEX } from "../color";
+import { ColorSelector } from "../color.selector";
 import { PageComponent } from "../page.component";
 import { Playlist } from "./playlist";
 
@@ -14,6 +17,9 @@ export class PlaylistPageComponent extends PageComponent {
     constructor() {
         super();
         this.playlist = this.params.pop();
+
+        ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
+        ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
     }
 
     public getTitle() {
