@@ -49,6 +49,8 @@ export class ContentBlockComponent implements AfterViewInit{
         var v = ContentBlockComponent.div.scrollTop / (ContentBlockComponent.header.clientHeight);
         if(v > 1)
             v = 1;
+        else if(v <= 0.05)
+            v = 0;
         
         ContentBlockComponent.headerColor.setAlpha(v * 255);
     }

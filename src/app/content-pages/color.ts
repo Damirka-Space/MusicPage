@@ -38,7 +38,11 @@ export class ColorHEX implements Color {
         var hexA = a.toString(16);
         if(hexA.includes('.'))
             hexA = hexA.substring(0, hexA.indexOf('.'));
-        if(this.hex.length == 7) 
+
+        if(hexA.length == 1)
+            hexA = '0' + hexA;
+        
+        if(this.hex.length == 6) 
             this.hex += hexA;
         else
             this.hex = this.hex.substring(0, 7) + hexA;
