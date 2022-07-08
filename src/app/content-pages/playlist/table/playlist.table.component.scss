@@ -23,6 +23,7 @@ div {
 
     .mat-column-title {
         padding-right: 1vw;
+        font-size: 1vw;
     }
 
     .mat-column-info {
@@ -32,6 +33,7 @@ div {
     .mat-column-album {
         font-style: italic;
         padding-right: 2vw;
+        font-size: 1vw;
 
         div {
             display: table;
@@ -67,6 +69,10 @@ div {
         position: sticky;
         top: 10vh;
         border: none;
+
+        .mat-column-title {
+            padding-left: calc(1.2vw + 40px);
+        }
     }
 
     .mat-row:hover {
