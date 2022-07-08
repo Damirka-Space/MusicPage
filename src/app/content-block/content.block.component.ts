@@ -32,6 +32,7 @@ export class ContentBlockComponent implements AfterViewInit{
         // Create component dynamically inside the ng-template
         this.container.remove();
         this.container.createComponent(componentClass);
+        ContentBlockComponent.resetScroll();
     }
 
     ngAfterViewInit() {
@@ -54,6 +55,10 @@ export class ContentBlockComponent implements AfterViewInit{
 
     public static getScrollByPercentage() {
         return this.div.scrollTop / (this.div.scrollHeight - this.div.clientHeight) * 100;
+    }
+
+    public static resetScroll() {
+        this.div.scrollTop = 0;
     }
 
     public static getDivScrollTop() {

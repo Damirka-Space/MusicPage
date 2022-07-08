@@ -28,7 +28,7 @@ export class Track {
 
     private static ID : number = 1;
     public static nullTrack() {
-        return new Track(this.ID++, 0, 0, 0, "test", "test2", "test3", "assets/playlist/Heart.png", "0:0");
+        return new Track(this.ID++, 0, 0, 0, "Test112321312", "Red hot chilli pepers", "test3", "assets/playlist/Heart.png", "0:0");
     }
 
 

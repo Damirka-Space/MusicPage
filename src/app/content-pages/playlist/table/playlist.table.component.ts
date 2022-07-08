@@ -12,10 +12,10 @@ import { Track } from "./track";
 export class PlaylistTableComponent {
     private tracks!: Track[];
 
-    displayedColumns: string[] = ['position', 'title', 'album', 'time'];
+    displayedColumns: string[] = ['position', 'title', 'album', 'time', 'info'];
     selectedTrack!: Track;
 
-    @ViewChild('div', {read: ElementRef}) 
+    @ViewChild('table', {read: ElementRef})
     _div!: ElementRef;
 
     private static div : HTMLElement;
@@ -69,7 +69,6 @@ export class PlaylistTableComponent {
 
     ngAfterViewInit() {
         PlaylistTableComponent.div = this._div.nativeElement;
-        // console.log(PlaylistTableComponent.div.scrollTop)
 
     }
 
