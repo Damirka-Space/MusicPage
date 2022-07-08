@@ -57,37 +57,68 @@
     }
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 780px) {
     .card {
-        width: 190px;
-        height: 250px;
+        width: 120px;
+        height: 160px;
         border-radius: 10px;
+        margin-bottom: 5%;
     
     
         .img {
             margin: 0 auto;
             margin-top: 10%;
             border-radius: 10px;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
         }
     
         .info {
-            width: 150px;        
+            width: 100px;        
             margin: 0 auto;
     
             .title {
-                font-size: large;
+                font-size: 1.5vw;
                 margin-top: 10%;    
             }
             
             .description {
-                font-size: medium;
+                font-size: 1.5vw;
             }
-    
-            
             
         }
     }
 }
 
+@media only screen and (max-device-width: 480px) {
+    .card {
+        width: 120px;
+        height: 160px;
+        border-radius: 10px;
+        margin-bottom: 5%;
+    
+    
+        .img {
+            margin: 0 auto;
+            margin-top: 10%;
+            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+        }
+    
+        .info {
+            width: 100px;        
+            margin: 0 auto;
+    
+            .title {
+                font-size: 3vw;
+                margin-top: 10%;    
+            }
+            
+            .description {
+                font-size: 2.5vw;
+            }
+            
+        }
+    }
+}

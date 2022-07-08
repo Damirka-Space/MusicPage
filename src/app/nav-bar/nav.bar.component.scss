@@ -1,6 +1,6 @@
 .block {
     float: left;
-    width: 15%;
+    width: 15vw;
     height: 100%;
     background-color: #151515;
 
@@ -58,6 +58,20 @@
                 margin-right: 32px;
             }
         }
+    }
+}
+
+
+@media only screen and (max-device-width: 780px) {
+    .block {
+        width: 20vw;
+
+        .bar {
+            p {
+                font-size: 2vw;
+            }
+        }
+    
     }
 }
 

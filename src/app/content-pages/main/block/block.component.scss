@@ -1,17 +1,15 @@
 .container {
     // display: inline-block;
-    font-size: xx-large;
+    font-size: 2vw;
     color: white;
     margin-left: 5%;
     margin-top: 1%;
     width: 100%;
 
-
     .hlist {
         margin: 0;
         padding: 0;
     }
-    
 
     .hscroll {
         display: flex;
@@ -32,6 +30,16 @@
     .container {
         overflow-x: auto;
         overflow-y: hidden;
+
+        font-size: 4vw;
+
+
+        .hscroll {
+
+            li {
+                margin-right: 2vh;
+            } 
+        }
     }
 }
 
