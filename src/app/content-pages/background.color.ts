@@ -8,6 +8,10 @@ export class LinearGradientBackgroundColorRGBA implements Color {
         this.colorOne = colorOne;
         this.colorTwo = colorTwo;
     }
+    
+    setAlpha(a: number): void {
+        throw new Error("Method not implemented.");
+    }
 
     public toString(): string {
         return "linear-gradient(" + this.colorOne + ',' + this.colorTwo + ',' + this.colorTwo + ',' + this.colorTwo + ")";
@@ -21,6 +25,10 @@ export class LinearGradientBackgroundColorHEX implements Color {
     public constructor(colorOne: ColorHEX, colorTwo: ColorHEX) {
         this.colorOne = colorOne;
         this.colorTwo = colorTwo;
+    }
+
+    setAlpha(a: number): void {
+        throw new Error("Method not implemented.");
     }
 
     public toString(): string {

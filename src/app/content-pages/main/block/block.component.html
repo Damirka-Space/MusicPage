@@ -2,8 +2,10 @@
     <p>{{ getTitle() }}</p>
 
     <ul class="hlist">
-        <li *ngFor="let card of getCards()">
-            <card-component [card]="card"></card-component>
-        </li>
+        <div class="hscroll">
+            <li *ngFor="let card of getCards()">
+                <card-component [card]="card"></card-component>
+            </li>
+        </div>
     </ul>
 </div>

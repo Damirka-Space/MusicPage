@@ -1,8 +1,6 @@
-import { AfterViewInit, Component, Output } from "@angular/core";
-import { bindCallback } from "rxjs";
+import { Component, Output } from "@angular/core";
 import { PageComponent } from "../page.component"
 import { Block } from "./block/block";
-import { BlockComponent } from "./block/block.component";
 import { Card } from "./block/card/card";
 
 

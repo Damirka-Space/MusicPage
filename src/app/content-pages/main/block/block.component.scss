@@ -1,22 +1,39 @@
 .container {
-    display: inline-block;
+    // display: inline-block;
     font-size: xx-large;
     color: white;
-    padding-left: 5%;
-    padding-top: 1%;
+    margin-left: 5%;
+    margin-top: 1%;
+    width: 100%;
 
-    //TODO: make beautiful horizontal scroll
-    // overflow-x: auto;
-    // overflow-y: hidden;
+
+    .hlist {
+        margin: 0;
+        padding: 0;
+    }
+    
+
+    .hscroll {
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        margin: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        li {
+            // display: inline-block;
+            margin-right: 5%;
+            list-style-type: none;
+        }   
+    }
 }
 
-.hlist {
-    display: flex;
-    margin: 0 auto;
-    li {
-        padding-right: 5%;
-        list-style-type: none;
-    }   
+@media only screen and (max-device-width: 480px) {
+    .container {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 }
 
 

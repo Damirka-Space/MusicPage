@@ -6,7 +6,7 @@
     </ng-container>
   
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef > НАЗВАНИЕ </th>
+      <th mat-header-cell *matHeaderCellDef > Название </th>
       <td mat-cell *matCellDef="let track"> 
         <div class="track">
             <img src="{{track.getImageUrl()}}" class="img">
@@ -18,19 +18,19 @@
     </ng-container>
   
     <ng-container matColumnDef="album">
-      <th mat-header-cell *matHeaderCellDef> АЛЬБОМ </th>
+      <th mat-header-cell *matHeaderCellDef> Альбом </th>
       <td mat-cell *matCellDef="let track"> 
         <div><p class="clickable"> {{track.getAlbum()}} </p> </div>
     </td>
     </ng-container>
   
     <ng-container matColumnDef="time">
-      <th mat-header-cell *matHeaderCellDef> ДЛИТЕЛЬНОСТЬ </th>
+      <th mat-header-cell *matHeaderCellDef> 🕒 </th>
       <td mat-cell *matCellDef="let track" class="right"> 
         <p> {{track.getTime()}} </p> </td>
     </ng-container>
   
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" [ngClass]="{'colored-header': isColored()}"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" [ngClass]="{'colored-header': isColored()}"></tr>
     <tr 
         (click)="onClick(row)"
         [class.row-is-clicked]="selectedTrack == row"

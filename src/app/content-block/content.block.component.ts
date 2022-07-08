@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Type, ViewChild, ViewContainerRef } from "@angular/core";
-import { Color } from "../content-pages/color";
+import { Color, ColorHEX } from "../content-pages/color";
 import { PageComponent } from "../content-pages/page.component";
 import { PageController } from "../content-pages/page.controller";
 
@@ -13,12 +13,16 @@ export class ContentBlockComponent implements AfterViewInit{
     @ViewChild('container', { read: ViewContainerRef })
     private container!: ViewContainerRef;
 
-    private static headerColor: Color;
-    private static backgroundColor: Color;
+    private static headerColor: Color = ColorHEX.getNullColor();
+    private static backgroundColor: Color = ColorHEX.getNullColor();
 
     @ViewChild('div') 
     _div!: ElementRef;
     private static div: HTMLElement;
+
+    @ViewChild('header') 
+    _header!: ElementRef;
+    private static header: HTMLElement;
 
     constructor() {
         PageController.setContentBlockComponent(this);
@@ -32,6 +36,7 @@ export class ContentBlockComponent implements AfterViewInit{
 
     ngAfterViewInit() {
         ContentBlockComponent.div = this._div.nativeElement;
+        ContentBlockComponent.header = this._header.nativeElement;
         window.addEventListener("scroll", this.onScroll, true);
     }
 
@@ -40,15 +45,23 @@ export class ContentBlockComponent implements AfterViewInit{
     }
 
     private onScroll(event: Event) {
+        var v = ContentBlockComponent.div.scrollTop / (ContentBlockComponent.header.clientHeight);
+        if(v > 1)
+            v = 1;
         
+        ContentBlockComponent.headerColor.setAlpha(v * 255);
     }
 
     public static getScrollByPercentage() {
         return this.div.scrollTop / (this.div.scrollHeight - this.div.clientHeight) * 100;
     }
 
-    public static getScrollableDiv() {
-        return this.div;
+    public static getDivScrollTop() {
+        return this.div.scrollTop;
+    }
+
+    public static getHeaderHight() {
+        return this.header.clientHeight;
     }
 
     public static setHeaderColor(color: Color) {
@@ -60,14 +73,10 @@ export class ContentBlockComponent implements AfterViewInit{
     }
 
     public getHeaderColor(): string {
-        if(!ContentBlockComponent.headerColor)
-            return "";
         return ContentBlockComponent.headerColor.toString();
     }
 
     public getBackgroundColor(): string {
-        if(!ContentBlockComponent.backgroundColor)
-            return "";
         return ContentBlockComponent.backgroundColor.toString();
     }
 

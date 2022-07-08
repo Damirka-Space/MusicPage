@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
+import { ContentBlock } from "../../content.block";
 import { Track } from "./track";
 
 
@@ -73,7 +74,7 @@ export class PlaylistTableComponent {
     }
 
     private onScroll() {
-        var v = ContentBlockComponent.getScrollableDiv().scrollTop / PlaylistTableComponent.div.offsetTop;
+        var v = ContentBlock.getDivScrollTop() / (PlaylistTableComponent.div.offsetTop - ContentBlock.getHeaderHight());
         if(v > 1)
             PlaylistTableComponent.coloredHeader = true;
         else

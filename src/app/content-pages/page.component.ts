@@ -10,7 +10,7 @@ export class PageComponent{
         this.params = PageController.getParams();
 
         ColorSelector.setBackgroundColor(new ColorHEX("#1f1f1f"));
-        ColorSelector.setHeadeColor(new ColorRGBA(0, 0, 0, 0));
+        ColorSelector.setHeadeColor(ColorHEX.getNullColor());
     }
 
 }

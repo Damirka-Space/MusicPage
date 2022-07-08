@@ -57,3 +57,37 @@
     }
 }
 
+@media only screen and (max-device-width: 480px) {
+    .card {
+        width: 190px;
+        height: 250px;
+        border-radius: 10px;
+    
+    
+        .img {
+            margin: 0 auto;
+            margin-top: 10%;
+            border-radius: 10px;
+            width: 150px;
+            height: 150px;
+        }
+    
+        .info {
+            width: 150px;        
+            margin: 0 auto;
+    
+            .title {
+                font-size: large;
+                margin-top: 10%;    
+            }
+            
+            .description {
+                font-size: medium;
+            }
+    
+            
+            
+        }
+    }
+}
+

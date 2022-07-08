@@ -7,7 +7,7 @@
     .bar {
         p {
             text-align: center;
-            font-size: larger;
+            font-size: 1.2vw;
             color: #efefef;
 
             &:hover {
@@ -15,14 +15,33 @@
                 cursor: pointer;
             }
         }
+    }
 
+    .line {
+        background-color: #3f3f3f;
+        margin: 0 auto;
+        height: 0.2vh;
+        width: 80%;
     }
 }
 
-.line {
-    background-color: #3f3f3f;
-    margin: 0 auto;
-    height: 2px;
-    width: 80%;
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .block { 
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+
+        position: fixed;
+        top: 92vh;
+        width: 100%;
+        height: 8vh;
+        background-color: rebeccapurple;
+    }
 }
 

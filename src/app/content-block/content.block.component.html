@@ -1,11 +1,9 @@
 <div #div class="content">
-    <div class="header" [ngStyle]="{'background': getHeaderColor()}">
-
-    </div>
-    
-    <div class="container" [ngStyle]="{'background': getBackgroundColor()}">
+    <div #header class="header" [ngStyle]="{'background': getHeaderColor()}">
         
+    </div>
 
+    <div class="container" [ngStyle]="{'background': getBackgroundColor()}">
         <ng-template #container>
         </ng-template>
     </div>
