@@ -14,16 +14,13 @@ div {
 
     .mat-column-position {
         width: 16px;
-        padding-right: 2vw;
+        padding-right: 1.5vw;
         padding-left: 2vw;
         text-align: left;
-
-        font-size: 1vw;
     }
 
     .mat-column-title {
         padding-right: 1vw;
-        font-size: 1vw;
     }
 
     .mat-column-info {
@@ -33,7 +30,6 @@ div {
     .mat-column-album {
         font-style: italic;
         padding-right: 2vw;
-        font-size: 1vw;
 
         div {
             display: table;
@@ -41,7 +37,6 @@ div {
                 display: table-cell;
                 vertical-align: middle;
                 text-align: left;
-                font-size: 1vw;
             }
         }
     }
@@ -50,7 +45,6 @@ div {
         width: 32px;
         text-align: center;
         padding-right: 4vw;
-        font-size: 1vw;
     }
 
       
@@ -63,6 +57,7 @@ div {
 
     .mat-row .mat-cell {
         border: none;
+        
     }
 
     .mat-header-row {
@@ -70,8 +65,21 @@ div {
         top: 10vh;
         border: none;
 
+        .mat-column-position {
+            font-size: 1.6vh;
+        }
+
         .mat-column-title {
-            padding-left: calc(1.2vw + 40px);
+            font-size: 1.6vh;
+            padding-left: calc(0.5vw + 40px);
+        }
+
+        .mat-column-album {
+            font-size: 1.6vh;
+        }
+
+        .mat-column-time {
+            font-size: 2vh;
         }
     }
 
@@ -97,8 +105,6 @@ div {
         display: table;
         width: 100%;
         height: fit-content;
-
-        
         
         margin-top: 5px;
         margin-bottom: 5px;
@@ -122,8 +128,7 @@ div {
                 display: inline;
                 padding: 0;
                 margin: 0;
-                margin-left: 2%;
-                font-size: 1vw;
+                margin-left: 1%;
             }
         }
 
