@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { PageController } from "src/app/content-pages/page.controller";
 import { PageSelector } from "src/app/content-pages/page.selector";
-import { Playlist } from "src/app/content-pages/playlist/playlist";
+import { APIController } from "src/app/server-api/controller";
 import { Card } from "./card";
 
 
@@ -23,8 +23,7 @@ export class CardComponent {
         if(event.composedPath()[1] == this.playButton.nativeElement)
             return;
 
-        let playlist = new Playlist(this.card.getId(), this.card.getImageUrl(), this.card.getTitle(), this.card.getDescription());
-        PageController.addParam(playlist);
+        PageController.addParam(APIController.getPlaylist(this.card.getId()));
         PageSelector.selectPlaylistPage();
     }
 

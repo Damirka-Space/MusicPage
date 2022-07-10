@@ -1,4 +1,5 @@
 import { Component, Output } from "@angular/core";
+import { APIController } from "src/app/server-api/controller";
 import { PageComponent } from "../page.component"
 import { Block } from "./block/block";
 import { Card } from "./block/card/card";
@@ -16,22 +17,7 @@ export class MainPageComponent extends PageComponent {
     constructor() {
         super();
 
-        this.blocks = [];
-        let block = new Block("Abracadabra");
-        block.addCard(Card.nullCard());
-        block.addCard(Card.nullCard());
-        block.addCard(Card.nullCard());
-        block.addCard(Card.nullCard());
-        this.blocks.push(block);
-
-        let block2 = new Block("Abracadabra2");
-        block2.addCard(Card.nullCard());
-        this.blocks.push(block2);
-
-        let block3 = new Block("Abracadabra3");
-        block3.addCard(Card.nullCard());
-        this.blocks.push(block3);
-        
+        this.blocks = APIController.mainPage();;
     }
 
     public getBlocks() {

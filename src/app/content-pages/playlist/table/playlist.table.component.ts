@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
+import { APIController } from "src/app/server-api/controller";
 import { ContentBlock } from "../../content.block";
 import { Track } from "./track";
 
@@ -10,6 +11,7 @@ import { Track } from "./track";
     styleUrls: ['playlist.table.component.scss']
 })
 export class PlaylistTableComponent {
+    @Input() playlistId!: number;
     private tracks!: Track[];
 
     displayedColumns: string[] = ['position', 'title', 'album', 'time', 'info'];
@@ -23,32 +25,7 @@ export class PlaylistTableComponent {
      
 
     constructor() {
-        this.tracks = [];
-
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
-        this.tracks.push(Track.nullTrack());
+        this.tracks = APIController.getTracks(this.playlistId);
     }
 
     public getTracks() {

@@ -34,4 +34,8 @@ export class PlaylistPageComponent extends PageComponent {
         return this.playlist.getDescription();
     }
 
+    public getId() {
+        return this.playlist.getId();
+    }
+
 }
