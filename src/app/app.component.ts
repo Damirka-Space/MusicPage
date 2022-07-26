@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Injectable } from '@angular/core';
 import { APIController } from './server-api/controller';
 import { TestAPI } from './server-api/test.api';
 
@@ -10,8 +10,6 @@ import { TestAPI } from './server-api/test.api';
 export class AppComponent {
 
     constructor() {
-
         APIController.setAPI(new TestAPI());
-        
     }
 }

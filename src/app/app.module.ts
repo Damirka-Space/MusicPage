@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ContentBlockComponent } from './content-block/content.block.component';
@@ -14,6 +15,7 @@ import { StreamPageComponent } from './content-pages/stream/stream.page.componen
 import { NavBarComponent } from './nav-bar/nav.bar.component';
 import { PlaylistTableComponent } from './content-pages/playlist/table/playlist.table.component';
 import { PlaylistPageComponent } from './content-pages/playlist/playlist.page.component';
+
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { PlaylistPageComponent } from './content-pages/playlist/playlist.page.co
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
