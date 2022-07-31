@@ -36,8 +36,7 @@ export class PlayerComponent {
         let element : HTMLAudioElement = this._player.nativeElement;
         element.src = url;
         element.loop = true;
+        element.autoplay = true;
         element.load();
-        element.play();
-        
     }
 }
