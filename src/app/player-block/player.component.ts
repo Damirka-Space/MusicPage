@@ -1,10 +1,12 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
+import { elementAt } from "rxjs";
 import { APIController } from "../server-api/controller";
 
 @Component({
     selector: 'player-component',
     templateUrl: 'player.component.html',
-    styleUrls: ['player.component.scss']
+    styleUrls: ['player.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class PlayerComponent {
     @ViewChild('player', {read: ElementRef})
@@ -34,9 +36,11 @@ export class PlayerComponent {
         this.sourceUrl = url;
 
         let element : HTMLAudioElement = this._player.nativeElement;
+
         element.src = url;
         element.loop = true;
         element.autoplay = true;
         element.load();
+        element.play();
     }
 }
