@@ -126,6 +126,7 @@ export class ServerAPI implements API {
         this.audio.autoplay = true;
         this.audio.loop = true;
         this.audio.volume = 0.03;
+        this.audio.controls = true;
         // audio.load();
         // audio.play();
     }
