@@ -5,3 +5,11 @@ audio {
     top: 95%;
     border-radius: 0;
 }
+
+@media only screen and (max-device-width: 480px) {
+
+    audio {
+        top: 85%;
+        // height: 5%;
+    }
+}
