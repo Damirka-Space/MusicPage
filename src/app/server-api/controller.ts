@@ -1,25 +1,30 @@
+import { Observable } from "rxjs/internal/Observable";
 import { Block } from "../content-pages/main/block/block";
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
-import { ServerAPI } from "./server.api";
+import { API } from "./api";
 
 
 export abstract class APIController {
-    private static api: ServerAPI;
+    private static api: API;
 
-    public static setAPI(api: ServerAPI) {
+    public static setAPI(api: API) {
         this.api = api;
     }
 
-    public static mainPage(): Block[] {
+    public static mainPage(): Observable<any[]> {
         return this.api.mainPage();
     }
 
-    public static getPlaylist(playlistID: number): Playlist {
+    public static getPlaylist(playlistID: number): Observable<Playlist> {
         return this.api.getPlaylist(playlistID);
     }
 
-    public static getTracks(playlistID: number): Track[] {
+    public static getTracks(playlistID: number): Observable<Track[]> {
         return this.api.getTracks(playlistID);
+    }
+
+    public static playTrack(trackId: number) {
+        this.api.playTrack(trackId);
     }
 }

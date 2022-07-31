@@ -14,6 +14,8 @@ export class PlaylistTableComponent {
     @Input() playlistId!: number;
     private tracks!: Track[];
 
+    private counter: number = 1;
+
     displayedColumns: string[] = ['position', 'title', 'album', 'time', 'info'];
     selectedTrack!: Track;
 
@@ -25,7 +27,10 @@ export class PlaylistTableComponent {
      
 
     constructor() {
-        this.tracks = APIController.getTracks(this.playlistId);
+    }
+
+    public getCounter() {
+        return this.counter++;
     }
 
     public getTracks() {
@@ -33,11 +38,20 @@ export class PlaylistTableComponent {
     }
 
     public onClick(track : Track) {
+        if(this.selectedTrack == track)
+            return;
+
         this.selectedTrack = track;
+
+        APIController.playTrack(track.getId());
     }
 
     ngOnInit() {
         window.addEventListener("scroll", this.onScroll, true);
+
+        APIController.getTracks(this.playlistId).subscribe(data => {
+            this.tracks = data;
+        });
     }
 
     ngOnDestroy() {

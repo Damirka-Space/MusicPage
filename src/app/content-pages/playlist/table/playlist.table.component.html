@@ -39,6 +39,7 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns" [ngClass]="{'colored-header': isColored()}"></tr>
     <tr 
+        (dblclick)="onClick(row)"
         (click)="onClick(row)"
         [class.row-is-clicked]="selectedTrack == row"
         mat-row *matRowDef="let row; columns: displayedColumns;">

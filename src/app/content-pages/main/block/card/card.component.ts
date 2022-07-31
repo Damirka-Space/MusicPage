@@ -23,7 +23,8 @@ export class CardComponent {
         if(event.composedPath()[1] == this.playButton.nativeElement)
             return;
 
-        PageController.addParam(APIController.getPlaylist(this.card.getId()));
+        PageController.addParam(this.card.getId());
+        // PageController.addParam(new Playlist(this.card.getId(), this.card.getImageUrl(), this.card.getTitle(), this.card.getDescription()));
         PageSelector.selectPlaylistPage();
     }
 

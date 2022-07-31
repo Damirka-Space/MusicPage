@@ -2,11 +2,12 @@ import { Card } from "./card/card";
 
 
 export class Block {
-
+    private id : number;
     private title: string;
     private cards: Card[];
 
-    constructor(title: string) {
+    constructor(id: number, title: string) {
+        this.id = id;
         this.title = title;
         this.cards = [];
     }

@@ -3,18 +3,18 @@
 export class Track {
 
     private id!: number;
-    private authorId!: number;
+    private authorId!: number[];
     private albumId!: number;
     private imageId!: number;
 
     private title: string;
-    private author: string;
+    private author: string[];
     private album: string;
     private imageUrl: string
     private time: string;
 
-    constructor(id: number, authorId: number, albumId: number, imageId: number,
-                title: string, author: string, album: string, imageUrl: string, time: string) {
+    constructor(id: number, authorId: number[], albumId: number, imageId: number,
+                title: string, author: string[], album: string, imageUrl: string, time: string) {
         this.id = id;
         this.authorId = authorId;
         this.albumId = albumId;
@@ -28,7 +28,7 @@ export class Track {
 
     private static ID : number = 1;
     public static nullTrack() {
-        return new Track(this.ID++, 0, 0, 0, "Test112321312", "Red hot chilli pepers", "test3", "assets/playlist/Heart.png", "0:0");
+        return new Track(this.ID++, [0], 0, 0, "Test112321312", ["Red hot chilli pepers"], "test3", "assets/playlist/Heart.png", "0:0");
     }
 
 
@@ -36,7 +36,7 @@ export class Track {
         return this.title;
     }
 
-    public getAuthor(): string {
+    public getAuthor(): string[] {
         return this.author;
     }
 
@@ -56,7 +56,7 @@ export class Track {
         return this.id;
     }
 
-    public getAuthorId(): number {
+    public getAuthorId(): number[] {
         return this.authorId;
     }
 

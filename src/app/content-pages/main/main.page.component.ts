@@ -2,7 +2,6 @@ import { Component, Output } from "@angular/core";
 import { APIController } from "src/app/server-api/controller";
 import { PageComponent } from "../page.component"
 import { Block } from "./block/block";
-import { Card } from "./block/card/card";
 
 
 @Component({
@@ -12,18 +11,18 @@ import { Card } from "./block/card/card";
 })
 export class MainPageComponent extends PageComponent {
 
-    @Output() protected blocks: Block[];
+    @Output() protected blocks: Block[] = [];
 
     constructor() {
         super();
 
-        this.blocks = APIController.mainPage();;
+        APIController.mainPage().subscribe(data => {
+            this.blocks = data;
+        });
     }
 
     public getBlocks() {
         return this.blocks;
     }
-
-
 
 }
