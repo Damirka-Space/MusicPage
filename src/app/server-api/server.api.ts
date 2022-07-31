@@ -8,6 +8,7 @@ import { Block } from "../content-pages/main/block/block";
 import { Card } from "../content-pages/main/block/card/card"
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
+import { environment } from "src/environments/environment";
 
 interface ITrack {
     id: number;
@@ -113,7 +114,7 @@ export class ServerAPI implements API {
 
     private user!: UserInfo;
 
-    private url : string = "http://localhost:8090/";
+    private url : string = environment.api_root;
 
     private audio: HTMLAudioElement;
 
@@ -131,17 +132,17 @@ export class ServerAPI implements API {
     }
 
     mainPage(): Observable<any> {
-        return this.http.get(this.url + "api/main").pipe(map((val) => {
+        return this.http.get(this.url + environment.api_main).pipe(map((val) => {
             return BlockFactory.fromResponse(val);
         }));
     }
     getPlaylist(playlistID: number): Observable<any> {
-        return this.http.get(this.url + "api/album/get/" + playlistID).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_album_get + playlistID).pipe(map((val) => {
             return PlaylistFactory.formResponse(val);
         }));
     }
     getTracks(playlistID: number): Observable<any> {
-        return this.http.get(this.url + "api/album/tracks/get/" + playlistID).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_tracks_get + playlistID).pipe(map((val) => {
             return TracksFactory.formResponse(val);
         }));
     }
@@ -156,7 +157,7 @@ export class ServerAPI implements API {
     }
 
     playTrack(trackId: number): void {
-        this.audio.src =  this.url + "api/track/get/" + trackId;
+        this.audio.src =  this.url + environment.api_track_get + trackId;
         this.audio.load();
         this.audio.play();
     }
