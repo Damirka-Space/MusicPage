@@ -9,6 +9,7 @@ import { Card } from "../content-pages/main/block/card/card"
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
 import { environment } from "src/environments/environment";
+import { PlayerComponent } from "../player-block/player.component";
 
 interface ITrack {
     id: number;
@@ -109,6 +110,8 @@ abstract class TracksFactory {
 
 export class ServerAPI implements API {
 
+    private player!: PlayerComponent;
+
     private http: HttpClient;
 
     private user!: UserInfo;
@@ -123,12 +126,13 @@ export class ServerAPI implements API {
         this.audio = new Audio();
 
         // audio.src = "http://127.0.0.1:8090/api/test/get/5";
-        this.audio.autoplay = true;
-        this.audio.loop = true;
-        this.audio.volume = 0.03;
-        this.audio.controls = true;
+        
         // audio.load();
         // audio.play();
+    }
+
+    setPlayer(player: any): void {
+        this.player = player;
     }
 
     mainPage(): Observable<any> {
@@ -157,9 +161,7 @@ export class ServerAPI implements API {
     }
 
     playTrack(trackId: number): void {
-        this.audio.src =  this.url + environment.api_track_get + trackId;
-        this.audio.load();
-        this.audio.play();
+        this.player.play(this.url + environment.api_track_get + trackId);
     }
 
 }

@@ -15,6 +15,8 @@ import { StreamPageComponent } from './content-pages/stream/stream.page.componen
 import { NavBarComponent } from './nav-bar/nav.bar.component';
 import { PlaylistTableComponent } from './content-pages/playlist/table/playlist.table.component';
 import { PlaylistPageComponent } from './content-pages/playlist/playlist.page.component';
+import { PlayerComponent } from './player-block/player.component';
+
 
 
 
@@ -30,7 +32,8 @@ import { PlaylistPageComponent } from './content-pages/playlist/playlist.page.co
     BlockComponent,
     CardComponent,
     PlaylistPageComponent,
-    PlaylistTableComponent
+    PlaylistTableComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

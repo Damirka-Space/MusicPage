@@ -9,6 +9,10 @@ import { API } from "./api";
 
 export class TestAPI implements API {
     
+    setPlayer(player: any): void {
+        throw new Error("Method not implemented.");
+    }
+    
     mainPage(): Observable<Block[]> {
         var blocks : Block[] = [];
 

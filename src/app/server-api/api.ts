@@ -1,7 +1,4 @@
 import { Observable } from "rxjs/internal/Observable";
-import { Block } from "../content-pages/main/block/block";
-import { Playlist } from "../content-pages/playlist/playlist";
-import { Track } from "../content-pages/playlist/table/track";
 
 export interface API {
 
@@ -16,4 +13,6 @@ export interface API {
     getAuthor(authorID: number): any;
 
     playTrack(trackId: number): void;
+
+    setPlayer(player: any) : void;
 }
