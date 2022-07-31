@@ -32,5 +32,12 @@ export class PlayerComponent {
 
     public play(url : string) {
         this.sourceUrl = url;
+
+        let element : HTMLAudioElement = this._player.nativeElement;
+        element.src = url;
+        element.loop = true;
+        element.load();
+        element.play();
+        
     }
 }
