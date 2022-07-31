@@ -42,9 +42,8 @@ interface blockData {
     blocks : IBlock[]
 }
 
-const imageUrl = "http://localhost:8090/api/image/get/";
-
-const albumImageUrl = "http://localhost:8090/api/album/image/get/";
+const imageUrl = environment.api_image_get
+const albumImageUrl = environment.api_album_image_get
 
 abstract class BlockFactory {
 
