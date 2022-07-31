@@ -14,10 +14,10 @@ export class PlayerComponent {
     private sourceUrl: string = "";
 
     ngAfterViewInit() {
-        this._player.nativeElement.autoplay = true;
-        this._player.nativeElement.loop = true;
-        this._player.nativeElement.volume = 0.03;
-        this._player.nativeElement.controls = true;
+        // this._player.nativeElement.autoplay = true;
+        // this._player.nativeElement.loop = true;
+        // this._player.nativeElement.volume = 0.03;
+        // this._player.nativeElement.controls = true;
 
         APIController.setPlayer(this);
     }
