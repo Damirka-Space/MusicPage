@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
-import { elementAt } from "rxjs";
 import { APIController } from "../server-api/controller";
 
 @Component({
@@ -12,12 +11,15 @@ export class PlayerComponent {
     @ViewChild('player', {read: ElementRef})
     _player!: ElementRef;
 
+    @ViewChild('source', {read: ElementRef})
+    _source!: ElementRef;
+
 
     private sourceUrl: string = "";
 
     ngAfterViewInit() {
         // this._player.nativeElement.autoplay = true;
-        // this._player.nativeElement.loop = true;
+        this._player.nativeElement.loop = true;
         // this._player.nativeElement.volume = 0.03;
         // this._player.nativeElement.controls = true;
 
@@ -37,9 +39,11 @@ export class PlayerComponent {
 
         let element : HTMLAudioElement = this._player.nativeElement;
 
-        element.src = url;
-        element.loop = true;
-        element.autoplay = true;
+        let source : HTMLSourceElement = this._source.nativeElement;
+
+        source.src = url;
+        source.type = "audio/mpeg";
+
         element.load();
         element.play();
     }
