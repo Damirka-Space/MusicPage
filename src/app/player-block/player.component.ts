@@ -22,7 +22,7 @@ export class PlayerComponent {
         APIController.setPlayer(this);
     }
 
-    public getSoruce() {
+    public getSource() {
         this.sourceUrl;
     }
 
@@ -32,8 +32,5 @@ export class PlayerComponent {
 
     public play(url : string) {
         this.sourceUrl = url;
-        this._player.nativeElement.src =  url;
-        this._player.nativeElement.load();
-        this._player.nativeElement.play();
     }
 }
