@@ -98,8 +98,10 @@ abstract class TracksFactory {
 
         let tracks : Track[] = [];
 
+        let index = 1;
+
         obj.forEach(t => {
-            let track = new Track(t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, albumImageUrl + t.albumId, "");
+            let track = new Track(index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, albumImageUrl + t.albumId, "");
             tracks.push(track);
         })
 
