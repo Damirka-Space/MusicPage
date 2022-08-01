@@ -9,25 +9,21 @@ import { APIController } from "../server-api/controller";
     encapsulation: ViewEncapsulation.None
 })
 export class PlayerComponent {
-    // @ViewChild('player', {read: ElementRef})
-    // _player!: ElementRef;
+    @ViewChild('player', {read: ElementRef})
+    _player!: ElementRef;
 
-    // @ViewChild('source', {read: ElementRef})
-    // _source!: ElementRef;
+    @ViewChild('source', {read: ElementRef})
+    _source!: ElementRef;
 
-    private player: HTMLAudioElement;
     private sourceUrl: string = "";
 
     constructor() {
-        this.player = new Audio();
-        this.player.loop = true;
-        this.player.controls = false;
     }
 
     ngAfterViewInit() {
-        // this._player.nativeElement.autoplay = true;
+        this._player.nativeElement.autoplay = true;
         // this._player.nativeElement.volume = 0.03;
-        // this._player.nativeElement.controls = true;
+        this._player.nativeElement.controls = false;
 
         APIController.setPlayer(this);
     }
@@ -43,19 +39,13 @@ export class PlayerComponent {
     public play(track: Track, url: string) {
         this.sourceUrl = url;
 
-        this.player.src = this.getSource();
+        let element : HTMLAudioElement = this._player.nativeElement;
 
-        this.player.load();
-        this.player.play();
+        let source : HTMLSourceElement = this._source.nativeElement;
 
-        // let element : HTMLAudioElement = this._player.nativeElement;
+        source.src = url;
 
-        // let source : HTMLSourceElement = this._source.nativeElement;
-
-        // source.src = url;
-        // source.type = "audio/mpeg";
-
-        // element.load();
-        // element.play();
+        element.load();
+        element.play();
     }
 }
