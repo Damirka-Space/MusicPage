@@ -24,6 +24,7 @@ export class PlayerComponent {
         this._player.nativeElement.autoplay = true;
         // this._player.nativeElement.volume = 0.03;
         this._player.nativeElement.controls = false;
+        this._player.nativeElement.loop = true;
 
         APIController.setPlayer(this);
     }
