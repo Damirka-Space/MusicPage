@@ -17,6 +17,8 @@ export class PlayerComponent {
 
     private sourceUrl: string = "";
 
+    private mediaMetadata!: MediaMetadata;
+
     constructor() {
     }
 
@@ -27,6 +29,32 @@ export class PlayerComponent {
         this._player.nativeElement.loop = true;
 
         APIController.setPlayer(this);
+
+        if(navigator.mediaSession) {
+            this.mediaMetadata = new MediaMetadata();
+        }
+
+        // if ('mediaSession' in navigator) {
+        //     navigator.mediaSession.metadata = new MediaMetadata({
+        //       title: 'Unforgettable',
+        //       artist: 'Nat King Cole',
+        //       album: 'The Ultimate Collection (Remastered)',
+        //       artwork: [
+        //         { src: 'https://dummyimage.com/96x96',   sizes: '96x96',   type: 'image/png' },
+        //       ]
+        //     });
+          
+        //     navigator.mediaSession.setActionHandler('play', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('pause', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('stop', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('seekbackward', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('seekforward', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('seekto', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('previoustrack', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('nexttrack', function() { /* Code excerpted. */ });
+        //     navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ });
+        // }
+
     }
 
     public getSource() {
@@ -45,6 +73,15 @@ export class PlayerComponent {
         let source : HTMLSourceElement = this._source.nativeElement;
 
         source.src = url;
+
+        this.mediaMetadata.title = track.getTitle();
+        this.mediaMetadata.artist = track.getAuthor().join(", ");
+        this.mediaMetadata.album = track.getAlbum();
+        this.mediaMetadata.artwork = [{ src: track.getImageUrl() }];
+
+        if(navigator.mediaSession) {
+            navigator.mediaSession.metadata = this.mediaMetadata;   
+        }
 
         element.load();
         element.play();
