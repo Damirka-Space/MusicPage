@@ -17,8 +17,6 @@ export class PlayerComponent {
 
     private sourceUrl: string = "";
 
-    private mediaMetadata!: MediaMetadata;
-
     constructor() {
     }
 
@@ -29,10 +27,6 @@ export class PlayerComponent {
         this._player.nativeElement.loop = true;
 
         APIController.setPlayer(this);
-
-        if(navigator.mediaSession) {
-            this.mediaMetadata = new MediaMetadata();
-        }
 
         // if ('mediaSession' in navigator) {
         //     navigator.mediaSession.metadata = new MediaMetadata({
@@ -74,13 +68,14 @@ export class PlayerComponent {
 
         source.src = url;
 
-        this.mediaMetadata.title = track.getTitle();
-        this.mediaMetadata.artist = track.getAuthor().join(", ");
-        this.mediaMetadata.album = track.getAlbum();
-        this.mediaMetadata.artwork = [{ src: track.getImageUrl() }];
-
         if(navigator.mediaSession) {
-            navigator.mediaSession.metadata = this.mediaMetadata;   
+            let mediaMetadata = new MediaMetadata();
+            mediaMetadata.title = track.getTitle();
+            mediaMetadata.artist = track.getAuthor().join(", ");
+            mediaMetadata.album = track.getAlbum();
+            mediaMetadata.artwork = [{ src: track.getImageUrl() }];
+
+            navigator.mediaSession.metadata = mediaMetadata;   
         }
 
         element.load();
