@@ -23,12 +23,4 @@ export abstract class APIController {
     public static getTracks(playlistID: number): Observable<Track[]> {
         return this.api.getTracks(playlistID);
     }
-
-    public static playTrack(track: Track) {
-        this.api.playTrack(track);
-    }
-
-    public static setPlayer(player : any) {
-        this.api.setPlayer(player);
-    }
 }

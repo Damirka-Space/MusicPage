@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
 import { Track } from "../content-pages/playlist/table/track";
+import { Player } from "../player/player";
 import { APIController } from "../server-api/controller";
 
 @Component({
@@ -21,12 +22,14 @@ export class PlayerComponent {
     }
 
     ngAfterViewInit() {
-        this._player.nativeElement.autoplay = true;
+        // this._player.nativeElement.autoplay = true;
         // this._player.nativeElement.volume = 0.03;
-        this._player.nativeElement.controls = false;
-        this._player.nativeElement.loop = true;
+        // this._player.nativeElement.controls = false;
+        // this._player.nativeElement.loop = false;
 
-        APIController.setPlayer(this);
+        this._player.nativeElement.addEventListener("ended", Player.playNext);
+
+        Player.setPlayerComponent(this);
 
         // if ('mediaSession' in navigator) {
         //     navigator.mediaSession.metadata = new MediaMetadata({
@@ -57,28 +60,20 @@ export class PlayerComponent {
 
     public setSource(url: string) {
         this.sourceUrl = url;
+        let source : HTMLSourceElement = this._source.nativeElement;
+        source.src = url;
     }
 
-    public play(track: Track, url: string) {
-        this.sourceUrl = url;
+    public play() {
+        this._player.nativeElement.load();
+        this._player.nativeElement.play();
+    }
 
-        let element : HTMLAudioElement = this._player.nativeElement;
+    public pause() {
+        this._player.nativeElement.pause();
+    }
 
-        let source : HTMLSourceElement = this._source.nativeElement;
-
-        source.src = url;
-
-        if(navigator.mediaSession) {
-            let mediaMetadata = new MediaMetadata();
-            mediaMetadata.title = track.getTitle();
-            mediaMetadata.artist = track.getAuthor().join(", ");
-            mediaMetadata.album = track.getAlbum();
-            mediaMetadata.artwork = [{ src: track.getImageUrl() }];
-
-            navigator.mediaSession.metadata = mediaMetadata;   
-        }
-
-        element.load();
-        element.play();
+    public setLoop(value : boolean) {
+        this._player.nativeElement.loop = value;
     }
 }

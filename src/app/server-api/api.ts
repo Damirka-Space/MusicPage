@@ -12,8 +12,4 @@ export interface API {
     getTrack(trackID: number): any;
     getImage(imageID: number): any;
     getAuthor(authorID: number): any;
-
-    playTrack(track: Track): void;
-
-    setPlayer(player: any) : void;
 }

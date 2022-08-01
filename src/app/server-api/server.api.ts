@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { map, of } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
-import { UserInfo } from "../view/user.info";
 import { API } from "./api";
 
 import { Block } from "../content-pages/main/block/block";
@@ -82,7 +81,7 @@ interface playlistData {
 }
 
 abstract class PlaylistFactory {
-    public static formResponse(response : any) : Playlist {
+    public static fromResponse(response : any) : Playlist {
         let obj = response as playlistData;
 
         let playlist : Playlist = new Playlist(obj.id, imageUrl + obj.image.id.toString(), obj.title, obj.description);
@@ -112,29 +111,12 @@ abstract class TracksFactory {
 
 export class ServerAPI implements API {
 
-    private player!: PlayerComponent;
-
     private http: HttpClient;
-
-    private user!: UserInfo;
 
     private url : string = environment.api_root;
 
-    private audio: HTMLAudioElement;
-
     constructor(http: HttpClient) {
         this.http = http;
-
-        this.audio = new Audio();
-
-        // audio.src = "http://127.0.0.1:8090/api/test/get/5";
-        
-        // audio.load();
-        // audio.play();
-    }
-
-    setPlayer(player: any): void {
-        this.player = player;
     }
 
     mainPage(): Observable<any> {
@@ -144,7 +126,7 @@ export class ServerAPI implements API {
     }
     getPlaylist(playlistID: number): Observable<any> {
         return this.http.get(this.url + environment.api_album_get + playlistID).pipe(map((val) => {
-            return PlaylistFactory.formResponse(val);
+            return PlaylistFactory.fromResponse(val);
         }));
     }
     getTracks(playlistID: number): Observable<any> {
@@ -160,10 +142,6 @@ export class ServerAPI implements API {
     }
     getAuthor(authorID: number) {
         throw new Error("Method not implemented.");
-    }
-
-    playTrack(track: Track): void {
-        this.player.play(track, this.url + environment.api_track_get + track.getId());
     }
 
 }
