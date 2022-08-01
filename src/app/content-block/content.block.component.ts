@@ -60,7 +60,8 @@ export class ContentBlockComponent implements AfterViewInit{
     }
 
     public static resetScroll() {
-        this.div.scrollTop = 0;
+        if(this.div)
+            this.div.scrollTop = 0;
     }
 
     public static getDivScrollTop() {

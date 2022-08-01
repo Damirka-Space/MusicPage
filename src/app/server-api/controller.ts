@@ -24,8 +24,8 @@ export abstract class APIController {
         return this.api.getTracks(playlistID);
     }
 
-    public static playTrack(trackId: number) {
-        this.api.playTrack(trackId);
+    public static playTrack(track: Track) {
+        this.api.playTrack(track);
     }
 
     public static setPlayer(player : any) {

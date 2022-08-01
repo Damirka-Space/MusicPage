@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
+import { Track } from "../content-pages/playlist/table/track";
 import { APIController } from "../server-api/controller";
 
 @Component({
@@ -8,18 +9,23 @@ import { APIController } from "../server-api/controller";
     encapsulation: ViewEncapsulation.None
 })
 export class PlayerComponent {
-    @ViewChild('player', {read: ElementRef})
-    _player!: ElementRef;
+    // @ViewChild('player', {read: ElementRef})
+    // _player!: ElementRef;
 
-    @ViewChild('source', {read: ElementRef})
-    _source!: ElementRef;
+    // @ViewChild('source', {read: ElementRef})
+    // _source!: ElementRef;
 
-
+    private player: HTMLAudioElement;
     private sourceUrl: string = "";
+
+    constructor() {
+        this.player = new Audio();
+        this.player.loop = true;
+        this.player.controls = false;
+    }
 
     ngAfterViewInit() {
         // this._player.nativeElement.autoplay = true;
-        this._player.nativeElement.loop = true;
         // this._player.nativeElement.volume = 0.03;
         // this._player.nativeElement.controls = true;
 
@@ -27,24 +33,29 @@ export class PlayerComponent {
     }
 
     public getSource() {
-        this.sourceUrl;
+        return this.sourceUrl;
     }
 
     public setSource(url: string) {
         this.sourceUrl = url;
     }
 
-    public play(url : string) {
+    public play(track: Track, url: string) {
         this.sourceUrl = url;
 
-        let element : HTMLAudioElement = this._player.nativeElement;
+        this.player.src = this.getSource();
 
-        let source : HTMLSourceElement = this._source.nativeElement;
+        this.player.load();
+        this.player.play();
 
-        source.src = url;
-        source.type = "audio/mpeg";
+        // let element : HTMLAudioElement = this._player.nativeElement;
 
-        element.load();
-        element.play();
+        // let source : HTMLSourceElement = this._source.nativeElement;
+
+        // source.src = url;
+        // source.type = "audio/mpeg";
+
+        // element.load();
+        // element.play();
     }
 }

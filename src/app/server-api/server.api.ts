@@ -160,8 +160,8 @@ export class ServerAPI implements API {
         throw new Error("Method not implemented.");
     }
 
-    playTrack(trackId: number): void {
-        this.player.play(this.url + environment.api_track_get + trackId);
+    playTrack(track: Track): void {
+        this.player.play(track, this.url + environment.api_track_get + track.getId());
     }
 
 }

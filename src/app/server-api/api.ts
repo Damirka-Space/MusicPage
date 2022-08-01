@@ -1,4 +1,5 @@
 import { Observable } from "rxjs/internal/Observable";
+import { Track } from "../content-pages/playlist/table/track";
 
 export interface API {
 
@@ -12,7 +13,7 @@ export interface API {
     getImage(imageID: number): any;
     getAuthor(authorID: number): any;
 
-    playTrack(trackId: number): void;
+    playTrack(track: Track): void;
 
     setPlayer(player: any) : void;
 }

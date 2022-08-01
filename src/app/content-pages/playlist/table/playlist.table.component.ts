@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
 import { APIController } from "src/app/server-api/controller";
 import { ContentBlock } from "../../content.block";
@@ -42,8 +42,7 @@ export class PlaylistTableComponent {
             return;
 
         this.selectedTrack = track;
-
-        APIController.playTrack(track.getId());
+        APIController.playTrack(track);
     }
 
     ngOnInit() {
@@ -60,7 +59,7 @@ export class PlaylistTableComponent {
 
     ngAfterViewInit() {
         PlaylistTableComponent.div = this._div.nativeElement;
-
+                
     }
 
     private onScroll() {

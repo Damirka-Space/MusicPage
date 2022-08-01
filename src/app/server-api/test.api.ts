@@ -95,7 +95,7 @@ export class TestAPI implements API {
         throw new Error("Method not implemented.");
     }
 
-    playTrack(trackId: number): void {
+    playTrack(track: Track): void {
         throw new Error("Method not implemented.");
     }
     
