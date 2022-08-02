@@ -1,7 +1,5 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
-import { Track } from "../content-pages/playlist/table/track";
 import { Player } from "../player/player";
-import { APIController } from "../server-api/controller";
 
 @Component({
     selector: 'player-component',
@@ -22,36 +20,8 @@ export class PlayerComponent {
     }
 
     ngAfterViewInit() {
-        // this._player.nativeElement.autoplay = true;
-        // this._player.nativeElement.volume = 0.03;
-        // this._player.nativeElement.controls = false;
-        // this._player.nativeElement.loop = false;
-
         this._player.nativeElement.addEventListener("ended", Player.playNext);
-
         Player.setPlayerComponent(this);
-
-        // if ('mediaSession' in navigator) {
-        //     navigator.mediaSession.metadata = new MediaMetadata({
-        //       title: 'Unforgettable',
-        //       artist: 'Nat King Cole',
-        //       album: 'The Ultimate Collection (Remastered)',
-        //       artwork: [
-        //         { src: 'https://dummyimage.com/96x96',   sizes: '96x96',   type: 'image/png' },
-        //       ]
-        //     });
-          
-        //     navigator.mediaSession.setActionHandler('play', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('pause', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('stop', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('seekbackward', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('seekforward', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('seekto', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('previoustrack', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('nexttrack', function() { /* Code excerpted. */ });
-        //     navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ });
-        // }
-
     }
 
     public getSource() {

@@ -8,7 +8,6 @@ import { Card } from "../content-pages/main/block/card/card"
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
 import { environment } from "src/environments/environment";
-import { PlayerComponent } from "../player-block/player.component";
 
 interface ITrack {
     id: number;
