@@ -7,6 +7,7 @@ export const environment = {
   api_tracks_get: "/api/album/tracks/get/",
   api_track_get: "/api/track/get/",
 
-  api_image_get: "http://130.61.79.90:8090/api/image/get/",
-  api_album_image_get: "http://130.61.79.90:8090/api/album/image/get/"
+  api_image_get: "http://130.61.79.90:8090/api/image/medium/get/",
+  api_album_image_get: "http://130.61.79.90:8090/api/album/image/medium/get/",
+  api_album_track_image_get: "http://130.61.79.90:8090/api/album/image/small/get/"
 };
