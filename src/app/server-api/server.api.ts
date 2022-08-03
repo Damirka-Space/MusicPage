@@ -44,6 +44,7 @@ interface blockData {
 const imageUrl = environment.api_image_get
 const albumImageUrl = environment.api_album_image_get
 const albumTrackImageUrl = environment.api_album_track_image_get
+const albumTrackMetadataUrl = environment.api_album_track_metadata_image_get;
 
 abstract class BlockFactory {
 
@@ -100,7 +101,7 @@ abstract class TracksFactory {
         let index = 1;
 
         obj.forEach(t => {
-            let track = new Track(index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, albumTrackImageUrl + t.albumId, "");
+            let track = new Track(index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, albumTrackImageUrl + t.albumId, albumTrackMetadataUrl + t.albumId, "");
             tracks.push(track);
         })
 

@@ -12,7 +12,8 @@ export const environment = {
 
   api_image_get: "http://localhost:8090/api/image/medium/get/",
   api_album_image_get: "http://localhost:8090/api/album/image/medium/get/",
-  api_album_track_image_get: "http://localhost:8090/api/album/image/small/get/"
+  api_album_track_image_get: "http://localhost:8090/api/album/image/small/get/",
+  api_album_track_metadata_image_get: "http://localhost:8090/api/album/image/get/"
 };
 
 /*

@@ -12,10 +12,11 @@ export class Track {
     private author: string[];
     private album: string;
     private imageUrl: string
+    private metadataImageUrl: string;
     private time: string;
 
     constructor(index: number, id: number, authorId: number[], albumId: number, imageId: number,
-                title: string, author: string[], album: string, imageUrl: string, time: string) {
+                title: string, author: string[], album: string, imageUrl: string, metadataImageUrl: string, time: string) {
         this.index = index;
         this.id = id;
         this.authorId = authorId;
@@ -25,12 +26,13 @@ export class Track {
         this.author = author;
         this.album = album;
         this.imageUrl = imageUrl;
+        this.metadataImageUrl = metadataImageUrl;
         this.time = time;
     }
 
     private static ID : number = 1;
     public static nullTrack() {
-        return new Track(this.ID++, 0, [0], 0, 0, "Test112321312", ["Red hot chilli pepers"], "test3", "assets/playlist/Heart.png", "0:0");
+        return new Track(this.ID++, 0, [0], 0, 0, "Test112321312", ["Red hot chilli pepers"], "test3", "assets/playlist/Heart.png", "assets/playlist/Heart.png", "0:0");
     }
 
 
@@ -48,6 +50,10 @@ export class Track {
 
     public getImageUrl(): string {
         return this.imageUrl;
+    }
+
+    public getMetadataImageUrl(): string {
+        return this.metadataImageUrl;
     }
 
     public getTime(): string {
