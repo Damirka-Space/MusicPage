@@ -35,6 +35,10 @@ export abstract class Player {
         Player.currentPlaylist = tracks;
     }
 
+    public static seek(value: number) {
+        Player.playerComponent.seek(value);
+    }
+
 
     public static playTrack(track: Track) {
         

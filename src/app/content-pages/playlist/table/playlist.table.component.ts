@@ -1,5 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { ContentBlockComponent } from "src/app/content-block/content.block.component";
+import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { Player } from "src/app/player/player";
 import { APIController } from "src/app/server-api/controller";
 import { ContentBlock } from "../../content.block";
@@ -28,7 +27,7 @@ export class PlaylistTableComponent {
     constructor() {
         Player.setPlaylistComponent(this);
     }
-    
+
     public selectTrack(track: Track, tracks: Track[]) {
         if(tracks == this.tracks)
             this.selectedTrack = track;
@@ -39,10 +38,8 @@ export class PlaylistTableComponent {
     }
 
     public onClick(track : Track) {
-        if(this.selectedTrack == track)
-            return;
-
         this.selectedTrack = track;
+        Player.seek(0);
         Player.setPlaylist(this.tracks);
         Player.playTrack(track);
     }

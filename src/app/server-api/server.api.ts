@@ -42,6 +42,7 @@ interface blockData {
 }
 
 const imageUrl = environment.api_image_get
+const imageUrlMedium = environment.api_image_medium_get
 const albumImageUrl = environment.api_album_image_get
 const albumTrackImageUrl = environment.api_album_track_image_get
 const albumTrackMetadataUrl = environment.api_album_track_metadata_image_get;
@@ -58,7 +59,7 @@ abstract class BlockFactory {
             let block = new Block(blc.id, blc.title);
 
             blc.albums.forEach(alb => {
-                let card = new Card(alb.id, alb.title, alb.description, imageUrl + alb.image.id.toString());
+                let card = new Card(alb.id, alb.title, alb.description, imageUrlMedium + alb.image.id.toString());
                 block.addCard(card);
             })
 

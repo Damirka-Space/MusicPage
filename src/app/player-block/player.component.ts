@@ -28,14 +28,20 @@ export class PlayerComponent {
         return this.sourceUrl;
     }
 
+    public seek(value: number) {
+        this._player.nativeElement.currentTime = value;
+    }
+
     public setSource(url: string) {
-        this.sourceUrl = url;
-        let source : HTMLSourceElement = this._source.nativeElement;
-        source.src = url;
+        if(this.sourceUrl != url) {
+            this.sourceUrl = url;
+            let source : HTMLSourceElement = this._source.nativeElement;
+            source.src = url;
+            this._player.nativeElement.load();
+        }
     }
 
     public play() {
-        this._player.nativeElement.load();
         this._player.nativeElement.play();
     }
 
