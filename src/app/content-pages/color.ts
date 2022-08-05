@@ -55,6 +55,10 @@ export class ColorHEX implements Color {
     public static getNullColor() {
         return new ColorHEX("#00000000");
     }
+
+    public static getGreyColor() {
+        return new ColorHEX("#1f1f1f");
+    }
 }
 
 

@@ -15,6 +15,7 @@ export class ContentBlockComponent implements AfterViewInit{
 
     private static headerColor: Color = ColorHEX.getNullColor();
     private static backgroundColor: Color = ColorHEX.getNullColor();
+    private static staticBackgroundColor: Color = ColorHEX.getGreyColor();
 
     @ViewChild('div') 
     _div!: ElementRef;
@@ -80,12 +81,20 @@ export class ContentBlockComponent implements AfterViewInit{
         this.backgroundColor = color;
     }
 
+    public static setStaticBackgroundColor(color: Color) {
+        this.staticBackgroundColor = color;
+    }
+
     public getHeaderColor(): string {
         return ContentBlockComponent.headerColor.toString();
     }
 
     public getBackgroundColor(): string {
         return ContentBlockComponent.backgroundColor.toString();
+    }
+
+    public getStaticBacgroundColor() : string {
+        return ContentBlockComponent.staticBackgroundColor.toString();
     }
 
 }
