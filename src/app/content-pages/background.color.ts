@@ -32,7 +32,7 @@ export class LinearGradientBackgroundColorHEX implements Color {
     }
 
     public toString(): string {
-        return "linear-gradient(" + this.colorOne + ',' + this.colorTwo + ',' + this.colorTwo + ")";
+        return "linear-gradient(" + this.colorOne + ','  + this.colorTwo + ',' + this.colorTwo + ")";
     }
 }
 
