@@ -30,17 +30,25 @@
     top: 93%;
     border-radius: 0;
     background-color: #333;
-
-    
-
-    
-    
 }
 
-// @media only screen and (max-device-width: 480px) {
-
-//     audio {
-//         top: 85%;
-//         // height: 5%;
-//     }
-// }
+@media only screen and (max-device-width: 480px) {
+    .slider-container {
+        display: none;
+        .slider {
+            display: none;
+            
+        }
+        .mat-slider-ticks {
+            display: none;
+        }
+    }
+    
+    .mat-slider-thumb {
+        display: none;
+    }
+    
+    #menu {
+        display: none;
+    }
+}
