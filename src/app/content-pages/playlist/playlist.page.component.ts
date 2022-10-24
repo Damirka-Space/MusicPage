@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { APIController } from "src/app/server-api/controller";
 import { LinearGradientBackgroundColorHEX } from "../background.color";
 import { ColorHEX } from "../color";
@@ -15,14 +16,18 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
-    constructor() {
+    constructor(private route: ActivatedRoute) {
         super();
-        APIController.getPlaylist(this.params.pop()).subscribe(data => {
-            this.playlist = data;
-        });
-
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
+    }
+
+    public ngOnInit() {
+        this.route.params.subscribe(params => {
+            APIController.getPlaylist(params['id']).subscribe(data => {
+                this.playlist = data;
+            });
+        });
     }
 
     public getTitle() {

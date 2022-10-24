@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Routes, RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { ContentBlockComponent } from './content-block/content.block.component';
 import { CollectionsPageComponent } from './content-pages/collections/collections.page.component';
@@ -17,7 +19,14 @@ import { PlaylistTableComponent } from './content-pages/playlist/table/playlist.
 import { PlaylistPageComponent } from './content-pages/playlist/playlist.page.component';
 import { PlayerComponent } from './player-block/player.component';
 
+const appRoutes: Routes = [
+  {path: '', component: MainPageComponent},
+  {path: 'find', component: FindPageComponent},
+  {path: 'collections', component: CollectionsPageComponent},
+  {path: 'stream', component: StreamPageComponent},
+  {path: 'album/:id', component: PlaylistPageComponent},
 
+]
 
 
 @NgModule({
@@ -39,7 +48,8 @@ import { PlayerComponent } from './player-block/player.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

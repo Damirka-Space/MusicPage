@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { PageSelector } from "../content-pages/page.selector";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,27 +10,27 @@ import { PageSelector } from "../content-pages/page.selector";
 })
 export class NavBarComponent implements AfterViewInit {
 
-    constructor() {
+    constructor(private router: Router) {
 
     }
 
     ngAfterViewInit(): void {
-        PageSelector.selectMainPage();
+        this.selectMain();
     }
 
     protected selectMain() {
-        PageSelector.selectMainPage();;
+        this.router.navigate(['']);
     }
 
     protected selectFind() {
-        PageSelector.selectFindPage();
+        this.router.navigate(['find']);
     }
 
     protected selectCollections() {
-        PageSelector.selectCollectionsPage();
+        this.router.navigate(['collections']);
     }
 
     protected selectStream() {
-        PageSelector.selectStreamPage();
+        this.router.navigate(['stream']);
     }
 }

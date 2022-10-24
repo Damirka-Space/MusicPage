@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { PageController } from "src/app/content-pages/page.controller";
 import { PageSelector } from "src/app/content-pages/page.selector";
 import { APIController } from "src/app/server-api/controller";
@@ -16,16 +17,17 @@ export class CardComponent {
 
     @Input() card!: Card;
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     public openPlaylist(event: Event) {
         if(event.composedPath()[1] == this.playButton.nativeElement)
             return;
-
-        PageController.addParam(this.card.getId());
+        
+        this.router.navigate(['album', this.card.getId()]);
+        // PageController.addParam(this.card.getId());
         // PageController.addParam(new Playlist(this.card.getId(), this.card.getImageUrl(), this.card.getTitle(), this.card.getDescription()));
-        PageSelector.selectPlaylistPage();
+        // PageSelector.selectPlaylistPage();
     }
 
     public playPlaylist(event: Event) {
