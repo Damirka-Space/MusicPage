@@ -1,3 +1,14 @@
 <audio #player>
     <source #source type="audio/mpeg"> 
 </audio>
+
+<div class="slider-container">
+    <mat-slider #progressbar class="slider" min="0" max="{{ max }}" step="1" value="{{ value }}" (mousedown)="sliderOnClick()" (mouseup)="sliderOnRelease()" color="warn">
+        
+    </mat-slider>
+</div>
+<div id="menu">
+    <button (click)="onPlayPrevClick()">Previous</button>
+    <button (click)="onPlayClick()">Pause</button>
+    <button (click)="onPlayNextClick()">Next</button>
+</div>

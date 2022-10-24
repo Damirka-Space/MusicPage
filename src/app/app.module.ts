@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Routes, RouterModule } from '@angular/router';
@@ -48,6 +50,8 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatProgressBarModule,
+    MatSliderModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],

@@ -11,6 +11,12 @@ export class PlayerComponent {
     @ViewChild('player', {read: ElementRef})
     _player!: ElementRef;
 
+    // values for slider
+    max = 0;
+    value = 0;
+
+    private sliderClicked = false;
+
     @ViewChild('source', {read: ElementRef})
     _source!: ElementRef;
 
@@ -19,8 +25,29 @@ export class PlayerComponent {
     constructor() {
     }
 
+    public update() {
+        if(!this.sliderClicked) {
+            this.value = this._player.nativeElement.currentTime;
+            this.max = this._player.nativeElement.duration;
+        }
+    }
+
+    sliderOnClick() {
+        this.sliderClicked = true;
+    }
+
+    sliderOnRelease() {
+        console.log(this._player.nativeElement.seeking)
+        if(this._player.nativeElement.seeking) {
+            console.log(this.value);
+            Player.seek(this.value);
+        }
+        this.sliderClicked = false;
+    }
+
     ngAfterViewInit() {
         this._player.nativeElement.addEventListener("ended", Player.playNext);
+        this._player.nativeElement.addEventListener("timeupdate", Player.update);
         Player.setPlayerComponent(this);
     }
 
@@ -39,6 +66,21 @@ export class PlayerComponent {
             source.src = url;
             this._player.nativeElement.load();
         }
+    }
+
+    protected onPlayPrevClick() {
+        Player.playPrev();
+    }
+
+    protected onPlayNextClick() {
+        Player.playNext();
+    }
+
+    protected onPlayClick() {
+        if(!this._player.nativeElement.paused) 
+            this.pause();
+        else
+            this.play();
     }
 
     public play() {

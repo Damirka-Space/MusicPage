@@ -39,6 +39,9 @@ export abstract class Player {
         Player.playerComponent.seek(value);
     }
 
+    public static update() {
+        Player.playerComponent.update();
+    }
 
     public static playTrack(track: Track) {
         
