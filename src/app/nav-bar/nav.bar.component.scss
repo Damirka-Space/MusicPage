@@ -37,25 +37,26 @@
     .mobile {
         display: block;
         position: fixed;
-        top: 92vh;
+        top: 95vh;
         width: 100%;
-        height: 8vh;
+        height: 5vh;
         background-color: #3f3f3f;
 
         .buttons {
             width: max-content;
+            height: max-content;
             margin: 0 auto;
-            margin-top: 4px;
+            margin-top: 1px;
             color: white;
-            font-size: 10vw;
+            font-size: 7vw;
             text-align: center;
             p {
                 display: inline;
                 padding: 0;
                 margin: 0;
                 
-                margin-left: 32px;
-                margin-right: 32px;
+                margin-left: 42px;
+                margin-right: 42px;
             }
         }
     }
