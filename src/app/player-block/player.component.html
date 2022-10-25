@@ -8,7 +8,12 @@
     </mat-slider>
 </div>
 <div id="menu">
-    <button (click)="onPlayPrevClick()">Previous</button>
-    <button (click)="onPlayClick()">Pause</button>
-    <button (click)="onPlayNextClick()">Next</button>
+    <div id="Buttons">
+        <img (click)="onPlayNextClick()"id="ShuffleButton" src="assets/playlist/ShuffleButton.png">
+        <img (click)="onPlayPrevClick()" id="PlayPrevButton" src="assets/playlist/PrevButton.png" >
+        <img (click)="onPlayClick()" id="PlayButton" #PlayButton src="assets/playlist/PlayButton.png">
+        <img (click)="onPlayNextClick()"id="PlayNextButton" src="assets/playlist/NextButton.png">
+        <img (click)="onRepeatClick()"id="RepeatButton" #RepeatButton src="assets/playlist/RepeatButton.png">
+    </div>
+    
 </div>

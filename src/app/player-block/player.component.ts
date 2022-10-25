@@ -11,16 +11,24 @@ export class PlayerComponent {
     @ViewChild('player', {read: ElementRef})
     _player!: ElementRef;
 
-    // values for slider
-    max = 0;
-    value = 0;
-
-    private sliderClicked = false;
-
     @ViewChild('source', {read: ElementRef})
     _source!: ElementRef;
 
+    @ViewChild('PlayButton', {read: ElementRef})
+    _playButton!: ElementRef;
+
+    @ViewChild('RepeatButton', {read: ElementRef})
+    _repeatButton!: ElementRef;
+
     private sourceUrl: string = "";
+
+    // values for slider
+    protected max = 0;
+    protected value = 0;
+
+    private sliderClicked = false;
+
+    private isPlaying = false;
 
     constructor() {
     }
@@ -65,6 +73,7 @@ export class PlayerComponent {
             let source : HTMLSourceElement = this._source.nativeElement;
             source.src = url;
             this._player.nativeElement.load();
+            this.isPlaying = true;
         }
     }
 
@@ -77,18 +86,45 @@ export class PlayerComponent {
     }
 
     protected onPlayClick() {
-        if(!this._player.nativeElement.paused) 
-            this.pause();
-        else
-            this.play();
+        if(this.isPlaying) {
+            if(!this._player.nativeElement.paused) 
+                this.pause();
+            else
+                this.play();
+        }
+    }
+
+    protected onShuffleClick() {
+        
+    }
+
+    protected onRepeatClick() {
+        if(this.isPlaying) {
+            if(!this._player.nativeElement.loop) {
+                this.setLoop(true);
+                this._repeatButton.nativeElement.src = "assets/playlist/RepeatButtonSingle.png";
+            }
+            else {
+                this.setLoop(false);
+                this._repeatButton.nativeElement.src = "assets/playlist/RepeatButton.png";
+            }
+        }
     }
 
     public play() {
         this._player.nativeElement.play();
+        this._playButton.nativeElement.src = "assets/playlist/PauseButton.png";
     }
 
     public pause() {
         this._player.nativeElement.pause();
+        this._playButton.nativeElement.src = "assets/playlist/PlayButton.png";
+    }
+
+    public stop() {
+        this.pause();
+        this._player.nativeElement.stop();
+        this.isPlaying = false;
     }
 
     public setLoop(value : boolean) {

@@ -11,7 +11,6 @@ export abstract class Player {
     private static currentPlaylist: Track[];
     private static currentIndex: number;
 
-
     public static setPlayerComponent(playerComponent: PlayerComponent) {
         Player.playerComponent = playerComponent;
 
