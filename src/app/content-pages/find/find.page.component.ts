@@ -9,5 +9,5 @@ import { PageComponent } from "../page.component";
     styleUrls: ['find.page.component.scss']
 })
 export class FindPageComponent extends PageComponent {
-
+    
 }

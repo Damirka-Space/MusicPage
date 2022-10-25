@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { ContentBlockComponent } from "src/app/content-block/content.block.component";
 import { APIController } from "src/app/server-api/controller";
 import { LinearGradientBackgroundColorHEX } from "../background.color";
 import { ColorHEX } from "../color";
@@ -20,6 +21,7 @@ export class PlaylistPageComponent extends PageComponent {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
+        ContentBlockComponent.resetScroll();
     }
 
     public ngOnInit() {
