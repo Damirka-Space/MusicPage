@@ -12,15 +12,11 @@
     }
 
     .background {
+        padding-top: 10vh;
         height: 100%;
+        padding-bottom: 20vh;
     }
 
-    .container {
-        padding-top: 10vh;
-        min-height: 100%;
-        
-        padding-bottom: 2%;
-    }
 }
 
 @media only screen and (max-device-width: 780px) {
@@ -45,11 +41,11 @@
             height: 10vh;
         }
 
-        .container {
-            padding-top: 10vh;
-            // height: 100%;
-            padding-bottom: 10vh;
-        }
+        // .background {
+        //     padding-top: 10vh;
+        //     // height: 100%;
+        //     padding-bottom: 20vh;
+        // }
     }
 }
 
