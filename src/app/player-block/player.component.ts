@@ -26,9 +26,9 @@ export class PlayerComponent {
     protected max = 0;
     protected value = 0;
 
-    private sliderClicked = false;
+    protected isPlaying = false;
 
-    private isPlaying = false;
+    private sliderClicked = false;
 
     constructor() {
     }

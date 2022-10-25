@@ -2,18 +2,20 @@
     <source #source type="audio/mpeg"> 
 </audio>
 
-<div class="slider-container">
-    <mat-slider #progressbar class="slider" min="0" max="{{ max }}" step="1" value="{{ value }}" (mousedown)="sliderOnClick()" (mouseup)="sliderOnRelease()" color="warn">
-        
-    </mat-slider>
-</div>
-<div id="menu">
-    <div id="Buttons">
-        <img (click)="onPlayNextClick()"id="ShuffleButton" src="assets/playlist/ShuffleButton.png">
-        <img (click)="onPlayPrevClick()" id="PlayPrevButton" src="assets/playlist/PrevButton.png" >
-        <img (click)="onPlayClick()" id="PlayButton" #PlayButton src="assets/playlist/PlayButton.png">
-        <img (click)="onPlayNextClick()"id="PlayNextButton" src="assets/playlist/NextButton.png">
-        <img (click)="onRepeatClick()"id="RepeatButton" #RepeatButton src="assets/playlist/RepeatButton.png">
+<div id="container" [hidden]="(!isPlaying)">
+    <div class="slider-container">
+        <mat-slider #progressbar class="slider" min="0" max="{{ max }}" step="1" value="{{ value }}" (mousedown)="sliderOnClick()" (mouseup)="sliderOnRelease()" color="warn">
+            
+        </mat-slider>
     </div>
-    
+    <div id="menu">
+        <div id="Buttons">
+            <img (click)="onPlayNextClick()"id="ShuffleButton" src="assets/playlist/ShuffleButton.png">
+            <img (click)="onPlayPrevClick()" id="PlayPrevButton" src="assets/playlist/PrevButton.png" >
+            <img (click)="onPlayClick()" id="PlayButton" #PlayButton src="assets/playlist/PlayButton.png">
+            <img (click)="onPlayNextClick()"id="PlayNextButton" src="assets/playlist/NextButton.png">
+            <img (click)="onRepeatClick()"id="RepeatButton" #RepeatButton src="assets/playlist/RepeatButton.png">
+        </div>
+        
+    </div>
 </div>
