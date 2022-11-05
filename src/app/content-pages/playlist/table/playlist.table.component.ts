@@ -28,9 +28,9 @@ export class PlaylistTableComponent {
         Player.setPlaylistComponent(this);
     }
 
-    public selectTrack(track: Track, tracks: Track[]) {
-        if(tracks == this.tracks)
-            this.selectedTrack = track;
+    public selectTrack(index: number, playlistId : number) {
+        if(this.playlistId == playlistId)
+            this.selectedTrack = this.tracks[index];
     }
 
     public getTracks() {
@@ -40,7 +40,7 @@ export class PlaylistTableComponent {
     public onClick(track : Track) {
         this.selectedTrack = track;
         Player.seek(0);
-        Player.setPlaylist(this.tracks);
+        Player.setPlaylist(this.tracks, this.playlistId);
         Player.playTrack(track);
     }
 
@@ -49,6 +49,10 @@ export class PlaylistTableComponent {
 
         APIController.getTracks(this.playlistId).subscribe(data => {
             this.tracks = data;
+
+            if(Player.getPlaylistId() == this.playlistId) {
+                this.selectedTrack = this.tracks[Player.getCurrentIndex()];
+            }
         });
     }
 

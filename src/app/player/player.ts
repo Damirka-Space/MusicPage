@@ -9,6 +9,7 @@ export abstract class Player {
     private static playerComponent: PlayerComponent;
     private static playlistTableComponent: PlaylistTableComponent;
     private static currentPlaylist: Track[];
+    private static playlistId: number;
     private static currentIndex: number;
 
     public static setPlayerComponent(playerComponent: PlayerComponent) {
@@ -30,8 +31,21 @@ export abstract class Player {
         Player.playlistTableComponent = playlistComponent;
     }
 
-    public static setPlaylist(tracks: Track[]) {
+    public static setPlaylist(tracks: Track[], playlistId : number) {
         Player.currentPlaylist = tracks;
+        Player.playlistId = playlistId;
+    }
+
+    public static getPlaylist() : Track[] {
+        return Player.currentPlaylist;
+    }
+
+    public static getPlaylistId() : number {
+        return Player.playlistId;
+    }
+
+    public static getCurrentIndex() : number {
+        return Player.currentIndex;
     }
 
     public static seek(value: number) {
@@ -57,7 +71,7 @@ export abstract class Player {
         Player.currentIndex = track.getIndex() - 1;
 
         if(Player.currentPlaylist)
-            Player.playlistTableComponent.selectTrack(track, Player.currentPlaylist);
+            Player.playlistTableComponent.selectTrack(Player.currentIndex, Player.playlistId);
         
 
         Player.playerComponent.setSource(environment.api_root + environment.api_track_get + track.getId());
