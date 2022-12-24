@@ -63,7 +63,7 @@ export abstract class Player {
             mediaMetadata.title = track.getTitle();
             mediaMetadata.artist = track.getAuthor().join(", ");
             mediaMetadata.album = track.getAlbum();
-            mediaMetadata.artwork = [{ src: track.getMetadataImageUrl() }];
+            mediaMetadata.artwork = [{ src: track.getMetadataImageUrl() , type: 'image/png'}];
 
             navigator.mediaSession.metadata = mediaMetadata;   
         }

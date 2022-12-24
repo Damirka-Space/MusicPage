@@ -15,11 +15,11 @@ export class NavBarComponent implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.selectMain();
+        // this.selectMain();
     }
 
     protected selectMain() {
-        this.router.navigate(['']);
+        this.router.navigate(['main']);
     }
 
     protected selectFind() {

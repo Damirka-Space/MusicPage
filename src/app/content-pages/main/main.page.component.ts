@@ -1,4 +1,5 @@
 import { Component, Output } from "@angular/core";
+import { ContentBlockComponent } from "src/app/content-block/content.block.component";
 import { APIController } from "src/app/server-api/controller";
 import { PageComponent } from "../page.component"
 import { Block } from "./block/block";
@@ -19,6 +20,8 @@ export class MainPageComponent extends PageComponent {
         APIController.mainPage().subscribe(data => {
             this.blocks = data;
         });
+        
+        ContentBlockComponent.resetScroll();
     }
 
     public getBlocks() {
