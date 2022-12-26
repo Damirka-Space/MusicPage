@@ -8,7 +8,7 @@ export const environment = {
   api_main: "/api/main",
   api_album_get: "/api/album/get/",
   api_tracks_get: "/api/album/tracks/get/",
-  api_track_get: "/api/track/get/",
+  api_track_get: "http://localhost:8090/api/track/get/",
 
   api_image_get: "http://localhost:8090/api/image/get/",
   api_image_medium_get: "http://localhost:8090/api/image/medium/get/",

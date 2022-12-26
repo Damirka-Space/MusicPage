@@ -16,6 +16,7 @@ interface ITrack {
     author: string[];
     albumId: number;
     album: string;
+    url: string;
 }
 
 interface IImage {
