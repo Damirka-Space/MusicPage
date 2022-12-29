@@ -17,15 +17,13 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(route: ActivatedRoute) {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
         ContentBlockComponent.resetScroll();
-    }
 
-    public ngOnInit() {
-        this.route.params.subscribe(params => {
+        route.params.subscribe(params => {
             APIController.getPlaylist(params['id']).subscribe(data => {
                 this.playlist = data;
             });

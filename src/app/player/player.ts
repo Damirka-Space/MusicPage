@@ -53,12 +53,10 @@ export abstract class Player {
     }
 
     public static update() {
-        
         Player.playerComponent.update();
     }
 
     public static playTrack(track: Track) {
-        
         if(navigator.mediaSession) {
             let mediaMetadata = new MediaMetadata();
             mediaMetadata.title = track.getTitle();

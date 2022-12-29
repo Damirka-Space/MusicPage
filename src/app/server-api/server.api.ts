@@ -44,12 +44,6 @@ interface blockData {
     blocks : IBlock[]
 }
 
-const imageUrl = environment.api_image_get
-const imageUrlMedium = environment.api_image_medium_get
-const albumImageUrl = environment.api_album_image_get
-const albumTrackImageUrl = environment.api_album_track_image_get
-const albumTrackMetadataUrl = environment.api_album_track_metadata_image_get;
-
 abstract class BlockFactory {
 
     public static fromResponse(response : any) : Block[] {
