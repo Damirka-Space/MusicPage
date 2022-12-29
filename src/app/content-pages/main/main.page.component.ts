@@ -1,4 +1,5 @@
 import { Component, Output } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
 import { APIController } from "src/app/server-api/controller";
 import { PageComponent } from "../page.component"
@@ -14,8 +15,9 @@ export class MainPageComponent extends PageComponent {
 
     @Output() protected blocks: Block[] = [];
 
-    constructor() {
+    constructor(private titleService:Title) {
         super();
+        this.titleService.setTitle("Главная страница");
 
         APIController.mainPage().subscribe(data => {
             this.blocks = data;

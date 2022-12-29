@@ -86,7 +86,7 @@ abstract class PlaylistFactory {
         let obj = response as playlistData;
 
         let playlist : Playlist = new Playlist(obj.id, obj.imageUrl, obj.title, obj.description);
-        console.log(playlist);
+        // console.log(playlist);
 
         return playlist;
     }
@@ -103,7 +103,7 @@ abstract class TracksFactory {
 
         obj.forEach(t => {
             let track = new Track(t.url, index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, t.imageUrl, t.metadataImageUrl, "");
-            console.log(track);
+            // console.log(track);
             tracks.push(track);
         })
 

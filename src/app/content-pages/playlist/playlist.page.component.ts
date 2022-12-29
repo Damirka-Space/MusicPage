@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
 import { APIController } from "src/app/server-api/controller";
@@ -17,7 +18,7 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
-    constructor(route: ActivatedRoute) {
+    constructor(route: ActivatedRoute, private titleService: Title) {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
@@ -26,6 +27,7 @@ export class PlaylistPageComponent extends PageComponent {
         route.params.subscribe(params => {
             APIController.getPlaylist(params['id']).subscribe(data => {
                 this.playlist = data;
+                this.titleService.setTitle("Альбом - " + this.playlist.getTitle());
             });
         });
     }
