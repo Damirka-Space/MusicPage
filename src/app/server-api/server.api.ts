@@ -17,6 +17,8 @@ interface ITrack {
     albumId: number;
     album: string;
     url: string;
+    imageUrl: string;
+    metadataImageUrl: string;
 }
 
 interface IImage {
@@ -60,7 +62,7 @@ abstract class BlockFactory {
             let block = new Block(blc.id, blc.title);
 
             blc.albums.forEach(alb => {
-                let card = new Card(alb.id, alb.title, alb.description, imageUrlMedium + alb.image.id.toString());
+                let card = new Card(alb.id, alb.title, alb.description, alb.image.url);
                 block.addCard(card);
             })
 
@@ -81,13 +83,15 @@ interface playlistData {
     image: IImage;
 
     // authors;
+
+    imageUrl: string;
 }
 
 abstract class PlaylistFactory {
     public static fromResponse(response : any) : Playlist {
         let obj = response as playlistData;
 
-        let playlist : Playlist = new Playlist(obj.id, imageUrl + obj.image.id.toString(), obj.title, obj.description);
+        let playlist : Playlist = new Playlist(obj.id, obj.imageUrl, obj.title, obj.description);
 
         return playlist;
     }
@@ -103,7 +107,7 @@ abstract class TracksFactory {
         let index = 1;
 
         obj.forEach(t => {
-            let track = new Track(index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, albumTrackImageUrl + t.albumId, albumTrackMetadataUrl + t.albumId, "");
+            let track = new Track(t.url, index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, t.imageUrl, t.metadataImageUrl, "");
             tracks.push(track);
         })
 

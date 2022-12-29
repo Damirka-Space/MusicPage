@@ -45,11 +45,7 @@ export class PlayerComponent {
     }
 
     sliderOnRelease() {
-        console.log(this._player.nativeElement.seeking)
-        if(this._player.nativeElement.seeking) {
-            console.log(this.value);
-            Player.seek(this.value);
-        }
+        Player.seek(this.value);
         this.sliderClicked = false;
     }
 

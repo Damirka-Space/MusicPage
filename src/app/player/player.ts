@@ -53,6 +53,7 @@ export abstract class Player {
     }
 
     public static update() {
+        
         Player.playerComponent.update();
     }
 
@@ -63,7 +64,10 @@ export abstract class Player {
             mediaMetadata.title = track.getTitle();
             mediaMetadata.artist = track.getAuthor().join(", ");
             mediaMetadata.album = track.getAlbum();
-            mediaMetadata.artwork = [{ src: track.getMetadataImageUrl() , type: 'image/jpeg'}];
+            mediaMetadata.artwork = [
+                { sizes: "128x128", src: track.getImageUrl(), type: "image/jpeg"},
+                { sizes: "512x512", src: track.getMetadataImageUrl() , type: 'image/jpeg'}
+            ];
 
             navigator.mediaSession.metadata = mediaMetadata;   
         }
@@ -74,7 +78,7 @@ export abstract class Player {
             Player.playlistTableComponent.selectTrack(Player.currentIndex, Player.playlistId);
         
 
-        Player.playerComponent.setSource(environment.api_track_get + track.getId());
+        Player.playerComponent.setSource(track.getUrl());
 
         Player.playerComponent.play();
     }
