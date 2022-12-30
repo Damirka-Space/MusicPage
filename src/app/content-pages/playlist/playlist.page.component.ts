@@ -18,15 +18,18 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
-    constructor(route: ActivatedRoute, private titleService: Title, private metaService: Meta) {
+    constructor(private route: ActivatedRoute, private titleService: Title, private metaService: Meta) {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
         ContentBlockComponent.resetScroll();
+    }
 
-        route.params.subscribe(params => {
+    ngOnInit() {
+        this.route.params.subscribe(params => {
             APIController.getPlaylist(params['id']).subscribe(data => {
                 this.playlist = data;
+
                 this.titleService.setTitle("Альбом - " + this.playlist.getTitle());
 
                 this.metaService.updateTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
