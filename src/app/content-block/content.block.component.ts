@@ -33,7 +33,6 @@ export class ContentBlockComponent implements AfterViewInit{
         // Create component dynamically inside the ng-template
         this.container.remove();
         this.container.createComponent(componentClass);
-        ContentBlockComponent.resetScroll();
     }
 
     ngAfterViewInit() {
