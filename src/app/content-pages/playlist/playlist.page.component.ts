@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
 import { APIController } from "src/app/server-api/controller";
 import { LinearGradientBackgroundColorHEX } from "../background.color";
@@ -18,7 +18,7 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
-    constructor(route: ActivatedRoute, private router: Router, private titleService: Title, private metaService: Meta) {
+    constructor(route: ActivatedRoute, private titleService: Title, private metaService: Meta) {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
@@ -29,22 +29,12 @@ export class PlaylistPageComponent extends PageComponent {
                 this.playlist = data;
                 this.titleService.setTitle("Альбом - " + this.playlist.getTitle());
 
-                if(!this.metaService.getTag("property='og:title'")){
-                    this.metaService.addTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
-                    this.metaService.addTag( { property:"og:type",content:"website"});
-                    this.metaService.addTag( { property:"og:url",content: this.router.url});
-                    this.metaService.addTag( { name:"description",content:this.playlist.getDescription()});
-                    this.metaService.addTag( { property:"og:description",content:this.playlist.getDescription()});
-                    this.metaService.addTag( { property:"og:image",content:this.playlist.getImageUrl()});
-                }
-                else {
-                    this.metaService.updateTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
-                    this.metaService.updateTag( { property:"og:type",content:"website"});
-                    this.metaService.updateTag( { property:"og:url",content: this.router.url});
-                    this.metaService.updateTag( { name:"description",content:this.playlist.getDescription()});
-                    this.metaService.updateTag( { property:"og:description",content:this.playlist.getDescription()});
-                    this.metaService.updateTag( { property:"og:image",content:this.playlist.getImageUrl()});
-                }
+                this.metaService.updateTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
+                this.metaService.updateTag( { property:"og:type",content:"website"});
+                this.metaService.updateTag( { name:"description",content:this.playlist.getDescription()});
+                this.metaService.updateTag( { property:"og:url",content:window.location.href});
+                this.metaService.updateTag( { property:"og:description",content:this.playlist.getDescription()});
+                this.metaService.updateTag( { property:"og:image",content:this.playlist.getImageUrl()});
             });
         });
     }
