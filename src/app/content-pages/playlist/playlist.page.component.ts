@@ -29,7 +29,7 @@ export class PlaylistPageComponent extends PageComponent {
                 this.playlist = data;
                 this.titleService.setTitle("Альбом - " + this.playlist.getTitle());
 
-                if(!this.metaService.getTag("propery='og:title'")){
+                if(!this.metaService.getTag("property='og:title'")){
                     this.metaService.addTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
                     this.metaService.addTag( { name:"description",content:this.playlist.getDescription()});
                     this.metaService.addTag( { property:"og:description",content:this.playlist.getDescription()});
