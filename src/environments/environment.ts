@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   api_root: "http://localhost:8090",
-  api_main: "/api/main",
-  api_album_get: "/api/album/get/",
-  api_tracks_get: "/api/album/tracks/get/",
+  api_main: "/main",
+  api_album_get: "/album/get/",
+  api_tracks_get: "/album/tracks/get/",
   api_track_get: "http://localhost:8090/api/track/get/",
 };
 
