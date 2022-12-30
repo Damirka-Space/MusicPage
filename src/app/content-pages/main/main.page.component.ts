@@ -21,12 +21,14 @@ export class MainPageComponent extends PageComponent {
 
         if(!this.metaService.getTag("property='og:title'")){
             this.metaService.addTag( { property:"og:title",content:"Главная страница"});
+            this.metaService.addTag( { property:"og:type",content:"website"});
             this.metaService.addTag( { name:"description",content:"Добро пожаловать на главную страницу!"});
             this.metaService.addTag( { property:"og:description",content:"Добро пожаловать на главную страницу!"});
             this.metaService.addTag( { property:"og:image",content:"assets/playlist/PlayButton.png"});
         }
         else {
             this.metaService.updateTag( { property:"og:title",content:"Главная страница"});
+            this.metaService.updateTag( { property:"og:type",content:"website"});
             this.metaService.updateTag( { name:"description",content:"Добро пожаловать на главную страницу!"});
             this.metaService.updateTag( { property:"og:description",content:"Добро пожаловать на главную страницу!"});
             this.metaService.updateTag( { property:"og:image",content:"assets/playlist/PlayButton.png"});

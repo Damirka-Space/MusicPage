@@ -31,12 +31,14 @@ export class PlaylistPageComponent extends PageComponent {
 
                 if(!this.metaService.getTag("property='og:title'")){
                     this.metaService.addTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
+                    this.metaService.addTag( { property:"og:type",content:"website"});
                     this.metaService.addTag( { name:"description",content:this.playlist.getDescription()});
                     this.metaService.addTag( { property:"og:description",content:this.playlist.getDescription()});
                     this.metaService.addTag( { property:"og:image",content:this.playlist.getImageUrl()});
                 }
                 else {
                     this.metaService.updateTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
+                    this.metaService.updateTag( { property:"og:type",content:"website"});
                     this.metaService.updateTag( { name:"description",content:this.playlist.getDescription()});
                     this.metaService.updateTag( { property:"og:description",content:this.playlist.getDescription()});
                     this.metaService.updateTag( { property:"og:image",content:this.playlist.getImageUrl()});
