@@ -7,8 +7,58 @@
         position: fixed;
         left: 15vw;
         width: 85%;
-        height: 8vh;
+        height: 6.5vh;
         z-index: 1;
+
+        table {
+            width: 100%;
+
+            td {
+                margin: 0 auto;
+                width: 30%;
+
+                .buttons {
+                    display: flex;
+                    gap: 16px;
+                    margin: 0 auto;
+                    margin-left: 5%;
+                    margin-top: 2%;
+                    
+                    button {
+                        position: relative;
+                        display: inline-flex;
+                        background-color: rgba(0,0,0,.7);
+                        border: none;
+                        border-radius: 50%;
+                        width: 32px;
+                        height: 32px;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+
+                        padding: 0;
+                        margin: 0;
+
+                        &:disabled {
+                            cursor: not-allowed;
+                            opacity: .6;
+                        }
+
+                        svg {
+                            position: relative;
+                            display: flex;
+                            height: 24px;
+                            width: 24px;
+                            opacity: 1;
+                            fill: #fff;
+                        }
+                    }
+                }
+
+            }
+
+
+        }
     }
 
     .background {

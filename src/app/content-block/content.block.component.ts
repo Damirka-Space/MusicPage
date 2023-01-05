@@ -25,6 +25,9 @@ export class ContentBlockComponent implements AfterViewInit{
     _header!: ElementRef;
     private static header: HTMLElement;
 
+    private maxHistoryLength!: number;
+    private currentHistory!: number;
+
     constructor() {
         PageController.setContentBlockComponent(this);
     }
@@ -39,6 +42,9 @@ export class ContentBlockComponent implements AfterViewInit{
         ContentBlockComponent.div = this._div.nativeElement;
         ContentBlockComponent.header = this._header.nativeElement;
         window.addEventListener("scroll", this.onScroll, true);
+        
+        this.maxHistoryLength = window.history.length;
+        this.currentHistory = this.maxHistoryLength;
     }
 
     ngOnDestroy() {
@@ -94,6 +100,22 @@ export class ContentBlockComponent implements AfterViewInit{
 
     public getStaticBacgroundColor() : string {
         return ContentBlockComponent.staticBackgroundColor.toString();
+    }
+
+    public cantGoBack() {
+        return true;
+    }
+
+    public cantGoForward() {
+        return true;
+    }
+
+    public goBack() {
+        window.history.back();
+    }
+
+    public goForward() {
+        window.history.forward();
     }
 
 }

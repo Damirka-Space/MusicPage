@@ -169,6 +169,11 @@
 }
 
 @media only screen and (max-device-width: 480px) {
+
+    #container {
+        display: none;
+    }
+
     .slider-container {
         display: none;
         .slider {
@@ -184,7 +189,5 @@
         display: none;
     }
     
-    #menu {
-        display: none;
-    }
+    
 }

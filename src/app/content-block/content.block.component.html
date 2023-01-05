@@ -1,6 +1,27 @@
 <div #div class="content" [ngStyle]="{'background': getStaticBacgroundColor()}">
     <div #header class="header" [ngStyle]="{'background': getHeaderColor()}">
-        
+        <table>
+            <tr>
+                <td>
+                    <div class="buttons">
+                        <button title="Назад" (click)="goBack()" [disabled]="cantGoBack()">
+                            <svg>
+                                <path d="M 15.957 2.793 a 1 1 0 0 1 0 1.414 L 8.164 12 l 7.793 7.793 a 1 1 0 1 1 -1.414 1.414 L 5.336 12 l 9.207 -9.207 a 1 1 0 0 1 1.414 0 Z"></path>
+                            </svg>
+                        </button>
+                        <button title="Вперёд" (click)="goForward()" [disabled]="cantGoForward()">
+                            <svg>
+                                <path d="M 8.043 2.793 a 1 1 0 0 0 0 1.414 L 15.836 12 l -7.793 7.793 a 1 1 0 1 0 1.414 1.414 L 18.664 12 L 9.457 2.793 a 1 1 0 0 0 -1.414 0 Z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="background" [ngStyle]="{'background': getBackgroundColor()}">
