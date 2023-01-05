@@ -3,6 +3,11 @@
 </audio>
 
 <div id="container" [hidden]="(!isPlaying)">
+
+    <div id="art">
+        <img [src]="getImageUrl()">
+    </div>
+
     <div class="slider-container">
         <mat-slider #progressbar class="slider" min="0" [max]="max" step="1" [value]="value" (change)="sliderOnChange($event)" (mousedown)="sliderOnClick($event)" color="warn">
             
@@ -11,7 +16,13 @@
     
         <table>
             <tr>
-                <td></td>
+                <td>
+                    <div id="metadata">
+                        <p class="clickable">{{ getTitle() }}</p>
+                            <p class="split">—</p>
+                            <p class="clickable author">{{ getArtist() }}</p>
+                    </div>
+                </td>
                 <td>
                         <div id="Buttons">
                             <img id="ShuffleButton" src="assets/playlist/ShuffleButton.png">

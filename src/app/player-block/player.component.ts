@@ -33,6 +33,10 @@ export class PlayerComponent {
     // values for sound slider
     protected volume : number | any = 0.25;
 
+    private title!: string;
+    private artist!: string;
+    private imageUrl!: string;
+
     public update() {
         if(this.isPlaying && !this.sliderIsClicked) {
             this.value = this._player.nativeElement.currentTime;
@@ -81,6 +85,24 @@ export class PlayerComponent {
             this._player.nativeElement.load();
             this.isPlaying = true;
         }
+    }
+
+    public setMetadata(title: string, artist: string, imageUrl: string) {
+        this.title = title;
+        this.artist = artist;
+        this.imageUrl = imageUrl;
+    }
+
+    protected getTitle() {
+        return this.title;
+    }
+
+    protected getArtist() {
+        return this.artist;
+    }
+
+    protected getImageUrl() {
+        return this.imageUrl;
     }
 
     protected onPlayPrevClick() {
