@@ -1,94 +1,129 @@
 .slider-container {
     position: fixed;
     top: 90%;
-    height: 1%;
-
-    padding: 0;
-    margin-left: -5px;
-    width: 100vw;
-    
+    height: 3%;
+    width: max-content;
     
     .slider {
-        width: 100%;
-        
+        height: 3%;
+        margin: 0 auto;
     }
-    .mat-slider-ticks {
-        height: 5px;
+
+    .mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
+        width: 100vw;
+        margin: 0 auto;
+        margin-left: -0.5vw;
     }
-    
 }
 
 .mat-slider-thumb {
     display: none;
 }
 
-#menu {
+#container {
     position: fixed;
-    display: flex;
+    // display: flex;
     width: 100%;
     height: 7%;
     top: 93%;
     border-radius: 0;
     background-color: #333;
 
-    #Buttons {
-        display: flex;
-        margin: 0 auto;
+    table {
+        width: 100%;
+        td {
+            margin: 0 auto;
+            width: 30%;
+
+            #Buttons {
+                display: flex;
+                width: max-content;
+                margin: 0 auto;
+                margin-top: 1%;
+                
+                #ShuffleButton {
+                    margin-top: 4%;
+                    
+                    width: 1vw;
+                    height: 1.3vw;
         
-        #ShuffleButton {
-            margin-top: 14%;
-            width: 1vw;
-            height: 1.3vw;
-            margin-right: 10%;
-
-            &:hover {
-                cursor: not-allowed;
-            }
-        }
-
-        #PlayButton {
-            margin-top: 9%;
-            width: 2vw;
-            height: 2vw;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
+                    &:hover {
+                        cursor: not-allowed;
+                    }
+                }
         
-        #PlayPrevButton {
-            margin-top: 9%;
-            width: 2vw;
-            height: 2vw;
-            margin-right: 10%;
-
-            &:hover {
-                cursor: pointer;
+                #PlayButton {
+                    width: 2vw;
+                    height: 2vw;
+                    margin-left: 5%;
+                    margin-right: 5%;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                
+                #PlayPrevButton {
+                    margin-left: 5%;
+                    width: 2vw;
+                    height: 2vw;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            
+                #PlayNextButton {
+                    margin-right: 5%;
+                    width: 2vw;
+                    height: 2vw;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+        
+                #RepeatButton {
+                    margin-top: 6%;
+                    width: 1vw;
+                    height: 1vw;
+                    
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
-        }
-    
-        #PlayNextButton {
-            margin-top: 9%;
-            width: 2vw;
-            height: 2vw;
-            margin-left: 10%;
 
-            &:hover {
-                cursor: pointer;
-            }
-        }
+            
+            #sound {
+                display: flex;
+                width: max-content;
+                margin: 0 auto;
+                
+                position: relative;
+                left: 20%;
+                
+                // background-color: white;
 
-        #RepeatButton {
-            margin-top: 16%;
-            width: 1vw;
-            height: 1vw;
-            margin-left: 10%;
+                #SoundButton {
+                    margin-top: 8%;
+                    width: 1.8vw;
+                    height: 1.8vw;
+                }
 
-            &:hover {
-                cursor: pointer;
+                .SoundSlider {
+                    #SoundSlider {
+                        margin-top: 5%;
+                        width: 150%;
+                    }
+                }
+                
             }
         }
     }
+
+
 }
 
 @media only screen and (max-device-width: 480px) {

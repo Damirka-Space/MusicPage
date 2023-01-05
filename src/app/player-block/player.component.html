@@ -4,18 +4,34 @@
 
 <div id="container" [hidden]="(!isPlaying)">
     <div class="slider-container">
-        <mat-slider #progressbar class="slider" min="0" max="{{ max }}" step="1" value="{{ value }}" (mousedown)="sliderOnClick()" (mouseup)="sliderOnRelease()" color="warn">
+        <mat-slider #progressbar class="slider" min="0" [max]="max" step="1" [value]="value" (change)="sliderOnChange($event)" (mousedown)="sliderOnClick($event)" color="warn">
             
         </mat-slider>
     </div>
-    <div id="menu">
-        <div id="Buttons">
-            <img (click)="onPlayNextClick()"id="ShuffleButton" src="assets/playlist/ShuffleButton.png">
-            <img (click)="onPlayPrevClick()" id="PlayPrevButton" src="assets/playlist/PrevButton.png" >
-            <img (click)="onPlayClick()" id="PlayButton" #PlayButton src="assets/playlist/PlayButton.png">
-            <img (click)="onPlayNextClick()"id="PlayNextButton" src="assets/playlist/NextButton.png">
-            <img (click)="onRepeatClick()"id="RepeatButton" #RepeatButton src="assets/playlist/RepeatButton.png">
-        </div>
-        
-    </div>
+    
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                        <div id="Buttons">
+                            <img id="ShuffleButton" src="assets/playlist/ShuffleButton.png">
+                            <img (click)="onPlayPrevClick()" id="PlayPrevButton" src="assets/playlist/PrevButton.png" >
+                            <img (click)="onPlayClick()" id="PlayButton" #PlayButton src="assets/playlist/PlayButton.png">
+                            <img (click)="onPlayNextClick()"id="PlayNextButton" src="assets/playlist/NextButton.png">
+                            <img (click)="onRepeatClick()"id="RepeatButton" #RepeatButton src="assets/playlist/RepeatButton.png">
+                        </div>
+                </td>
+                <td>
+                    <div id="sound">
+                        <img id="SoundButton" #RepeatButton src="assets/playlist/SoundButton.png">
+                        <div class="SoundSlider">
+                            <mat-slider id="SoundSlider" min="0" max="1" step="0.01" [value]="volume" (change)="volumeOnChange($event)" color="warn">
+                            </mat-slider>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    
 </div>

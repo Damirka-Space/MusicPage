@@ -22,37 +22,38 @@ export class PlayerComponent {
 
     private sourceUrl: string = "";
 
+    protected isPlaying = false;
+
     // values for slider
     protected max = 0;
     protected value = 0;
 
-    protected isPlaying = false;
+    protected sliderIsClicked = false;
 
-    private sliderClicked = false;
-
-    constructor() {
-    }
+    // values for sound slider
+    protected volume : number | any = 0.25;
 
     public update() {
-        if(!this.sliderClicked) {
+        if(this.isPlaying && !this.sliderIsClicked) {
             this.value = this._player.nativeElement.currentTime;
             this.max = this._player.nativeElement.duration;
         }
     }
 
-    sliderOnClick() {
-        this.sliderClicked = true;
+    sliderOnChange(event: any) {
+        Player.seek(event.value);
+        this.sliderIsClicked = false;
     }
 
-    sliderOnRelease() {
-        Player.seek(this.value);
-        this.sliderClicked = false;
+    sliderOnClick(event: any) {
+        this.sliderIsClicked = true;
     }
 
     ngAfterViewInit() {
         this._player.nativeElement.addEventListener("ended", Player.playNext);
         this._player.nativeElement.addEventListener("timeupdate", Player.update);
         Player.setPlayerComponent(this);
+        this.setVolume(this.volume);
     }
 
     public getSource() {
@@ -61,6 +62,15 @@ export class PlayerComponent {
 
     public seek(value: number) {
         this._player.nativeElement.currentTime = value;
+    }
+
+    public volumeOnChange(event: any) {
+        this.setVolume(event.value)
+    }
+
+    public setVolume(value: number) {
+        this.volume = value;
+        this._player.nativeElement.volume = this.volume;
     }
 
     public setSource(url: string) {
@@ -110,6 +120,7 @@ export class PlayerComponent {
     public play() {
         this._player.nativeElement.play();
         this._playButton.nativeElement.src = "assets/playlist/PauseButton.png";
+        this.isPlaying = true;
     }
 
     public pause() {
