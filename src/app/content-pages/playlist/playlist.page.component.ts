@@ -32,12 +32,13 @@ export class PlaylistPageComponent extends PageComponent {
 
                 this.titleService.setTitle("Альбом - " + this.playlist.getTitle());
 
-                this.metaService.updateTag( { property:"og:title",content:"Альбом - " + this.playlist.getTitle()});
-                this.metaService.updateTag( { property:"og:type",content:"website"});
-                this.metaService.updateTag( { name:"description",content:this.playlist.getDescription()});
-                this.metaService.updateTag( { property:"og:url",content:window.location.href});
-                this.metaService.updateTag( { property:"og:description",content:this.playlist.getDescription()});
-                this.metaService.updateTag( { property:"og:image",content:this.playlist.getImageUrl()});
+                this.metaService.updateTag( { property:"og:title", content:"Альбом - " + this.playlist.getTitle() });
+                this.metaService.updateTag( { property:"og:type", content:"website" });
+                this.metaService.updateTag( { name:"description", content:this.playlist.getDescription() });
+                this.metaService.updateTag( { name: "theme-color", content:"#e52b50" });
+                this.metaService.updateTag( { property:"og:url", content:window.location.href });
+                this.metaService.updateTag( { property:"og:description", content:this.playlist.getDescription() });
+                this.metaService.updateTag( { property:"og:image", content:this.playlist.getImageUrl() });
             });
         });
     }
