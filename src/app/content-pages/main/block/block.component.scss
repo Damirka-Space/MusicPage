@@ -9,7 +9,7 @@
     .hlist {
         margin: 0;
         padding: 0;
-        margin-right: 3%;
+        margin-right: 5%;
     }
 
     .hscroll {
@@ -19,6 +19,8 @@
         margin: 0;
         overflow-x: auto;
         overflow-y: hidden;
+        padding-bottom: 1%;
+        margin-bottom: 1%;
 
         li {
             margin-right: 3vh;
