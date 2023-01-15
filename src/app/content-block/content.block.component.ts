@@ -103,11 +103,11 @@ export class ContentBlockComponent implements AfterViewInit{
     }
 
     public cantGoBack() {
-        return true;
+        return false;
     }
 
     public cantGoForward() {
-        return true;
+        return false;
     }
 
     public goBack() {
