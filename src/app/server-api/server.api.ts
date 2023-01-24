@@ -161,6 +161,10 @@ export class ServerAPI implements API {
         }));
     }
 
+    logout(): Observable<any> {
+        return this.http.get(environment.api_logout, { withCredentials: true });
+    }
+
     getTrack(trackID: number) {
         throw new Error("Method not implemented.");
     }

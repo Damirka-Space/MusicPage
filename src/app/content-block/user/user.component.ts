@@ -27,7 +27,15 @@ export class UserComponent implements AfterViewInit {
     }
 
     public loginOnClick() {
-        document.location.href = environment.api_login;
+        if(!this.user)
+            document.location.href = environment.api_login;
+        else {
+            APIController.logout().subscribe(val => {
+                this.user = undefined;
+                this.username = "Войти";
+            });
+        }
+
     }
 
 

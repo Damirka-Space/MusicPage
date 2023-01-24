@@ -9,7 +9,7 @@ export interface API {
 
     getUser(): Observable<any>;
 
-
+    logout(): Observable<any>;
 
     getTrack(trackID: number): any;
     getImage(imageID: number): any;

@@ -28,4 +28,8 @@ export abstract class APIController {
     public static getUser() : Observable<User> {
         return this.api.getUser();
     }
+
+    public static logout(): Observable<any> {
+        return this.api.logout();
+    }
 }

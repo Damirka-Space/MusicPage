@@ -87,6 +87,10 @@ export class TestAPI implements API {
         throw new Error("Method not implemented.");
     }
 
+    logout(): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
+
     getTrack(trackID: number) {
         throw new Error("Method not implemented.");
     }
