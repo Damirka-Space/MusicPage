@@ -7,5 +7,5 @@ export const environment = {
   api_tracks_get: "/album/tracks/get/",
   api_track_get: "http://damirka.space/fs/tracks/",
   api_user_get: "http://damirka.space/api/user/",
-  api_login: "http://damirka.space/api/login/",
+  api_login: "http://damirka.space/api/login",
 };
