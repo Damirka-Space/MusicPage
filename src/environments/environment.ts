@@ -4,11 +4,13 @@
 
 export const environment = {
   production: false,
-  api_root: "http://localhost:8090",
+  api_root: "http://127.0.0.1:8090",
   api_main: "/main",
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
-  api_track_get: "http://localhost:8090/api/track/get/",
+  api_track_get: "http://127.0.0.1:8090/api/track/get/",
+  api_user_get: "http://127.0.0.1:8090/user",
+  api_login: "http://127.0.0.1:8090/login",
 };
 
 /*

@@ -8,6 +8,7 @@ import { Card } from "../content-pages/main/block/card/card"
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
 import { environment } from "src/environments/environment";
+import { User } from "../content-block/user/user";
 
 interface ITrack {
     id: number;
@@ -42,6 +43,13 @@ interface IBlock {
 
 interface blockData {
     blocks : IBlock[]
+}
+
+interface IUser {
+    id: number;
+    username: string;
+    email: string;
+    gender: string;
 }
 
 abstract class BlockFactory {
@@ -111,6 +119,16 @@ abstract class TracksFactory {
     }
 }
 
+abstract class UserFactory {
+    public static fromResponse(response: any) : User {
+        let obj = response as IUser;
+
+        let user = new User(obj.id, obj.username, obj.email, obj.gender);
+
+        return user;
+    }
+}
+
 
 export class ServerAPI implements API {
 
@@ -137,6 +155,12 @@ export class ServerAPI implements API {
             return TracksFactory.formResponse(val);
         }));
     }
+    getUser(): Observable<any> {
+        return this.http.get(environment.api_user_get, { withCredentials: true }).pipe(map((val) => {
+            return UserFactory.fromResponse(val);
+        }));
+    }
+
     getTrack(trackID: number) {
         throw new Error("Method not implemented.");
     }

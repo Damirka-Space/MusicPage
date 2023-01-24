@@ -7,6 +7,8 @@ export interface API {
     getPlaylist(playlistID: number): Observable<any>;
     getTracks(playlistID: number): Observable<any>;
 
+    getUser(): Observable<any>;
+
 
 
     getTrack(trackID: number): any;

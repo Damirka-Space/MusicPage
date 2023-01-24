@@ -21,6 +21,7 @@ import { NotFoundPageComponent } from './content-pages/not-found/not-found.page.
 import { BlockComponent } from './content-pages/main/block/block.component';
 import { CardComponent } from './content-pages/main/block/card/card.component';
 import { PlaylistTableComponent } from './content-pages/playlist/table/playlist.table.component';
+import { UserComponent } from './content-block/user/user.component';
 // import { AlbumPageComponent } from './content-pages/album/album.page.component';
 // import { AlbumTableComponent } from './content-pages/album/table/album';
 
@@ -53,6 +54,7 @@ const routes: Routes = [
     CardComponent,
     PlaylistTableComponent,
     // AlbumTableComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

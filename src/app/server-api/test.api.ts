@@ -83,6 +83,10 @@ export class TestAPI implements API {
         return of(tracks);
     }
 
+    getUser(): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
+
     getTrack(trackID: number) {
         throw new Error("Method not implemented.");
     }
