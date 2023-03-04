@@ -2,7 +2,7 @@
     <source #source type="audio/mpeg"> 
 </audio>
 
-<div id="container" [hidden]="(!isPlaying)">
+<div id="container" [hidden]="(!showed)">
 
     <div id="art">
         <img [src]="getImageUrl()">
@@ -25,11 +25,11 @@
                 </td>
                 <td>
                         <div id="Buttons">
-                            <img id="ShuffleButton" src="assets/playlist/ShuffleButton.png">
-                            <img (click)="onPlayPrevClick()" id="PlayPrevButton" src="assets/playlist/PrevButton.png" >
-                            <img (click)="onPlayClick()" id="PlayButton" #PlayButton src="assets/playlist/PlayButton.png">
-                            <img (click)="onPlayNextClick()"id="PlayNextButton" src="assets/playlist/NextButton.png">
-                            <img (click)="onRepeatClick()"id="RepeatButton" #RepeatButton src="assets/playlist/RepeatButton.png">
+                            <img class="ShuffleButton">
+                            <img (click)="onPlayPrevClick()" class="PlayPrevButton">
+                            <img (click)="onPlayClick()" class="PlayButton" #PlayButton [class.pause]="playing">
+                            <img (click)="onPlayNextClick()"class="PlayNextButton">
+                            <img (click)="onRepeatClick()" class="RepeatButton" #RepeatButton [class.repeate]="loop">
                         </div>
                 </td>
                 <td>
@@ -44,5 +44,4 @@
             </tr>
         </table>
 
-    
 </div>

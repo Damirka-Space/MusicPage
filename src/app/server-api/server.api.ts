@@ -20,6 +20,7 @@ interface ITrack {
     url: string;
     imageUrl: string;
     metadataImageUrl: string;
+    liked: boolean;
 }
 
 interface IImage {
@@ -87,13 +88,15 @@ interface playlistData {
     // authors;
 
     imageUrl: string;
+    albumType: string;
+    liked: boolean;
 }
 
 abstract class PlaylistFactory {
     public static fromResponse(response : any) : Playlist {
         let obj = response as playlistData;
 
-        let playlist : Playlist = new Playlist(obj.id, obj.imageUrl, obj.title, obj.description);
+        let playlist : Playlist = new Playlist(obj.id, obj.imageUrl, obj.title, obj.description, obj.albumType, obj.liked);
         // console.log(playlist);
 
         return playlist;
@@ -110,7 +113,7 @@ abstract class TracksFactory {
         let index = 1;
 
         obj.forEach(t => {
-            let track = new Track(t.url, index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, t.imageUrl, t.metadataImageUrl, "");
+            let track = new Track(t.url, index++, t.id, t.authorId, t.albumId, t.albumId, t.title, t.author, t.album, t.imageUrl, t.metadataImageUrl, "", t.liked);
             // console.log(track);
             tracks.push(track);
         })
@@ -132,12 +135,42 @@ abstract class UserFactory {
 
 export class ServerAPI implements API {
 
+    isAuthorized: boolean;
+
     private http: HttpClient;
 
     private url : string = environment.api_root;
 
     constructor(http: HttpClient) {
         this.http = http;
+
+        this.isAuthorized = false;
+    }
+
+    likeAlbum(albumID: number): void {
+        this.http.get(this.url + environment.api_like_album + albumID, { withCredentials: true }).subscribe();
+    }
+
+    likeTrack(trackID: number) {
+        this.http.get(this.url + environment.api_like_track + trackID, { withCredentials: true }).subscribe();
+    }
+
+    collectionAlbumsPage(): Observable<any> {
+        return this.http.get(this.url + environment.api_collection_albums, { withCredentials: true }).pipe(map((val) => {
+            return BlockFactory.fromResponse(val);
+        }));
+    }
+
+    collectionPlaylistsPage(): Observable<any> {
+        return this.http.get(this.url + environment.api_collection_playlists, { withCredentials: true }).pipe(map((val) => {
+            return BlockFactory.fromResponse(val);
+        }));
+    }
+
+    collectionAuthorsPage(): Observable<any> {
+        return this.http.get(this.url + environment.api_collection_authors, { withCredentials: true }).pipe(map((val) => {
+            return BlockFactory.fromResponse(val);
+        }));
     }
 
     mainPage(): Observable<any> {
@@ -146,12 +179,12 @@ export class ServerAPI implements API {
         }));
     }
     getPlaylist(playlistID: number): Observable<any> {
-        return this.http.get(this.url + environment.api_album_get + playlistID).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_album_get + playlistID, { withCredentials: this.isAuthorized }).pipe(map((val) => {
             return PlaylistFactory.fromResponse(val);
         }));
     }
     getTracks(playlistID: number): Observable<any> {
-        return this.http.get(this.url + environment.api_tracks_get + playlistID).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_tracks_get + playlistID, { withCredentials: this.isAuthorized }).pipe(map((val) => {
             return TracksFactory.formResponse(val);
         }));
     }

@@ -3,6 +3,11 @@ export const environment = {
 
   api_root: "https://damirka.space/api",
   api_main: "/main",
+  api_collection_albums: "/collections/albums/",
+  api_collection_playlists: "/collections/playlists/",
+  api_collection_authors: "/collections/authors/",
+  api_like_track: "/like/track/",
+  api_like_album: "/like/album/",
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
   api_track_get: "https://damirka.space/fs/tracks/",

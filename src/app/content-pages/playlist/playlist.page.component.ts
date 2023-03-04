@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
+import { Player } from "src/app/player/player";
 import { APIController } from "src/app/server-api/controller";
 import { LinearGradientBackgroundColorHEX } from "../background.color";
 import { ColorHEX } from "../color";
@@ -47,6 +48,10 @@ export class PlaylistPageComponent extends PageComponent {
         return this.playlist.getTitle();
     }
 
+    public getType() {
+        return this.playlist.getType();
+    }
+
     public getImageUrl() {
         return this.playlist.getImageUrl();
     }
@@ -57,6 +62,35 @@ export class PlaylistPageComponent extends PageComponent {
 
     public getId() {
         return this.playlist.getId();
+    }
+
+    public isLiked() {
+        return this.playlist.isLiked();
+    }
+
+    public isPlaying() {
+        return Player.isPlaying();
+    }
+
+    public likeAlbum() {
+        APIController.likeAlbum(this.playlist.getId());
+
+        if(!this.playlist.isLiked())
+            this.playlist.setLike(true);
+        else
+            this.playlist.setLike(false);
+    }
+
+    public play() {
+        if(Player.getPlaylistId() == this.playlist.getId()) {
+            if(Player.isPlaying())
+                Player.pause();
+            else
+                Player.play();
+        }
+        else {
+            Player.loadPlaylistAndPlay(this.playlist.getId());
+        }
     }
 
 }

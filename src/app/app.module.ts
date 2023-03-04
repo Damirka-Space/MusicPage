@@ -22,6 +22,9 @@ import { BlockComponent } from './content-pages/main/block/block.component';
 import { CardComponent } from './content-pages/main/block/card/card.component';
 import { PlaylistTableComponent } from './content-pages/playlist/table/playlist.table.component';
 import { UserComponent } from './content-block/user/user.component';
+
+import { AlbumsCollectionsComponent } from './content-pages/collections/albums/albums.collections.page.component';
+import { PlaylistsCollectionsComponent } from './content-pages/collections/playlists/playlists.collections.page.component';
 // import { AlbumPageComponent } from './content-pages/album/album.page.component';
 // import { AlbumTableComponent } from './content-pages/album/table/album';
 
@@ -29,7 +32,12 @@ import { UserComponent } from './content-block/user/user.component';
 const routes: Routes = [
   {path: 'main', component: MainPageComponent},
   {path: 'find', component: FindPageComponent},
-  {path: 'collections', component: CollectionsPageComponent},
+  {path: 'collection', component: CollectionsPageComponent,
+    children: [
+      {path: 'playlists', component: PlaylistsCollectionsComponent},
+      {path: 'albums', component: AlbumsCollectionsComponent}
+    ]
+  },
   {path: 'stream', component: StreamPageComponent},
   {path: 'album/:id', component: PlaylistPageComponent},
   // {path: 'album/:id', component: AlbumPageComponent},
@@ -55,6 +63,8 @@ const routes: Routes = [
     PlaylistTableComponent,
     // AlbumTableComponent,
     UserComponent,
+    PlaylistsCollectionsComponent,
+    AlbumsCollectionsComponent,
   ],
   imports: [
     BrowserModule,

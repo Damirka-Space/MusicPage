@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, Output, ViewChild } from "@angular/core";
 import { Player } from "src/app/player/player";
 import { APIController } from "src/app/server-api/controller";
 import { ContentBlock } from "../../content.block";
@@ -22,7 +22,6 @@ export class PlaylistTableComponent {
 
     private static div : HTMLElement;
     private static coloredHeader: boolean = false;
-     
 
     constructor() {
         Player.setPlaylistComponent(this);
@@ -74,6 +73,21 @@ export class PlaylistTableComponent {
 
     public isColored() {
         return PlaylistTableComponent.coloredHeader;
+    }
+
+    public isTrackLiked(track: Track) {
+        return track.getLiked();
+    }
+
+    public likeTrack(track: Track, event: Event) {
+        event.stopPropagation();
+
+        APIController.likeTrack(track.getId());
+
+        if(track.getLiked())
+            track.setLiked(false);
+        else
+            track.setLiked(true);
     }
 
 }

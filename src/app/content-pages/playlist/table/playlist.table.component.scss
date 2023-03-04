@@ -59,6 +59,22 @@ div {
     .mat-row .mat-cell {
         border: none;
         
+        .heart-button {
+            float: right;
+            visibility: hidden;
+            content: url("/assets/playlist/Collection_button.png");
+            
+            margin: 0 auto;
+            padding: 0;
+
+            width: 20px;
+            height: 20px;
+        }
+
+        .heart-button-liked {
+            visibility: visible;
+            content: url("/assets/playlist/Heart_fld_r.png");
+        }
     }
 
     .mat-header-row {
@@ -86,6 +102,14 @@ div {
 
     .mat-row:hover {
         background: rgba(100, 100, 100, 0.5);
+
+        &:hover .heart-button {
+            visibility: visible;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
     .row-is-clicked {
@@ -147,15 +171,11 @@ div {
 }
 
 @media only screen and (max-device-width: 780px) {
-    .table {
-        margin-top: 15%;
-    }
 }
 
 
 @media only screen and (max-device-width: 480px) {
     .table {
-        margin-top: 20%;
         .mat-header-row {
             display: none;
         }

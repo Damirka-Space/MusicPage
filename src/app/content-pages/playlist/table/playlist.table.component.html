@@ -21,8 +21,11 @@
     <ng-container matColumnDef="album">
       <th mat-header-cell *matHeaderCellDef> Альбом </th>
       <td mat-cell *matCellDef="let track">
-        <div><p class="clickable"> {{track.getAlbum()}} </p> </div>
-    </td>
+        <div>
+          <p class="clickable"> {{track.getAlbum()}} </p> 
+          <img (click)="likeTrack(track, $event)" class="heart-button" [class.heart-button-liked]="isTrackLiked(track)">
+        </div>
+      </td>
     </ng-container>
   
     <ng-container matColumnDef="time">

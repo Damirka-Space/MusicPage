@@ -9,6 +9,6 @@
     </div>
 
     <div #play class="play" >
-        <img src="assets/playlist/PlayButton.png" (click)="playPlaylist($event)">
+        <img class="play-image" [class.pause-image]="isPlaying()" (click)="playPlaylist($event)">
     </div>
 </div>

@@ -79,57 +79,75 @@
                 margin: 0 auto;
                 margin-top: 1%;
                 
-                #ShuffleButton {
+                .ShuffleButton {
                     margin-top: 4%;
                     
                     width: 1vw;
                     height: 1.3vw;
+
+                    content: url("/assets/playlist/ShuffleButton.png");
         
                     &:hover {
                         cursor: not-allowed;
                     }
                 }
         
-                #PlayButton {
+                .PlayButton {
                     width: 2vw;
                     height: 2vw;
                     margin-left: 5%;
                     margin-right: 5%;
+
+                    content: url("/assets/playlist/PlayButton.png");
         
                     &:hover {
                         cursor: pointer;
                     }
                 }
+
+                .pause {
+                    content: url("/assets/playlist/PauseButton.png");
+                }
+
                 
-                #PlayPrevButton {
+                .PlayPrevButton {
                     margin-left: 5%;
                     width: 2vw;
                     height: 2vw;
+
+                    content: url("/assets/playlist/PrevButton.png");
         
                     &:hover {
                         cursor: pointer;
                     }
                 }
             
-                #PlayNextButton {
+                .PlayNextButton {
                     margin-right: 5%;
                     width: 2vw;
                     height: 2vw;
+
+                    content: url("/assets/playlist/NextButton.png");
         
                     &:hover {
                         cursor: pointer;
                     }
                 }
         
-                #RepeatButton {
+                .RepeatButton {
                     margin-top: 6%;
                     width: 1vw;
                     height: 1vw;
-                    
+
+                    content: url("/assets/playlist/RepeatButton.png");
         
                     &:hover {
                         cursor: pointer;
                     }
+                }
+                
+                .repeate {
+                    content: url("/assets/playlist/RepeatButtonSingle.png");
                 }
             }
 

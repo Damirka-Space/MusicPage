@@ -1,0 +1,30 @@
+<div class="menu">
+    <ul>
+        <li>
+            <div [class.active]="selectedButton == 'playlists'" (click)="selectPlaylists()">
+                <p>
+                    Плейлисты
+                </p>
+            </div>
+        </li>
+        <li>
+            <div [class.active]="selectedButton == 'authors'" (click)="selectAuthors()">
+                <p>
+                    Авторы
+                </p>
+            </div>
+        </li>
+        <li>
+            <div [class.active]="selectedButton == 'albums'" (click)="selectAlbums()">
+                <p>
+                    Альбомы
+                </p>
+            </div>
+            
+        </li>
+    </ul>
+</div>
+
+<div class="block">
+    <router-outlet></router-outlet>
+</div>

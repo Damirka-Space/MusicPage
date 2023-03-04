@@ -2,14 +2,24 @@
     <div class="header">
         <img src="{{ getImageUrl() }}">
         <div class="info">
-            <p class="type">ПЛЕЙЛИСТ</p>
+            <p class="type">{{ getType() }}</p>
             <p class="title">{{ getTitle() }}</p>
             <p class="description">{{ getDescription() }}</p>
         </div>
     </div>
     <div class="playlist">
         <div class="control">
+            <table>
+                <tr>
+                    <td>
+                        <img (click)="play()" class="playButton" [class.pause]="isPlaying()">
+                    </td>
 
+                    <td>
+                        <img (click)="likeAlbum()" class="likeButton" [class.liked-album]="isLiked()">
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <div class="list">

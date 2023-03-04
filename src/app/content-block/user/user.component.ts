@@ -23,6 +23,8 @@ export class UserComponent implements AfterViewInit {
         APIController.getUser().subscribe(data => {
             this.user = data;
             this.username = this.user.username;
+            
+            APIController.setAuthorized(true);
         });
     }
 

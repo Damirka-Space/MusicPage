@@ -18,6 +18,13 @@
         height: 50px;
         border-radius: 50%;
 
+        .play-image {
+            content: url("/assets/playlist/PlayButton.png");
+        }
+
+        .pause-image {
+            content: url("/assets/playlist/PauseButton.png");
+        }
     }
 
     &:hover {

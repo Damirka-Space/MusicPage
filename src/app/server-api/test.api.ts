@@ -8,6 +8,30 @@ import { API } from "./api";
 
 
 export class TestAPI implements API {
+
+    isAuthorized: boolean;
+
+    constructor() {
+        this.isAuthorized = false;
+    }
+
+    likeAlbum(albumID: number): void {
+        throw new Error("Method not implemented.");
+    }
+    
+    likeTrack(trackID: number): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
+
+    collectionAlbumsPage(): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
+    collectionPlaylistsPage(): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
+    collectionAuthorsPage(): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
     
     setPlayer(player: any): void {
         throw new Error("Method not implemented.");
@@ -41,25 +65,25 @@ export class TestAPI implements API {
         console.log(playlistID);
         switch(playlistID) {
             case 0:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 1", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 1", "Специально для Вас", "Плейлист", false));
             case 1:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 2", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 2", "Специально для Вас", "Плейлист", false));
             case 2:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 3", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 3", "Специально для Вас", "Плейлист", false));
             case 3:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 4", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 4", "Специально для Вас", "Плейлист", false));
             case 4:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 5", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 5", "Специально для Вас", "Плейлист", false));
             case 5:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 6", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 6", "Специально для Вас", "Плейлист", false));
             case 6:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 7", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfDay1.png", "Плейлист дня 7", "Специально для Вас", "Плейлист", false));
             case 7:
-                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfWeek.png", "Открытие недели", "Лучшее на этой неделе"));
+                return of(new Playlist(playlistID, "assets/playlist/PlaylistOfWeek.png", "Открытие недели", "Лучшее на этой неделе", "Плейлист", false));
             case 8:
-                return of(new Playlist(playlistID, "assets/playlist/Heart.png", "Abracadabra3", "Специально для Вас"));
+                return of(new Playlist(playlistID, "assets/playlist/Heart.png", "Abracadabra3", "Специально для Вас", "Плейлист", false));
         }
-        return of(new Playlist(playlistID, "assets/playlist/Heart.png", "Abracadabra3", "Специально для Вас"));
+        return of(new Playlist(playlistID, "assets/playlist/Heart.png", "Abracadabra3", "Специально для Вас", "Плейлист", false));
     }
 
     getTracks(playlistID: number): Observable<Track[]> {

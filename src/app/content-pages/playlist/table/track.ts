@@ -14,9 +14,11 @@ export class Track {
     private imageUrl: string
     private metadataImageUrl: string;
     private time: string;
+    private liked: boolean;
 
     constructor(url: string, index: number, id: number, authorId: number[], albumId: number, imageId: number,
-                title: string, author: string[], album: string, imageUrl: string, metadataImageUrl: string, time: string) {
+                title: string, author: string[], album: string, imageUrl: string, metadataImageUrl: string, 
+                time: string, liked: boolean) {
         this.url = url;
         this.index = index;
         this.id = id;
@@ -29,11 +31,12 @@ export class Track {
         this.imageUrl = imageUrl;
         this.metadataImageUrl = metadataImageUrl;
         this.time = time;
+        this.liked = liked;
     }
 
     private static ID : number = 1;
     public static nullTrack() {
-        return new Track("", this.ID++, 0, [0], 0, 0, "Test112321312", ["Red hot chilli pepers"], "test3", "assets/playlist/Heart.png", "assets/playlist/Heart.png", "0:0");
+        return new Track("", this.ID++, 0, [0], 0, 0, "Test112321312", ["Red hot chilli pepers"], "test3", "assets/playlist/Heart.png", "assets/playlist/Heart.png", "0:0", false);
     }
 
     public getUrl() : string {
@@ -84,5 +87,12 @@ export class Track {
         return this.imageId;
     }
     
+    public getLiked(): boolean {
+        return this.liked;
+    }
+
+    public setLiked(value: boolean){
+        this.liked = value;
+    }
 
 }

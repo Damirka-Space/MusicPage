@@ -22,7 +22,9 @@ export class PlayerComponent {
 
     private sourceUrl: string = "";
 
-    protected isPlaying = false;
+    protected playing = false;
+    protected showed = false;
+    protected loop = false;
 
     // values for slider
     protected max = 0;
@@ -38,7 +40,7 @@ export class PlayerComponent {
     private imageUrl!: string;
 
     public update() {
-        if(this.isPlaying && !this.sliderIsClicked) {
+        if(this.playing && !this.sliderIsClicked) {
             this.value = this._player.nativeElement.currentTime;
             this.max = this._player.nativeElement.duration;
         }
@@ -83,7 +85,8 @@ export class PlayerComponent {
             let source : HTMLSourceElement = this._source.nativeElement;
             source.src = url;
             this._player.nativeElement.load();
-            this.isPlaying = true;
+            this.playing = true;
+            this.showed = true;
         }
     }
 
@@ -114,12 +117,10 @@ export class PlayerComponent {
     }
 
     protected onPlayClick() {
-        if(this.isPlaying) {
-            if(!this._player.nativeElement.paused) 
-                this.pause();
-            else
-                this.play();
-        }
+        if(this.playing)
+            this.pause();
+        else
+            this.play();
     }
 
     protected onShuffleClick() {
@@ -127,33 +128,36 @@ export class PlayerComponent {
     }
 
     protected onRepeatClick() {
-        if(this.isPlaying) {
+        if(this.playing) {
             if(!this._player.nativeElement.loop) {
-                this.setLoop(true);
-                this._repeatButton.nativeElement.src = "assets/playlist/RepeatButtonSingle.png";
+                this.loop = true;
+                this.setLoop(this.loop);
             }
             else {
-                this.setLoop(false);
-                this._repeatButton.nativeElement.src = "assets/playlist/RepeatButton.png";
+                this.loop = false
+                this.setLoop(this.loop);
             }
         }
     }
 
+    public isPlaying() {
+        return this.playing;
+    }
+
     public play() {
         this._player.nativeElement.play();
-        this._playButton.nativeElement.src = "assets/playlist/PauseButton.png";
-        this.isPlaying = true;
+        this.playing = true;
     }
 
     public pause() {
         this._player.nativeElement.pause();
-        this._playButton.nativeElement.src = "assets/playlist/PlayButton.png";
+        this.playing = false;
     }
 
     public stop() {
         this.pause();
         this._player.nativeElement.stop();
-        this.isPlaying = false;
+        this.playing = false;
     }
 
     public setLoop(value : boolean) {

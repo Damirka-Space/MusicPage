@@ -1,9 +1,18 @@
 import { Observable } from "rxjs/internal/Observable";
-import { Track } from "../content-pages/playlist/table/track";
 
 export interface API {
 
+    isAuthorized: boolean;
+
     mainPage(): Observable<any>;
+
+    collectionAlbumsPage(): Observable<any>;
+    collectionPlaylistsPage(): Observable<any>;
+    collectionAuthorsPage(): Observable<any>;
+
+    likeTrack(trackID: number): void;
+    likeAlbum(albumID: number): void;
+
     getPlaylist(playlistID: number): Observable<any>;
     getTracks(playlistID: number): Observable<any>;
 

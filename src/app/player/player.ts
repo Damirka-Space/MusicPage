@@ -2,6 +2,7 @@ import { environment } from "src/environments/environment";
 import { PlaylistTableComponent } from "../content-pages/playlist/table/playlist.table.component";
 import { Track } from "../content-pages/playlist/table/track";
 import { PlayerComponent } from "../player-block/player.component";
+import { APIController } from "../server-api/controller";
 
 
 export abstract class Player {
@@ -34,6 +35,14 @@ export abstract class Player {
     public static setPlaylist(tracks: Track[], playlistId : number) {
         Player.currentPlaylist = tracks;
         Player.playlistId = playlistId;
+    }
+
+    public static loadPlaylistAndPlay(playlistId: number) {
+        APIController.getTracks(playlistId).subscribe(data => {
+            Player.currentPlaylist = data;
+            Player.playlistId = playlistId;
+            Player.playTrack(Player.currentPlaylist[0]);
+        });
     }
 
     public static getPlaylist() : Track[] {
@@ -73,13 +82,18 @@ export abstract class Player {
         Player.currentIndex = track.getIndex() - 1;
 
         if(Player.currentPlaylist)
-            Player.playlistTableComponent.selectTrack(Player.currentIndex, Player.playlistId);
+            if(Player.playlistTableComponent)
+                Player.playlistTableComponent.selectTrack(Player.currentIndex, Player.playlistId);
         
 
         Player.playerComponent.setSource(track.getUrl());
         Player.playerComponent.setMetadata(track.getTitle(), track.getAuthor().join(", "), track.getMetadataImageUrl());
 
         Player.playerComponent.play();
+    }
+
+    public static isPlaying() {
+        return Player.playerComponent.isPlaying();
     }
 
     public static play() {

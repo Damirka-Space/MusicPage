@@ -42,7 +42,7 @@ export class NavBarComponent implements AfterViewInit {
     }
 
     protected selectCollections() {
-        this.router.navigate(['collections']);
+        this.router.navigate(['collection/playlists']);
         this.resetButtons();
         this.collections_button_mobile.nativeElement.src='assets/playlist/Heart_fld.png';
     }
