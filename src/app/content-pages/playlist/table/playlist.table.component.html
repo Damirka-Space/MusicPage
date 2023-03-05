@@ -37,7 +37,16 @@
     <ng-container matColumnDef="info">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let track" > 
-        <p> ··· </p> </td>
+        <table>
+          <tr>
+            <td>
+              <img (click)="likeTrack(track, $event)" class="heart-button" [class.heart-button-liked]="isTrackLiked(track)">
+            </td>
+            <td>
+              <p> ··· </p>
+            </td>
+          </tr>
+        </table>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns" [ngClass]="{'colored-header': isColored()}"></tr>
