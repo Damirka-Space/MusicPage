@@ -13,6 +13,8 @@ export interface API {
     likeTrack(trackID: number): void;
     likeAlbum(albumID: number): void;
 
+    saveToHistoryTrack(trackID: number): void;
+
     getPlaylist(playlistID: number): Observable<any>;
     getTracks(playlistID: number): Observable<any>;
 

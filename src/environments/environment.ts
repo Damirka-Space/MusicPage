@@ -11,6 +11,7 @@ export const environment = {
   api_collection_authors: "/collection/authors/",
   api_like_track: "/like/track/",
   api_like_album: "/like/album/",
+  api_history_save_track: "/history/save/track/",
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
   api_track_get: "http://127.0.0.1:8090/api/track/get/",

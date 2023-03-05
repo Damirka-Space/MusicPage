@@ -14,6 +14,10 @@ export class TestAPI implements API {
     constructor() {
         this.isAuthorized = false;
     }
+    
+    saveToHistoryTrack(trackID: number): void {
+        throw new Error("Method not implemented.");
+    }
 
     likeAlbum(albumID: number): void {
         throw new Error("Method not implemented.");

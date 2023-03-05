@@ -41,6 +41,10 @@ export abstract class APIController {
         return this.api.likeAlbum(albumId);
     }
 
+    public static saveToHistoryTrack(trackID: number): void{
+        return this.api.saveToHistoryTrack(trackID);
+    }
+
     public static getPlaylist(playlistID: number): Observable<Playlist> {
         return this.api.getPlaylist(playlistID);
     }

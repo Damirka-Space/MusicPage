@@ -89,6 +89,8 @@ export abstract class Player {
         Player.playerComponent.setSource(track.getUrl());
         Player.playerComponent.setMetadata(track.getTitle(), track.getAuthor().join(", "), track.getMetadataImageUrl());
 
+        APIController.saveToHistoryTrack(track.getId());
+
         Player.playerComponent.play();
     }
 

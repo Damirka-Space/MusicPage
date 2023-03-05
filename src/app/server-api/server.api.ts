@@ -147,6 +147,10 @@ export class ServerAPI implements API {
         this.isAuthorized = false;
     }
 
+    saveToHistoryTrack(trackID: number): void {
+        this.http.get(this.url + environment.api_history_save_track + trackID, { withCredentials: true }).subscribe();
+    }
+
     likeAlbum(albumID: number): void {
         this.http.get(this.url + environment.api_like_album + albumID, { withCredentials: true }).subscribe();
     }
