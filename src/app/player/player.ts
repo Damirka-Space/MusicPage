@@ -72,7 +72,7 @@ export abstract class Player {
             mediaMetadata.artist = track.getAuthor().join(", ");
             mediaMetadata.album = track.getAlbum();
             mediaMetadata.artwork = [
-                // { sizes: "128x128", src: track.getImageUrl(), type: "image/jpeg"},
+                { sizes: "256x256", src: track.getImageUrl(), type: "image/jpeg"},
                 { sizes: "512x512", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
                 { sizes: "1024x1024", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
             ];
