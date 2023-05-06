@@ -44,7 +44,11 @@ export class PlaylistTableComponent {
     }
 
     ngOnInit() {
-        window.addEventListener("scroll", this.onScroll, true);
+        try {
+            window.addEventListener("scroll", this.onScroll, true);
+        } catch (error) {
+            console.log(error)
+        }
 
         APIController.getTracks(this.playlistId).subscribe(data => {
             this.tracks = data;
@@ -56,7 +60,11 @@ export class PlaylistTableComponent {
     }
 
     ngOnDestroy() {
-        window.removeEventListener("scroll", this.onScroll, true);
+        try {
+            window.removeEventListener("scroll", this.onScroll, true);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     ngAfterViewInit() {

@@ -16,10 +16,14 @@ export abstract class Player {
     public static setPlayerComponent(playerComponent: PlayerComponent) {
         Player.playerComponent = playerComponent;
 
+        try {
             navigator.mediaSession.setActionHandler('play', Player.play);
             navigator.mediaSession.setActionHandler('pause', Player.pause);
             navigator.mediaSession.setActionHandler('previoustrack', Player.playPrev);
             navigator.mediaSession.setActionHandler('nexttrack', Player.playNext);
+        } catch (error) {
+            console.log(error);
+        }    
 
             // navigator.mediaSession.setActionHandler('stop', );
             // navigator.mediaSession.setActionHandler('seekbackward', function() { /* Code excerpted. */ });

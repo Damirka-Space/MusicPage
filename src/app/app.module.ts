@@ -67,13 +67,15 @@ const routes: Routes = [
     AlbumsCollectionsComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     MatTableModule,
     MatProgressBarModule,
     MatSliderModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking'
+}),
   ],
   providers: [],
   bootstrap: [AppComponent]

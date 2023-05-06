@@ -41,14 +41,22 @@ export class ContentBlockComponent implements AfterViewInit{
     ngAfterViewInit() {
         ContentBlockComponent.div = this._div.nativeElement;
         ContentBlockComponent.header = this._header.nativeElement;
-        window.addEventListener("scroll", this.onScroll, true);
+        try {
+            window.addEventListener("scroll", this.onScroll, true);
         
-        this.maxHistoryLength = window.history.length;
-        this.currentHistory = this.maxHistoryLength;
+            this.maxHistoryLength = window.history.length;
+            this.currentHistory = this.maxHistoryLength;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     ngOnDestroy() {
-        window.removeEventListener('scroll', this.onScroll, true);
+        try {
+            window.removeEventListener('scroll', this.onScroll, true);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     private onScroll(event: Event) {
