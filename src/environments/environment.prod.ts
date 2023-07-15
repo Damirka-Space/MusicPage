@@ -1,6 +1,17 @@
 export const environment = {
   production: true,
 
+  auth_client_name: "music-server",
+  auth_client_id: "server",
+  auth_client_secret:"secret",
+  auth_scopes: "profile music-server.read music-server.write",
+  auth_base64: "Basic c2VydmVyOnNlY3JldA==",
+  auth_redirect: "https://damirka.space/user/authorized",
+  auth_login: "https://damirka.space/auth/oauth2/authorize",
+  auth_logout: "https://damirka.space/auth/logout",
+  auth_token: "https://damirka.space/auth/oauth2/token",
+  auth_introspect: "https://damirka.space/auth/oauth2/introspect",
+
   api_root: "https://damirka.space/api",
   api_main: "/main",
   api_collection_albums: "/collection/albums/",
