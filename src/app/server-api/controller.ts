@@ -1,5 +1,5 @@
 import { Observable } from "rxjs/internal/Observable";
-import { User } from "../content-block/user/user";
+import { User } from "../entities/user";
 import { Block } from "../content-pages/main/block/block";
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
@@ -8,10 +8,6 @@ import { API } from "./api";
 
 export abstract class APIController {
     private static api: API;
-
-    public static setAuthorized(value: boolean) {
-        this.api.isAuthorized = value;
-    }
 
     public static setAPI(api: API) {
         this.api = api;
@@ -55,9 +51,5 @@ export abstract class APIController {
 
     public static getUser() : Observable<User> {
         return this.api.getUser();
-    }
-
-    public static logout(): Observable<any> {
-        return this.api.logout();
     }
 }

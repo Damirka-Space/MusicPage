@@ -8,7 +8,9 @@ import { Card } from "../content-pages/main/block/card/card"
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
 import { environment } from "src/environments/environment";
-import { User } from "../content-block/user/user";
+import { User } from "../entities/user";
+import { AuthService } from "../services/auth.service";
+import { Injectable } from "@angular/core";
 
 interface ITrack {
     id: number;
@@ -132,74 +134,102 @@ abstract class UserFactory {
     }
 }
 
-
+@Injectable({
+    providedIn: 'root'
+})
 export class ServerAPI implements API {
-
-    isAuthorized: boolean;
 
     private http: HttpClient;
 
     private url : string = environment.api_root;
 
-    constructor(http: HttpClient) {
+    constructor(http: HttpClient, private authService : AuthService) {
         this.http = http;
-
-        this.isAuthorized = false;
     }
 
     saveToHistoryTrack(trackID: number): void {
-        this.http.get(this.url + environment.api_history_save_track + trackID, { withCredentials: true }).subscribe();
+        this.http.get(this.url + environment.api_history_save_track + trackID, { 
+                headers : this.authService.getHeaders,
+                reportProgress: false
+    }).subscribe({
+        next: (value: Object) => {},
+        error: (err : any) => {}
+    });
     }
 
     likeAlbum(albumID: number): void {
-        this.http.get(this.url + environment.api_like_album + albumID, { withCredentials: true }).subscribe();
+        this.http.get(this.url + environment.api_like_album + albumID, { 
+                headers : this.authService.getHeaders
+    }).subscribe({
+        next: (value: Object) => {},
+        error: (err : any) => {}
+    });
     }
 
     likeTrack(trackID: number) {
-        this.http.get(this.url + environment.api_like_track + trackID, { withCredentials: true }).subscribe();
+        this.http.get(this.url + environment.api_like_track + trackID, { 
+                headers : this.authService.getHeaders
+    }).subscribe({
+        next: (value: Object) => {},
+        error: (err : any) => {}
+    });
     }
 
     collectionAlbumsPage(): Observable<any> {
-        return this.http.get(this.url + environment.api_collection_albums, { withCredentials: true }).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_collection_albums, { 
+            headers : this.authService.getHeaders
+    }).pipe(map((val) => {
             return BlockFactory.fromResponse(val);
         }));
     }
 
     collectionPlaylistsPage(): Observable<any> {
-        return this.http.get(this.url + environment.api_collection_playlists, { withCredentials: true }).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_collection_playlists, { 
+                headers : this.authService.getHeaders  
+    }).pipe(map((val) => {
             return BlockFactory.fromResponse(val);
         }));
     }
 
     collectionAuthorsPage(): Observable<any> {
-        return this.http.get(this.url + environment.api_collection_authors, { withCredentials: true }).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_collection_authors, { 
+                headers : this.authService.getHeaders
+    }).pipe(map((val) => {
             return BlockFactory.fromResponse(val);
         }));
     }
 
     mainPage(): Observable<any> {
-        return this.http.get(this.url + environment.api_main).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_main, { 
+            withCredentials : this.authService.isAuthorized, 
+            headers : this.authService.getHeaders
+        }).pipe(map((val) => {
             return BlockFactory.fromResponse(val);
         }));
     }
     getPlaylist(playlistID: number): Observable<any> {
-        return this.http.get(this.url + environment.api_album_get + playlistID, { withCredentials: this.isAuthorized }).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_album_get + playlistID, { 
+                withCredentials : this.authService.isAuthorized, 
+                headers : this.authService.getHeaders  
+    }).pipe(map((val) => {
             return PlaylistFactory.fromResponse(val);
         }));
     }
     getTracks(playlistID: number): Observable<any> {
-        return this.http.get(this.url + environment.api_tracks_get + playlistID, { withCredentials: this.isAuthorized }).pipe(map((val) => {
+        return this.http.get(this.url + environment.api_tracks_get + playlistID, { 
+                withCredentials : this.authService.isAuthorized, 
+                headers : this.authService.getHeaders 
+    }).pipe(map((val) => {
             return TracksFactory.formResponse(val);
         }));
     }
-    getUser(): Observable<any> {
-        return this.http.get(environment.api_user_get, { withCredentials: true }).pipe(map((val) => {
+
+    public getUser(): Observable<any> {
+        return this.http.get(environment.api_user_get, { 
+            headers : this.authService.getHeaders 
+        }).pipe(map((val) => {
             return UserFactory.fromResponse(val);
         }));
-    }
-
-    logout(): Observable<any> {
-        return this.http.get(environment.api_logout, { withCredentials: true });
     }
 
     getTrack(trackID: number) {
@@ -213,3 +243,7 @@ export class ServerAPI implements API {
     }
 
 }
+function Injctable(target: typeof ServerAPI): void | typeof ServerAPI {
+    throw new Error("Function not implemented.");
+}
+

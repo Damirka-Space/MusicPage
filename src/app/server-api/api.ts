@@ -2,8 +2,6 @@ import { Observable } from "rxjs/internal/Observable";
 
 export interface API {
 
-    isAuthorized: boolean;
-
     mainPage(): Observable<any>;
 
     collectionAlbumsPage(): Observable<any>;
@@ -19,8 +17,6 @@ export interface API {
     getTracks(playlistID: number): Observable<any>;
 
     getUser(): Observable<any>;
-
-    logout(): Observable<any>;
 
     getTrack(trackID: number): any;
     getImage(imageID: number): any;

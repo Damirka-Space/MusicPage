@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
-import { Player } from "../player/player";
+import { PlayerService } from "../services/player.service";
 
 @Component({
     selector: 'player-component',
@@ -47,7 +47,7 @@ export class PlayerComponent {
     }
 
     sliderOnChange(event: any) {
-        Player.seek(event.value);
+        this.playerService.seek(event.value);
         this.sliderIsClicked = false;
     }
 
@@ -55,10 +55,19 @@ export class PlayerComponent {
         this.sliderIsClicked = true;
     }
 
+    constructor(private playerService : PlayerService) {
+
+    }
+
     ngAfterViewInit() {
-        this._player.nativeElement.addEventListener("ended", Player.playNext);
-        this._player.nativeElement.addEventListener("timeupdate", Player.update);
-        Player.setPlayerComponent(this);
+        this.playerService.setPlayerComponent(this);
+        this._player.nativeElement.addEventListener("ended", () => {
+            this.playerService.playNext();
+        });
+
+        this._player.nativeElement.addEventListener("timeupdate", () => {
+            this.playerService.update();
+        });
         this.setVolume(this.volume);
     }
 
@@ -109,11 +118,11 @@ export class PlayerComponent {
     }
 
     protected onPlayPrevClick() {
-        Player.playPrev();
+        this.playerService.playPrev();
     }
 
     protected onPlayNextClick() {
-        Player.playNext();
+        this.playerService.playNext();
     }
 
     protected onPlayClick() {

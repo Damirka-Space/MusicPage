@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
-import { Player } from "src/app/player/player";
+import { PlayerService } from "src/app/services/player.service";
 import { APIController } from "src/app/server-api/controller";
 import { LinearGradientBackgroundColorHEX } from "../background.color";
 import { ColorHEX } from "../color";
@@ -19,7 +19,7 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
-    constructor(private route: ActivatedRoute, private titleService: Title, private metaService: Meta) {
+    constructor(private route: ActivatedRoute, private titleService: Title, private metaService: Meta, private playerService : PlayerService) {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
         ColorSelector.setHeadeColor(new ColorHEX("#e52b5000"));
@@ -69,7 +69,7 @@ export class PlaylistPageComponent extends PageComponent {
     }
 
     public isPlaying() {
-        return Player.isPlaying();
+        return this.playerService.isPlaying();
     }
 
     public likeAlbum() {
@@ -82,14 +82,14 @@ export class PlaylistPageComponent extends PageComponent {
     }
 
     public play() {
-        if(Player.getPlaylistId() == this.playlist.getId()) {
-            if(Player.isPlaying())
-                Player.pause();
+        if(this.playerService.getPlaylistId() == this.playlist.getId()) {
+            if(this.playerService.isPlaying())
+                this.playerService.pause();
             else
-                Player.play();
+                this.playerService.play();
         }
         else {
-            Player.loadPlaylistAndPlay(this.playlist.getId());
+            this.playerService.loadPlaylistAndPlay(this.playlist.getId());
         }
     }
 

@@ -25,6 +25,7 @@ import { UserComponent } from './content-block/user/user.component';
 
 import { AlbumsCollectionsComponent } from './content-pages/collections/albums/albums.collections.page.component';
 import { PlaylistsCollectionsComponent } from './content-pages/collections/playlists/playlists.collections.page.component';
+import { UserPageComponent } from './content-pages/user/user.page.component';
 // import { AlbumPageComponent } from './content-pages/album/album.page.component';
 // import { AlbumTableComponent } from './content-pages/album/table/album';
 
@@ -36,6 +37,11 @@ const routes: Routes = [
     children: [
       {path: 'playlists', component: PlaylistsCollectionsComponent},
       {path: 'albums', component: AlbumsCollectionsComponent}
+    ]
+  },
+  {path: 'user', component: UserPageComponent,
+    children: [
+      {path: 'authorized', component: UserPageComponent}
     ]
   },
   {path: 'stream', component: StreamPageComponent},
@@ -58,6 +64,7 @@ const routes: Routes = [
     PlaylistPageComponent,
     // AlbumPageComponent,
     NotFoundPageComponent,
+    UserPageComponent,
     BlockComponent,
     CardComponent,
     PlaylistTableComponent,

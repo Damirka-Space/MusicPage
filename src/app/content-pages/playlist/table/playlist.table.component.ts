@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Output, ViewChild } from "@angular/core";
-import { Player } from "src/app/player/player";
+import { PlayerService } from "src/app/services/player.service";
 import { APIController } from "src/app/server-api/controller";
 import { ContentBlock } from "../../content.block";
 import { Track } from "./track";
@@ -23,8 +23,8 @@ export class PlaylistTableComponent {
     private static div : HTMLElement;
     private static coloredHeader: boolean = false;
 
-    constructor() {
-        Player.setPlaylistComponent(this);
+    constructor(private playerService : PlayerService) {
+        this.playerService.setPlaylistComponent(this);
     }
 
     public selectTrack(index: number, playlistId : number) {
@@ -38,9 +38,9 @@ export class PlaylistTableComponent {
 
     public onClick(track : Track) {
         this.selectedTrack = track;
-        Player.seek(0);
-        Player.setPlaylist(this.tracks, this.playlistId);
-        Player.playTrack(track);
+        this.playerService.seek(0);
+        this.playerService.setPlaylist(this.tracks, this.playlistId);
+        this.playerService.playTrack(track);
     }
 
     ngOnInit() {
@@ -53,8 +53,8 @@ export class PlaylistTableComponent {
         APIController.getTracks(this.playlistId).subscribe(data => {
             this.tracks = data;
 
-            if(Player.getPlaylistId() == this.playlistId) {
-                this.selectedTrack = this.tracks[Player.getCurrentIndex()];
+            if(this.playerService.getPlaylistId() == this.playlistId) {
+                this.selectedTrack = this.tracks[this.playerService.getCurrentIndex()];
             }
         });
     }

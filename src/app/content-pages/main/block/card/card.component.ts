@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { PageController } from "src/app/content-pages/page.controller";
 import { PageSelector } from "src/app/content-pages/page.selector";
-import { Player } from "src/app/player/player";
+import { PlayerService } from "src/app/services/player.service";
 import { APIController } from "src/app/server-api/controller";
 import { Card } from "./card";
 
@@ -18,7 +18,7 @@ export class CardComponent {
 
     @Input() card!: Card;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private playerService : PlayerService) {
     }
 
     public openPlaylist(event: Event) {
@@ -29,8 +29,8 @@ export class CardComponent {
     }
 
     public isPlaying() {
-        if(Player.getPlaylistId() == this.card.getId()) {
-            return Player.isPlaying();
+        if(this.playerService.getPlaylistId() == this.card.getId()) {
+            return this.playerService.isPlaying();
         }
         return false;
     }
@@ -38,14 +38,14 @@ export class CardComponent {
     public playPlaylist(event: Event) {
         event.stopPropagation();
 
-        if(Player.getPlaylistId() == this.card.getId()) {
-            if(Player.isPlaying())
-                Player.pause();
+        if(this.playerService.getPlaylistId() == this.card.getId()) {
+            if(this.playerService.isPlaying())
+                this.playerService.pause();
             else
-                Player.play();
+                this.playerService.play();
         }
         else {
-            Player.loadPlaylistAndPlay(this.card.getId());
+            this.playerService.loadPlaylistAndPlay(this.card.getId());
         }
     }
 

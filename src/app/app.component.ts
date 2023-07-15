@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { APIController } from './server-api/controller';
 import { ServerAPI } from './server-api/server.api';
-import { TestAPI } from './server-api/test.api';
 
 @Component({
     selector: 'app-root',
@@ -11,9 +9,9 @@ import { TestAPI } from './server-api/test.api';
 })
 export class AppComponent {
 
-    constructor(http: HttpClient) {
+    constructor(private serverAPI: ServerAPI) {
         // APIController.setAPI(new TestAPI());
         
-        APIController.setAPI(new ServerAPI(http));
+        APIController.setAPI(serverAPI);
     }
 }
