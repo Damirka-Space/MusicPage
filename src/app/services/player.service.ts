@@ -150,14 +150,20 @@ export class PlayerService {
                 // { sizes: "256x256", src: track.getImageUrl(), type: "image/jpeg"},
                 // { sizes: "512x512", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
                 // { sizes: "1024x1024", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
-                { src: track.getImageUrl() },
-                { src: track.getMetadataImageUrl() }
+                { src: track.getImageUrl(), type: 'image/jpeg' },
+                { src: track.getMetadataImageUrl(), type: 'image/jpeg' }
             ]}
         );
     }
 
 
     public playTrack(track: Track) {
+        if(this.currentTrack) {
+            this.pause();
+            this.currentTrack.stop();
+            this.currentTrack.unload();
+        }
+
         this.currentIndex = track.getIndex() - 1;
 
         if(this.currentPlaylist)
@@ -169,29 +175,37 @@ export class PlayerService {
 
         this.playerComponent.setMetadata(track.getTitle(), track.getAuthor().join(", "), track.getMetadataImageUrl());
         this.updateMetadata(track);
-
-        if(this.currentTrack) {
-            this.currentTrack.stop();
-            this.currentTrack.unload();
-        }
             
         this.currentTrack = new Howl({
-            src: [track.getUrl()],
+            src: [ track.getUrl() ],
             html5: true,
-            loop: this.repeat
-        });
+            loop: this.repeat,
+            format: ['mp3'],
+            onend : () => {
+                if(!this.isRepeate)
+                    this.playNext();
+                else {
+                    this.seek(0);
+                    this.play();
+                }
+            },
 
-        this.currentTrack.on('end', () => {
-            if(!this.isRepeate)
-                this.playNext();
-            else {
-                this.seek(0);
+            onload: () => {
                 this.play();
-            }
+            },
 
+            onloaderror: (id?, error?) => {
+                console.log(error);
+                this.playTrack(track);
+            },
+
+            onplayerror: (id?, error?) => {
+                console.log(error);
+                this.playTrack(track);
+            }
+            
         });
 
-        this.play();
     }
 
     public get isPlaying() {
