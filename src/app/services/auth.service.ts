@@ -19,17 +19,58 @@ export class AuthService {
 
     constructor(private http : HttpClient) {
         this.tokenReady = new Subscription();
-        
+
         this.accessToken = window.localStorage.getItem("ACCESS_TOKEN_KEY");
         this.refreshToken = window.localStorage.getItem("REFRESH_TOKEN_KEY");
 
-        if(this.accessToken != null)
+        if(this.refreshToken != null) {
+            this.getTokenInfo(this.refreshToken).subscribe(res => {
+                var isActive = res['active'] as boolean;
+
+                if(isActive) {
+                    this.refreshTokens();
+                }
+            })
+        }
+    }
+
+    private refreshTokens() {
+        let payload = new FormData();
+        payload.append('grant_type', 'refresh_token');
+        payload.append('refresh_token', this.refreshToken as string);
+
+        this.http.post(environment.auth_token, payload, {
+            headers: {
+                'Authorization': environment.auth_base64
+            }
+        })
+        .subscribe(next => {
+            var data = next.valueOf() as any;
+            this.accessToken = data['access_token'];
+            this.refreshToken = data['refresh_token'];
+
+            window.localStorage.setItem('ACCESS_TOKEN_KEY', this.accessToken as string);
+            window.localStorage.setItem('REFRESH_TOKEN_KEY', this.refreshToken as string);
+
             this.setAuthorized();
+        })
+        .add(this.tokenReady);
     }
 
     private setAuthorized() {
         this.authorized = true;
         this.headers = {'Authorization' : 'Bearer ' + this.getAccessToken};
+    }
+
+    private getTokenInfo(token: string) : Observable<any> {
+        var payload = new FormData();
+        payload.append('token', token);
+
+        return this.http.post(environment.auth_introspect, payload, {
+            headers: {
+                'Authorization': environment.auth_base64
+            }
+        });
     }
 
     public get istokenReady() {
@@ -60,16 +101,7 @@ export class AuthService {
         .add(this.tokenReady);
     }
 
-    getTokenInfo() : Observable<any> {
-        var payload = new FormData();
-        payload.append('token', window.localStorage.getItem("ACCESS_TOKEN_KEY") as string);
-
-        return this.http.post(environment.auth_introspect, payload, {
-            headers: {
-                'Authorization': environment.auth_base64
-            }
-        });
-    }
+    
 
     public login() : any {
         var requestParams = new URLSearchParams({

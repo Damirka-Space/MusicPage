@@ -34,7 +34,7 @@ export class UserComponent implements AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-        if(this.authService.getAccessToken)
+        if(this.authService.isAuthorized)
             this.getUser();
         else
             this.authService.istokenReady.add(() => {
