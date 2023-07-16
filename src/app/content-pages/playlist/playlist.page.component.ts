@@ -19,6 +19,8 @@ export class PlaylistPageComponent extends PageComponent {
 
     private playlist!: Playlist;
 
+    private downloaded = false;
+
     constructor(private route: ActivatedRoute, private titleService: Title, private metaService: Meta, private playerService : PlayerService) {
         super();
         ColorSelector.setBackgroundColor(new LinearGradientBackgroundColorHEX(new ColorHEX("#e52b50"), new ColorHEX("#1f1f1f")));
@@ -30,6 +32,8 @@ export class PlaylistPageComponent extends PageComponent {
         this.route.params.subscribe(params => {
             APIController.getPlaylist(params['id']).subscribe(data => {
                 this.playlist = data;
+
+                this.downloaded = true;
 
                 this.titleService.setTitle("Альбом - " + this.playlist.getTitle());
 
@@ -44,32 +48,39 @@ export class PlaylistPageComponent extends PageComponent {
         });
     }
 
-    public getTitle() {
+    public get isDownloaded() {
+        return this.downloaded;
+    }
+
+    public get getTitle() {
         return this.playlist.getTitle();
     }
 
-    public getType() {
+    public get getType() {
         return this.playlist.getType();
     }
 
-    public getImageUrl() {
+    public get getImageUrl() {
         return this.playlist.getImageUrl();
     }
 
-    public getDescription() {
+    public get getDescription() {
         return this.playlist.getDescription();
     }
 
-    public getId() {
+    public get getId() {
         return this.playlist.getId();
     }
 
-    public isLiked() {
+    public get isLiked() {
         return this.playlist.isLiked();
     }
 
-    public isPlaying() {
-        return this.playerService.isPlaying;
+    public get isPlaying() {
+        if(this.playerService.getPlaylistId == this.playlist.getId()) {
+            return this.playerService.isPlaying;
+        }
+        return false;
     }
 
     public likeAlbum() {

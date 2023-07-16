@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container" *ngIf="isDownloaded as n; else loading">
     <div class="header">
-        <img src="{{ getImageUrl() }}">
+        <img [src]="getImageUrl">
         <div class="info">
-            <p class="type">{{ getType() }}</p>
-            <p class="title">{{ getTitle() }}</p>
-            <p class="description">{{ getDescription() }}</p>
+            <p class="type">{{ getType }}</p>
+            <p class="title">{{ getTitle }}</p>
+            <p class="description">{{ getDescription }}</p>
         </div>
     </div>
     <div class="playlist">
@@ -12,18 +12,24 @@
             <table>
                 <tr>
                     <td>
-                        <img (click)="play()" class="playButton" [class.pause]="isPlaying()">
+                        <img (click)="play()" class="playButton" [class.pause]="isPlaying">
                     </td>
 
                     <td>
-                        <img (click)="likeAlbum()" class="likeButton" [class.liked-album]="isLiked()">
+                        <img (click)="likeAlbum()" class="likeButton" [class.liked-album]="isLiked">
                     </td>
                 </tr>
             </table>
         </div>
 
         <div class="list">
-            <playlist-table-component [playlistId]="getId()"></playlist-table-component>
+            <playlist-table-component [playlistId]="getId"></playlist-table-component>
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -78,6 +79,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatTableModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSliderModule,
     HttpClientModule,
     RouterModule.forRoot(routes, {
