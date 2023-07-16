@@ -36,6 +36,7 @@ export class PlayerComponent {
         if(this.isPlaying && !this.sliderIsClicked) {
             this.value = this.playerService.getPos;
             this.max = this.playerService.getDuration;
+            this.playerService.update();
         }
     }
 

@@ -19,6 +19,8 @@ export class PlayerService {
     private playlistId!: number;
     private currentIndex!: number;
 
+    private skipTime = 10; // Time to skip in seconds
+
     private volume : number = 0.25;
     private repeat : boolean = false;
     private playing : boolean = false;
@@ -45,15 +47,37 @@ export class PlayerService {
             navigator.mediaSession.setActionHandler('nexttrack', () => {
                 this.playNext();
             });
+
+            navigator.mediaSession.setActionHandler("seekbackward", (evt) => {
+              const skipTime = evt.seekOffset || this.skipTime;
+              this.seek(Math.max(this.getPos - skipTime, 0));
+            });
+            
+            navigator.mediaSession.setActionHandler("seekforward", (evt) => {
+              const skipTime = evt.seekOffset || this.skipTime;
+              this.seek(Math.min(this.getPos + skipTime, this.getDuration));
+            });
+            
+            navigator.mediaSession.setActionHandler('seekto', (evt) => {
+                const seekTime = evt.seekTime as number;
+                this.seek(seekTime);
+            });
+
         } catch (error) {
             console.log(error);
         }    
 
             // navigator.mediaSession.setActionHandler('stop', );
-            // navigator.mediaSession.setActionHandler('seekbackward', function() { /* Code excerpted. */ });
-            // navigator.mediaSession.setActionHandler('seekforward', function() { /* Code excerpted. */ });
-            // navigator.mediaSession.setActionHandler('seekto', function() { /* Code excerpted. */ });
+            
             // navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ });
+    }
+
+    public update() {
+        navigator.mediaSession.setPositionState({
+            duration: this.getDuration,
+            playbackRate: this.currentTrack.rate(),
+            position: this.getPos
+          });
     }
 
     public setPlaylistComponent(playlistComponent: PlaylistTableComponent) {
@@ -168,11 +192,13 @@ export class PlayerService {
 
     public play() {
         this.playing = true;
+        navigator.mediaSession.playbackState = 'playing';
         this.currentTrack.play();
     }
 
     public pause() {
         this.playing = false;
+        navigator.mediaSession.playbackState = 'paused';
         this.currentTrack.pause();
     }
 
