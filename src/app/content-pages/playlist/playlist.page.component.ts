@@ -69,7 +69,7 @@ export class PlaylistPageComponent extends PageComponent {
     }
 
     public isPlaying() {
-        return this.playerService.isPlaying();
+        return this.playerService.isPlaying;
     }
 
     public likeAlbum() {
@@ -82,8 +82,8 @@ export class PlaylistPageComponent extends PageComponent {
     }
 
     public play() {
-        if(this.playerService.getPlaylistId() == this.playlist.getId()) {
-            if(this.playerService.isPlaying())
+        if(this.playerService.getPlaylistId == this.playlist.getId()) {
+            if(this.playerService.isPlaying)
                 this.playerService.pause();
             else
                 this.playerService.play();

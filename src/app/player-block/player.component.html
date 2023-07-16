@@ -1,7 +1,3 @@
-<audio #player>
-    <source #source type="audio/mpeg"> 
-</audio>
-
 <div id="container" [hidden]="(!showed)">
 
     <div id="art">
@@ -27,7 +23,7 @@
                         <div id="Buttons">
                             <img class="ShuffleButton">
                             <img (click)="onPlayPrevClick()" class="PlayPrevButton">
-                            <img (click)="onPlayClick()" class="PlayButton" #PlayButton [class.pause]="playing">
+                            <img (click)="onPlayClick()" class="PlayButton" #PlayButton [class.pause]="isPlaying">
                             <img (click)="onPlayNextClick()"class="PlayNextButton">
                             <img (click)="onRepeatClick()" class="RepeatButton" #RepeatButton [class.repeate]="loop">
                         </div>

@@ -29,8 +29,8 @@ export class CardComponent {
     }
 
     public isPlaying() {
-        if(this.playerService.getPlaylistId() == this.card.getId()) {
-            return this.playerService.isPlaying();
+        if(this.playerService.getPlaylistId == this.card.getId()) {
+            return this.playerService.isPlaying;
         }
         return false;
     }
@@ -38,8 +38,8 @@ export class CardComponent {
     public playPlaylist(event: Event) {
         event.stopPropagation();
 
-        if(this.playerService.getPlaylistId() == this.card.getId()) {
-            if(this.playerService.isPlaying())
+        if(this.playerService.getPlaylistId == this.card.getId()) {
+            if(this.playerService.isPlaying)
                 this.playerService.pause();
             else
                 this.playerService.play();

@@ -8,11 +8,6 @@ import { PlayerService } from "../services/player.service";
     encapsulation: ViewEncapsulation.None
 })
 export class PlayerComponent {
-    @ViewChild('player', {read: ElementRef})
-    _player!: ElementRef;
-
-    @ViewChild('source', {read: ElementRef})
-    _source!: ElementRef;
 
     @ViewChild('PlayButton', {read: ElementRef})
     _playButton!: ElementRef;
@@ -20,9 +15,7 @@ export class PlayerComponent {
     @ViewChild('RepeatButton', {read: ElementRef})
     _repeatButton!: ElementRef;
 
-    private sourceUrl: string = "";
-
-    protected playing = false;
+    // protected playing = false;
     protected showed = false;
     protected loop = false;
 
@@ -40,9 +33,9 @@ export class PlayerComponent {
     private imageUrl!: string;
 
     public update() {
-        if(this.playing && !this.sliderIsClicked) {
-            this.value = this._player.nativeElement.currentTime;
-            this.max = this._player.nativeElement.duration;
+        if(this.isPlaying && !this.sliderIsClicked) {
+            this.value = this.playerService.getPos;
+            this.max = this.playerService.getDuration;
         }
     }
 
@@ -61,23 +54,14 @@ export class PlayerComponent {
 
     ngAfterViewInit() {
         this.playerService.setPlayerComponent(this);
-        this._player.nativeElement.addEventListener("ended", () => {
-            this.playerService.playNext();
-        });
+        
+        setInterval(() => {
+            this.update();
+        }, 1)
 
-        this._player.nativeElement.addEventListener("timeupdate", () => {
-            this.playerService.update();
-        });
         this.setVolume(this.volume);
     }
 
-    public getSource() {
-        return this.sourceUrl;
-    }
-
-    public seek(value: number) {
-        this._player.nativeElement.currentTime = value;
-    }
 
     public volumeOnChange(event: any) {
         this.setVolume(event.value)
@@ -85,24 +69,15 @@ export class PlayerComponent {
 
     public setVolume(value: number) {
         this.volume = value;
-        this._player.nativeElement.volume = this.volume;
+        this.playerService.setVolume = value;
     }
 
-    public setSource(url: string) {
-        if(this.sourceUrl != url) {
-            this.sourceUrl = url;
-            let source : HTMLSourceElement = this._source.nativeElement;
-            source.src = url;
-            this._player.nativeElement.load();
-            this.playing = true;
-            this.showed = true;
-        }
-    }
 
     public setMetadata(title: string, artist: string, imageUrl: string) {
         this.title = title;
         this.artist = artist;
         this.imageUrl = imageUrl;
+        this.showed = true;
     }
 
     protected getTitle() {
@@ -126,7 +101,7 @@ export class PlayerComponent {
     }
 
     protected onPlayClick() {
-        if(this.playing)
+        if(this.isPlaying)
             this.pause();
         else
             this.play();
@@ -137,39 +112,35 @@ export class PlayerComponent {
     }
 
     protected onRepeatClick() {
-        if(this.playing) {
-            if(!this._player.nativeElement.loop) {
-                this.loop = true;
-                this.setLoop(this.loop);
+        if(this.isPlaying) {
+            if(!this.playerService.isRepeate) {
+                this.setLoop(!this.playerService.isRepeate);
             }
             else {
-                this.loop = false
-                this.setLoop(this.loop);
+                this.setLoop(!this.playerService.isRepeate);
             }
         }
     }
 
-    public isPlaying() {
-        return this.playing;
+    public get isPlaying() {
+        return this.playerService.isPlaying;
     }
 
     public play() {
-        this._player.nativeElement.play();
-        this.playing = true;
+        this.playerService.play();
     }
 
     public pause() {
-        this._player.nativeElement.pause();
-        this.playing = false;
+        this.playerService.pause();
     }
 
     public stop() {
         this.pause();
-        this._player.nativeElement.stop();
-        this.playing = false;
+        // this.playerService.stop();
     }
 
     public setLoop(value : boolean) {
-        this._player.nativeElement.loop = value;
+        this.loop = value;
+        this.playerService.setRepeat = value;
     }
 }

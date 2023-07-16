@@ -38,7 +38,6 @@ export class PlaylistTableComponent {
 
     public onClick(track : Track) {
         this.selectedTrack = track;
-        this.playerService.seek(0);
         this.playerService.setPlaylist(this.tracks, this.playlistId);
         this.playerService.playTrack(track);
     }
@@ -53,8 +52,8 @@ export class PlaylistTableComponent {
         APIController.getTracks(this.playlistId).subscribe(data => {
             this.tracks = data;
 
-            if(this.playerService.getPlaylistId() == this.playlistId) {
-                this.selectedTrack = this.tracks[this.playerService.getCurrentIndex()];
+            if(this.playerService.getPlaylistId == this.playlistId) {
+                this.selectedTrack = this.tracks[this.playerService.getCurrentIndex];
             }
         });
     }

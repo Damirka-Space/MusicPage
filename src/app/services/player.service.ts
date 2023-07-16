@@ -6,6 +6,7 @@ import { APIController } from "../server-api/controller";
 import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
 
+import {Howl, Howler} from 'howler';
 
 @Injectable({
     providedIn : 'root'
@@ -18,18 +19,32 @@ export class PlayerService {
     private playlistId!: number;
     private currentIndex!: number;
 
+    private volume : number = 0.25;
+    private repeat : boolean = false;
+    private playing : boolean = false;
+
+    private currentTrack!: Howl;;
+
     public constructor(private authService : AuthService) {
-            
+
     }
 
     public setPlayerComponent(playerComponent: PlayerComponent) {
         this.playerComponent = playerComponent;
 
         try {
-            navigator.mediaSession.setActionHandler('play', this.play);
-            navigator.mediaSession.setActionHandler('pause', this.pause);
-            navigator.mediaSession.setActionHandler('previoustrack', this.playPrev);
-            navigator.mediaSession.setActionHandler('nexttrack', this.playNext);
+            navigator.mediaSession.setActionHandler('play', () => {
+                this.play();
+            });
+            navigator.mediaSession.setActionHandler('pause', () => {
+                this.pause();
+            });
+            navigator.mediaSession.setActionHandler('previoustrack', () => {
+                this.playPrev
+            });
+            navigator.mediaSession.setActionHandler('nexttrack', () => {
+                this.playNext();
+            });
         } catch (error) {
             console.log(error);
         }    
@@ -58,25 +73,39 @@ export class PlayerService {
         });
     }
 
-    public getPlaylist() : Track[] {
+    public set setVolume(value: number) {
+        this.volume = value;
+        Howler.volume(this.volume);
+    }
+
+    public get getPlaylist() : Track[] {
         return this.currentPlaylist;
     }
 
-    public getPlaylistId() : number {
+    public get getPlaylistId() : number {
         return this.playlistId;
     }
 
-    public getCurrentIndex() : number {
+    public get getCurrentIndex() : number {
         return this.currentIndex;
     }
 
-    public seek(value: number) {
-        this.playerComponent.seek(value);
+    public get getPos() : number {
+        return this.currentTrack.seek();
     }
 
-    public update() {
-        this.playerComponent.update();
+    public get getDuration() : number {
+        return this.currentTrack.duration();
     }
+
+    public get isRepeate() : boolean {
+        return this.repeat;
+    }
+
+    public seek(value: number) {
+        this.currentTrack.seek(value,);
+    }
+
 
     public playTrack(track: Track) {
         if(navigator.mediaSession) {
@@ -99,26 +128,52 @@ export class PlayerService {
             if(this.playlistTableComponent)
                 this.playlistTableComponent.selectTrack(this.currentIndex, this.playlistId);
         
-
-        this.playerComponent.setSource(track.getUrl());
-        this.playerComponent.setMetadata(track.getTitle(), track.getAuthor().join(", "), track.getMetadataImageUrl());
-
         if(this.authService.isAuthorized)
             APIController.saveToHistoryTrack(track.getId());
 
-        this.playerComponent.play();
+        this.playerComponent.setMetadata(track.getTitle(), track.getAuthor().join(", "), track.getMetadataImageUrl());
+
+
+        if(this.currentTrack) {
+            this.currentTrack.stop();
+            this.currentTrack.unload();
+        }
+            
+        this.currentTrack = new Howl({
+            src: [track.getUrl()],
+            html5: true,
+            loop: this.repeat
+        });
+
+        this.currentTrack.on('end', () => {
+            if(!this.isRepeate)
+                this.playNext();
+            else {
+                this.seek(0);
+                this.play();
+            }
+
+        });
+
+        this.play();
     }
 
-    public isPlaying() {
-        return this.playerComponent.isPlaying();
+    public get isPlaying() {
+        return this.playing;
+    }
+
+    public set setRepeat(value: boolean) {
+        this.repeat = value;
     }
 
     public play() {
-        this.playerComponent.play();
+        this.playing = true;
+        this.currentTrack.play();
     }
 
     public pause() {
-        this.playerComponent.pause();
+        this.playing = false;
+        this.currentTrack.pause();
     }
 
     public playNext() {
