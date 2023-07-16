@@ -42,7 +42,7 @@ export class PlayerService {
                 this.pause();
             });
             navigator.mediaSession.setActionHandler('previoustrack', () => {
-                this.playPrev
+                this.playPrev()
             });
             navigator.mediaSession.setActionHandler('nexttrack', () => {
                 this.playNext();
@@ -142,7 +142,7 @@ export class PlayerService {
                 { sizes: "512x512", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
                 { sizes: "1024x1024", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
             ];
-
+            navigator.mediaSession
             navigator.mediaSession.metadata = mediaMetadata;   
         }
 
