@@ -49,18 +49,21 @@ export class PlayerService {
             });
 
             navigator.mediaSession.setActionHandler("seekbackward", (evt) => {
-              const skipTime = evt.seekOffset || this.skipTime;
-              this.seek(Math.max(this.getPos - skipTime, 0));
+                const skipTime = evt.seekOffset || this.skipTime;
+                this.seek(Math.max(this.getPos - skipTime, 0));
+                this.update();
             });
             
             navigator.mediaSession.setActionHandler("seekforward", (evt) => {
-              const skipTime = evt.seekOffset || this.skipTime;
-              this.seek(Math.min(this.getPos + skipTime, this.getDuration));
+                const skipTime = evt.seekOffset || this.skipTime;
+                this.seek(Math.min(this.getPos + skipTime, this.getDuration));
+                this.update();
             });
             
             navigator.mediaSession.setActionHandler('seekto', (evt) => {
                 const seekTime = evt.seekTime as number;
                 this.seek(seekTime);
+                this.update();
             });
 
             navigator.mediaSession.setActionHandler('stop', () => {
@@ -70,11 +73,14 @@ export class PlayerService {
         } catch (error) {
             console.log(error);
         }    
-        
+
             // navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ });
     }
 
     public update() {
+        if(!navigator.mediaSession)
+            return;
+
         navigator.mediaSession.setPositionState({
             duration: this.getDuration,
             playbackRate: this.currentTrack.rate(),
@@ -132,22 +138,26 @@ export class PlayerService {
         this.currentTrack.seek(value,);
     }
 
+    private updateMetadata(track: Track) {
+        if(!navigator.mediaSession)
+            return;
+
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: track.getTitle(),
+            artist: track.getAuthor().join(", "),
+            album: track.getAlbum(),
+            artwork: [
+                // { sizes: "256x256", src: track.getImageUrl(), type: "image/jpeg"},
+                // { sizes: "512x512", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
+                // { sizes: "1024x1024", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
+                { src: track.getImageUrl() },
+                { src: track.getMetadataImageUrl() }
+            ]}
+        );
+    }
+
 
     public playTrack(track: Track) {
-        if(navigator.mediaSession) {
-            let mediaMetadata = new MediaMetadata();
-            mediaMetadata.title = track.getTitle();
-            mediaMetadata.artist = track.getAuthor().join(", ");
-            mediaMetadata.album = track.getAlbum();
-            mediaMetadata.artwork = [
-                { sizes: "256x256", src: track.getImageUrl(), type: "image/jpeg"},
-                { sizes: "512x512", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
-                { sizes: "1024x1024", src: track.getMetadataImageUrl(), type: 'image/jpeg'},
-            ];
-            navigator.mediaSession
-            navigator.mediaSession.metadata = mediaMetadata;   
-        }
-
         this.currentIndex = track.getIndex() - 1;
 
         if(this.currentPlaylist)
@@ -158,7 +168,7 @@ export class PlayerService {
             APIController.saveToHistoryTrack(track.getId());
 
         this.playerComponent.setMetadata(track.getTitle(), track.getAuthor().join(", "), track.getMetadataImageUrl());
-
+        this.updateMetadata(track);
 
         if(this.currentTrack) {
             this.currentTrack.stop();
@@ -193,15 +203,19 @@ export class PlayerService {
     }
 
     public play() {
-        this.playing = true;
-        navigator.mediaSession.playbackState = 'playing';
         this.currentTrack.play();
+        this.playing = true;
+
+        if(navigator.mediaSession)
+            navigator.mediaSession.playbackState = 'playing';
     }
 
     public pause() {
-        this.playing = false;
-        navigator.mediaSession.playbackState = 'paused';
         this.currentTrack.pause();
+        this.playing = false;
+
+        if(navigator.mediaSession)
+            navigator.mediaSession.playbackState = 'paused';
     }
 
     public playNext() {
