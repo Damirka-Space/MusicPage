@@ -63,12 +63,14 @@ export class PlayerService {
                 this.seek(seekTime);
             });
 
+            navigator.mediaSession.setActionHandler('stop', () => {
+                this.pause();
+            });
+
         } catch (error) {
             console.log(error);
         }    
-
-            // navigator.mediaSession.setActionHandler('stop', );
-            
+        
             // navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ });
     }
 
