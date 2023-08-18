@@ -2,11 +2,6 @@ import { Component } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ContentBlockComponent } from "src/app/content-block/content.block.component";
-import { PlayerService } from "src/app/services/player.service";
-import { APIController } from "src/app/server-api/controller";
-import { LinearGradientBackgroundColorHEX } from "../background.color";
-import { ColorHEX } from "../color";
-import { ColorSelector } from "../color.selector";
 import { PageComponent } from "../page.component";
 import { AuthService } from "src/app/services/auth.service";
 import { CookieService } from "ngx-cookie-service";
@@ -34,11 +29,14 @@ export class UserPageComponent extends PageComponent {
         this.route.queryParams.subscribe(params => {
             let code = params['code'];
             this.authService.getTokens(code);
-            this.status = "Success";
+            
+            this.authService.istokenReady.add(() => {
+                this.status = "Success";
 
-            var l = this.cookieService.get("lastPage");
-            this.cookieService.delete("lastPage");
-            this.router.navigateByUrl(l);
+                var l = this.cookieService.get("lastPage");
+                this.cookieService.delete("lastPage");
+                this.router.navigateByUrl(l);
+            })
         });
     }
 

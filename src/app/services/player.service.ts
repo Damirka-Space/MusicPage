@@ -93,14 +93,20 @@ export class PlayerService {
     }
 
     public setPlaylist(tracks: Track[], playlistId : number) {
-        this.currentPlaylist = tracks;
-        this.playlistId = playlistId;
+        if(playlistId != this.playlistId)
+        {
+            this.currentPlaylist = tracks;
+            this.playlistId = playlistId;
+
+            if(this.authService.isAuthorized)
+                APIController.saveAlbumToHistoryTrack(playlistId);
+        }
     }
 
     public loadPlaylistAndPlay(playlistId: number) {
         APIController.getTracks(playlistId).subscribe(data => {
-            this.currentPlaylist = data;
-            this.playlistId = playlistId;
+            this.setPlaylist(data, playlistId);
+
             this.playTrack(this.currentPlaylist[0]);
         });
     }

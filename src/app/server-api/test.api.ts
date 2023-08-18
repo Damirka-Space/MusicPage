@@ -19,6 +19,10 @@ export class TestAPI implements API {
         throw new Error("Method not implemented.");
     }
 
+    saveAlbumToHistoryTrack(albumID: number): void {
+        throw new Error("Method not implemented.");
+    }
+
     likeAlbum(albumID: number): void {
         throw new Error("Method not implemented.");
     }

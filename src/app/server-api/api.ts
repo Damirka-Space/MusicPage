@@ -13,6 +13,8 @@ export interface API {
 
     saveToHistoryTrack(trackID: number): void;
 
+    saveAlbumToHistoryTrack(albumID: number): void;
+
     getPlaylist(playlistID: number): Observable<any>;
     getTracks(playlistID: number): Observable<any>;
 

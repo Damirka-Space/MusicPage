@@ -14,6 +14,7 @@ export class AuthService {
 
     private tokenReady : Subscription;
 
+    private hasAuthorized : boolean = false;
     private authorized : boolean = false;
     private headers = {};
 
@@ -24,6 +25,7 @@ export class AuthService {
         this.refreshToken = window.localStorage.getItem("REFRESH_TOKEN_KEY");
 
         if(this.refreshToken != null) {
+            this.hasAuthorized = true;
             this.getTokenInfo(this.refreshToken).subscribe(res => {
                 var isActive = res['active'] as boolean;
 
@@ -75,6 +77,10 @@ export class AuthService {
 
     public get istokenReady() {
         return this.tokenReady;
+    }
+
+    public get isHasBeenAuthorized() {
+        return this.hasAuthorized;
     }
 
     getTokens(code: string) {

@@ -4,6 +4,7 @@ import { ContentBlockComponent } from "src/app/content-block/content.block.compo
 import { APIController } from "src/app/server-api/controller";
 import { PageComponent } from "../page.component"
 import { Block } from "./block/block";
+import { AuthService } from "src/app/services/auth.service";
 
 
 @Component({
@@ -15,13 +16,26 @@ export class MainPageComponent extends PageComponent {
 
     @Output() protected blocks: Block[] = [];
 
-    constructor(private titleService:Title, private metaService: Meta) {
+    constructor(private titleService:Title, private metaService: Meta, private authService: AuthService) {
         super();
+    }
 
-        APIController.mainPage().subscribe(data => {
-            this.blocks = data;
-        });
-        
+    ngAfterViewInit() {
+        if(this.authService.isAuthorized)
+            APIController.mainPage().subscribe(data => {
+                this.blocks = data;
+            });
+        else if(this.authService.isHasBeenAuthorized)
+            this.authService.istokenReady.add(() => {
+                APIController.mainPage().subscribe(data => {
+                    this.blocks = data;
+                });
+            });
+        else
+            APIController.mainPage().subscribe(data => {
+                this.blocks = data;
+            });
+
         ContentBlockComponent.resetScroll();
     }
 

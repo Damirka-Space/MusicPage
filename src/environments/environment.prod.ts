@@ -20,6 +20,7 @@ export const environment = {
   api_like_track: "/like/track/",
   api_like_album: "/like/album/",
   api_history_save_track: "/history/save/track/",
+  api_history_save_album: "/history/save/album/",
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
   api_track_get: "https://damirka.space/fs/tracks/",

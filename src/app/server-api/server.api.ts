@@ -157,6 +157,16 @@ export class ServerAPI implements API {
     });
     }
 
+    saveAlbumToHistoryTrack(albumID: number): void {
+        this.http.get(this.url + environment.api_history_save_album + albumID, { 
+                headers : this.authService.getHeaders,
+                reportProgress: false
+    }).subscribe({
+        next: (value: Object) => {},
+        error: (err : any) => {}
+    });
+    }
+
     likeAlbum(albumID: number): void {
         this.http.get(this.url + environment.api_like_album + albumID, { 
                 headers : this.authService.getHeaders
