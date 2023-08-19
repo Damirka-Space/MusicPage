@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+
+    color: whitesmoke;
+
+    height: 6vh;
+
+    border-radius: 0.25vw;
+
+    &:hover {
+        background: rgba(229, 43, 80, 0.5);
+        cursor: pointer;
+    }
+
+    .img-cell {
+        width: 1%;
+    }
+
+    .cell {
+        width: 20%;
+
+        .folder {
+            margin-left: 5%;
+        }
+    }
+}

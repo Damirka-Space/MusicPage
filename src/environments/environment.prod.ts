@@ -14,6 +14,9 @@ export const environment = {
 
   api_root: "https://damirka.space/api",
   api_main: "/main",
+  api_channel: "/channel",
+  api_channel_list: "/channel/list",
+  api_channel_create: "/channel/create",
   api_collection_albums: "/collection/albums/",
   api_collection_playlists: "/collection/playlists/",
   api_collection_authors: "/collection/authors/",

@@ -5,6 +5,7 @@ import { Card } from "../content-pages/main/block/card/card";
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
 import { API } from "./api";
+import { Channel } from "../entities/channel";
 
 
 export class TestAPI implements API {
@@ -67,6 +68,10 @@ export class TestAPI implements API {
         blocks.push(block3);
 
         return of(blocks);
+    }
+
+    channelPage(): Observable<Channel[]> {
+        throw new Error("Method not implemented.");
     }
 
     getPlaylist(playlistID: number): Observable<Playlist> {

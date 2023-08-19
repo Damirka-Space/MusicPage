@@ -36,6 +36,11 @@ export class NavBarComponent implements AfterViewInit {
         this.home_button_mobile.nativeElement.src='assets/playlist/Home_blur.png';
     }
 
+    protected selectChannels() {
+        this.router.navigate(['channels']);
+        this.resetButtons();
+    }
+
     protected selectFind() {
         this.router.navigate(['find']);
         this.resetButtons();

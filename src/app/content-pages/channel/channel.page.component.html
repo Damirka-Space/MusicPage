@@ -1,0 +1,32 @@
+<div class="container">
+
+    <p>Доступные каналы</p>
+
+    <div class="header">
+        <div class="img-cell">
+        </div>
+
+        <div class="cell">
+            <p>Название</p>
+        </div>
+    
+        <div class="cell">
+            <p>Описание</p>
+        </div>
+    
+        <div class="cell">
+            <p>Количество пользователей</p>
+        </div>
+    
+        <div class="cell">
+            <p>Создатель</p>
+        </div>
+        
+    </div>
+    
+    <mat-divider></mat-divider>
+
+    <div class="row" *ngFor="let channel of Channels">
+        <channel-row-component [channel]="channel"></channel-row-component>
+    </div>
+</div>

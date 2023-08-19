@@ -5,6 +5,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -27,12 +29,15 @@ import { UserComponent } from './content-block/user/user.component';
 import { AlbumsCollectionsComponent } from './content-pages/collections/albums/albums.collections.page.component';
 import { PlaylistsCollectionsComponent } from './content-pages/collections/playlists/playlists.collections.page.component';
 import { UserPageComponent } from './content-pages/user/user.page.component';
+import { ChannelPageComponent } from './content-pages/channel/channel.page.component';
+import { ChannelRowComponent } from './content-pages/channel/channel-row/channel.row.component';
 // import { AlbumPageComponent } from './content-pages/album/album.page.component';
 // import { AlbumTableComponent } from './content-pages/album/table/album';
 
 
 const routes: Routes = [
   {path: 'main', component: MainPageComponent},
+  {path: 'channels', component: ChannelPageComponent},
   {path: 'find', component: FindPageComponent},
   {path: 'collection', component: CollectionsPageComponent,
     children: [
@@ -73,6 +78,8 @@ const routes: Routes = [
     UserComponent,
     PlaylistsCollectionsComponent,
     AlbumsCollectionsComponent,
+    ChannelPageComponent,
+    ChannelRowComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -81,6 +88,8 @@ const routes: Routes = [
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSliderModule,
+    MatListModule,
+    MatIconModule,
     HttpClientModule,
     RouterModule.forRoot(routes, {
     initialNavigation: 'enabledBlocking'

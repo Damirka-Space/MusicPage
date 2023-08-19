@@ -17,6 +17,10 @@ export abstract class APIController {
         return this.api.mainPage();
     }
 
+    public static channelPage(): Observable<any[]> {
+        return this.api.channelPage();
+    }
+
     public static collectionAlbumsPage(): Observable<any[]> {
         return this.api.collectionAlbumsPage();
     }

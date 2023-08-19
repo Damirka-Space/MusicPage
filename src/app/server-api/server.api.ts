@@ -11,6 +11,7 @@ import { environment } from "src/environments/environment";
 import { User } from "../entities/user";
 import { AuthService } from "../services/auth.service";
 import { Injectable } from "@angular/core";
+import { Channel } from "../entities/channel";
 
 interface ITrack {
     id: number;
@@ -41,7 +42,6 @@ interface IBlock {
     id: number;
     title: string;
     albums: IAlbum[];
-
 }
 
 interface blockData {
@@ -134,6 +134,14 @@ abstract class UserFactory {
     }
 }
 
+abstract class ChannelFactory {
+    public static fromResponse(response: any): Channel[] {
+        let res = response as Channel[];
+
+        return res;
+    }
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -217,6 +225,16 @@ export class ServerAPI implements API {
             return BlockFactory.fromResponse(val);
         }));
     }
+
+    channelPage(): Observable<any> {
+        return this.http.get(this.url + environment.api_channel_list, { 
+            withCredentials : this.authService.isAuthorized, 
+            headers : this.authService.getHeaders
+        }).pipe(map((val) => {
+            return ChannelFactory.fromResponse(val);
+        }));
+    }
+
     getPlaylist(playlistID: number): Observable<any> {
         return this.http.get(this.url + environment.api_album_get + playlistID, { 
                 withCredentials : this.authService.isAuthorized, 

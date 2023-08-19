@@ -4,6 +4,8 @@ export interface API {
 
     mainPage(): Observable<any>;
 
+    channelPage(): Observable<any>;
+
     collectionAlbumsPage(): Observable<any>;
     collectionPlaylistsPage(): Observable<any>;
     collectionAuthorsPage(): Observable<any>;
