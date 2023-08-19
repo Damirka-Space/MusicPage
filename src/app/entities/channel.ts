@@ -4,5 +4,5 @@ export class Channel {
     title!: string;
     description!: string;
     ownerUsername!: string;
-    userCount!: number;   
+    userCount!: number;
 }

@@ -31,6 +31,7 @@ import { PlaylistsCollectionsComponent } from './content-pages/collections/playl
 import { UserPageComponent } from './content-pages/user/user.page.component';
 import { ChannelPageComponent } from './content-pages/channel/channel.page.component';
 import { ChannelRowComponent } from './content-pages/channel/channel-row/channel.row.component';
+import { RoomPageComponent } from './content-pages/channel/room/room.page.component';
 // import { AlbumPageComponent } from './content-pages/album/album.page.component';
 // import { AlbumTableComponent } from './content-pages/album/table/album';
 
@@ -38,6 +39,7 @@ import { ChannelRowComponent } from './content-pages/channel/channel-row/channel
 const routes: Routes = [
   {path: 'main', component: MainPageComponent},
   {path: 'channels', component: ChannelPageComponent},
+  {path: 'channel/:id', component: RoomPageComponent},
   {path: 'find', component: FindPageComponent},
   {path: 'collection', component: CollectionsPageComponent,
     children: [
@@ -52,7 +54,6 @@ const routes: Routes = [
   },
   {path: 'stream', component: StreamPageComponent},
   {path: 'album/:id', component: PlaylistPageComponent},
-  // {path: 'album/:id', component: AlbumPageComponent},
   {path: '', redirectTo: '/main', pathMatch: 'full'},
   {path: '**', component: NotFoundPageComponent},
 ];
@@ -80,6 +81,7 @@ const routes: Routes = [
     AlbumsCollectionsComponent,
     ChannelPageComponent,
     ChannelRowComponent,
+    RoomPageComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

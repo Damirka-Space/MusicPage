@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { Router } from "@angular/router";
 import { Channel } from "src/app/entities/channel";
 
 
@@ -10,6 +11,10 @@ import { Channel } from "src/app/entities/channel";
 export class ChannelRowComponent{
 
     @Input() channel!: Channel;
+
+    constructor(private router: Router) {
+
+    }
 
     public get Title() {
         return this.channel.title
@@ -23,6 +28,10 @@ export class ChannelRowComponent{
     }
     public get Owner() {
         return this.channel.ownerUsername
+    }
+
+    public openChannel(event: Event) {
+        this.router.navigate(['channel', this.channel.id]);
     }
     
 }
