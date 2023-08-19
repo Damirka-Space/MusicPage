@@ -9,6 +9,7 @@ import { ContentBlockComponent } from "src/app/content-block/content.block.compo
 import { APIController } from "src/app/server-api/controller";
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
+import { Payload } from "src/app/entities/payload";
 
 @Component({
     selector: 'room-page-component',
@@ -33,39 +34,30 @@ export class RoomPageComponent extends PageComponent {
         ContentBlockComponent.canScroll = false;
     }
 
-    private loadMessages(channelId: number) {
+    private handleEvent(data: any) {
+        var payload = JSON.parse(data.body) as Payload;
+
+        if(payload.action == "MESSAGE") {
+            var msg = new Message();
+            msg.created = payload.created;
+            msg.message = payload.content;
+            msg.sender = payload.from;
+
+            this.messages.splice(0, 0, msg);
+        }
+        
+    }
+
+    private loadMessages() {
         APIController.getChat(this.channelId).subscribe((messages) => {
-            this.messages = messages;
+            
+            this.messages = messages.reverse();
             this.isDownloading = false;
-            console.log(this.messages);
 
-
-            {
-                var msg = new Message();
-                msg.created = Date.now();
-                msg.message = "Hello, World";
-                msg.sender = "Test2";
-    
-                this.messages.splice(0, 0, msg);
-            }
-    
-            {
-                var msg = new Message();
-                msg.created = Date.now();
-                msg.message = "T21";
-                msg.sender = "Test2";
-    
-                this.messages.splice(0, 0, msg);
-            }
-    
-            {
-                var msg = new Message();
-                msg.created = Date.now();
-                msg.message = "Абракадабра";
-                msg.sender = "Test2";
-    
-                this.messages.splice(0, 0, msg);
-            }
+            this.channelService.connectToChannel(this.channelId)
+            .subscribe((data) => {
+                this.handleEvent(data);
+            })
         })
     }
 
@@ -74,17 +66,14 @@ export class RoomPageComponent extends PageComponent {
             this.channelId = params['id'];
 
             if(this.authService.isAuthorized) {
-                this.loadMessages(this.channelId);
+                this.loadMessages();
             }
             else {
                 this.authService.istokenReady.add(() => {
-                    this.loadMessages(this.channelId);
+                    this.loadMessages();
                 })
             }
         });
-
-        
-
         
     }
 
@@ -96,7 +85,7 @@ export class RoomPageComponent extends PageComponent {
 
         this.message = "";
 
-        this.messages.splice(0, 0, msg);
+        this.channelService.sendMessage(this.channelId, msg.message);
     }
 
     public convertDate(created: number) {

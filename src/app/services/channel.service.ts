@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { RxStompService } from "./rx-stomp.service";
+import { channelRxStompConfig } from "../config/stomp.config";
+import { AuthService } from "./auth.service";
 
 
 @Injectable({
@@ -9,33 +11,77 @@ export class ChannelService {
 
     private connected = false;
 
-    constructor(private stompService: RxStompService) {
+    constructor(private stompService: RxStompService, private authService: AuthService) {
         
     }
 
+    public connect(channelId: number) {
+        const message = {
+            channelId: channelId,
+            created: new Date(),
+            content: "Hello, world!",
+            action: "CONNECT",
+        };
+
+        this.stompService.publish(
+            { destination: '/channel/events',
+              headers: this.authService.getHeaders,
+              body: JSON.stringify(message) }
+        )
+    }
+
+    private disconnect(channelId: number) {
+        const message = {
+            channelId: channelId,
+            created: new Date(),
+            content: "Hello, world!",
+            action: "DISCONNECT",
+        };
+
+        this.stompService.publish(
+            { destination: '/channel/events',
+              headers: this.authService.getHeaders,
+              body: JSON.stringify(message) }
+        )
+
+        this.stompService.deactivate();
+        this.connected = false;
+    }
+
+    public sendMessage(channelId: number, message: string) {
+        const msg = {
+            channelId: channelId,
+            created: new Date(),
+            content: message,
+            action: "MESSAGE",
+        };
+
+        this.stompService.publish(
+            { destination: '/channel/events',
+              headers: this.authService.getHeaders,
+              body: JSON.stringify(msg) }
+        )
+    }
+
+    public handleEvent(data: any) {
+        console.log(data.body);
+    }
+
     public connectToChannel(channelId: number) {
-        // channelRxStompConfig.connectHeaders = this.authService.getHeaders
+        if(this.connected) {
+            this.disconnect(channelId);
+        }
 
-            // this.stompService.configure(channelRxStompConfig);
-            // this.stompService.activate();
+        channelRxStompConfig.connectHeaders = this.authService.getHeaders
 
-            // const message = {
-            //     channelId: 1,
-            //     created: new Date(),
-            //     content: "Hello, world!",
-            //     action: "MESSAGE",
-            //   };
+        this.stompService.configure(channelRxStompConfig);
+        this.stompService.activate();
 
-            // this.stompService.publish(
-            //     { destination: '/channel/events',
-            //       headers: this.authService.getHeaders,
-            //       body: JSON.stringify(message) }
-            // )
+        this.connect(channelId);
 
-            // this.stompService.watch("/channel/1/queue/events")
-            // .subscribe((data) => {
-            //     console.log(data.body);
-            // })
+        this.connected = true;
+
+        return this.stompService.watch("/channel/" + channelId.toString() + "/queue/events");
     }
 
 }
