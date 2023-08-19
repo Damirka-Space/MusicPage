@@ -17,6 +17,8 @@ export class ContentBlockComponent implements AfterViewInit{
     private static backgroundColor: Color = ColorHEX.getNullColor();
     private static staticBackgroundColor: Color = ColorHEX.getGreyColor();
 
+    private static scrollDisabled = false;
+
     @ViewChild('div') 
     _div!: ElementRef;
     private static div: HTMLElement;
@@ -60,13 +62,19 @@ export class ContentBlockComponent implements AfterViewInit{
     }
 
     private onScroll(event: Event) {
-        var v = ContentBlockComponent.div.scrollTop / (ContentBlockComponent.header.clientHeight);
-        if(v > 1)
-            v = 1;
-        else if(v <= 0.05)
-            v = 0;
+        if(!ContentBlockComponent.scrollDisabled) {
+                var v = ContentBlockComponent.div.scrollTop / (ContentBlockComponent.header.clientHeight);
+            if(v > 1)
+                v = 1;
+            else if(v <= 0.05)
+                v = 0;
         
-        ContentBlockComponent.headerColor.setAlpha(v * 255);
+            ContentBlockComponent.headerColor.setAlpha(v * 255);
+        }
+    }
+
+    public static set canScroll(value: boolean) {
+        this.scrollDisabled = !value;
     }
 
     public static getScrollByPercentage() {
@@ -76,6 +84,7 @@ export class ContentBlockComponent implements AfterViewInit{
     public static resetScroll() {
         if(this.div)
             this.div.scrollTop = 0;
+        this.canScroll = true;
     }
 
     public static getDivScrollTop() {

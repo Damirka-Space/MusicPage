@@ -1,3 +1,30 @@
 <div class="container">
 
+    <div class="message-box" *ngIf="!isDownloading as n; else loading">
+        <div class="message" *ngFor="let message of messages" [class.right]="isMyMessage(message)">
+            <div class="message-header">
+                <mat-icon class="folder" matListItemIcon>account_circle</mat-icon>
+                <p>{{ message.sender }}</p>
+                <p class="right">{{ convertDate(message.created) }}</p>
+            </div>
+            <div class="message-body">
+                <p>{{ message.message }}</p>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #loading>
+        <div class="spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+
+    <div class="input">
+        <mat-divider></mat-divider>
+        <mat-form-field class="input-full">
+            <mat-label>Сообщение</mat-label>
+            <input matInput (keydown.enter)="onKeyDownEvent($event)" [(ngModel)]="message">
+          </mat-form-field>
+    </div>
+
 </div>

@@ -21,6 +21,10 @@ export abstract class APIController {
         return this.api.channelPage();
     }
 
+    public static getChat(channelId: number): Observable<any> {
+        return this.api.getChat(channelId);
+    }
+
     public static collectionAlbumsPage(): Observable<any[]> {
         return this.api.collectionAlbumsPage();
     }

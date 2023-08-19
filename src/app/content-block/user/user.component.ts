@@ -4,6 +4,7 @@ import { APIController } from "src/app/server-api/controller";
 import { User } from "../../entities/user";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
     selector: 'user',
@@ -16,7 +17,9 @@ export class UserComponent implements AfterViewInit {
 
     protected user?: User;
 
-    constructor(private cookieService: CookieService, private router: Router, private authService : AuthService) {
+    constructor(private cookieService: CookieService, 
+        private router: Router, private authService : AuthService,
+        private userService: UserService) {
         
     }
 
@@ -24,6 +27,8 @@ export class UserComponent implements AfterViewInit {
         APIController.getUser().subscribe(data => {
             this.user = data;
             this.username = this.user.username;
+
+            this.userService.setUser = this.user;
         });
     }
 

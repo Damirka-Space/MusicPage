@@ -12,6 +12,7 @@ import { User } from "../entities/user";
 import { AuthService } from "../services/auth.service";
 import { Injectable } from "@angular/core";
 import { Channel } from "../entities/channel";
+import { Message } from "../entities/message";
 
 interface ITrack {
     id: number;
@@ -137,7 +138,13 @@ abstract class UserFactory {
 abstract class ChannelFactory {
     public static fromResponse(response: any): Channel[] {
         let res = response as Channel[];
+        return res;
+    }
+}
 
+abstract class MessageFactory {
+    public static fromResponse(response: any): Message[] {
+        let res = response as Message[];
         return res;
     }
 }
@@ -232,6 +239,15 @@ export class ServerAPI implements API {
             headers : this.authService.getHeaders
         }).pipe(map((val) => {
             return ChannelFactory.fromResponse(val);
+        }));
+    }
+
+    getChat(channelId: number): Observable<any> {
+        return this.http.get(this.url + environment.api_channel + "/" + channelId + "/chat", { 
+            withCredentials : this.authService.isAuthorized, 
+            headers : this.authService.getHeaders  
+        }).pipe(map((val) => {
+            return MessageFactory.fromResponse(val);
         }));
     }
 

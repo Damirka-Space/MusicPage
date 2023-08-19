@@ -74,6 +74,10 @@ export class TestAPI implements API {
         throw new Error("Method not implemented.");
     }
 
+    getChat(channelID: number): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
+
     getPlaylist(playlistID: number): Observable<Playlist> {
         console.log(playlistID);
         switch(playlistID) {

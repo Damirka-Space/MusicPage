@@ -13,6 +13,8 @@ export interface API {
     likeTrack(trackID: number): void;
     likeAlbum(albumID: number): void;
 
+    getChat(channelID: number): Observable<any>;
+
     saveToHistoryTrack(trackID: number): void;
 
     saveAlbumToHistoryTrack(albumID: number): void;

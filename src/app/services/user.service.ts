@@ -14,6 +14,9 @@ export class UserService {
     constructor() {
     }
 
+    public set setUser(user: User) {
+        this.user = user;
+    }
 
     public get getUser() {
         return this.user;

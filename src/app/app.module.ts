@@ -7,7 +7,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ContentBlockComponent } from './content-block/content.block.component';
@@ -92,7 +94,9 @@ const routes: Routes = [
     MatSliderModule,
     MatListModule,
     MatIconModule,
+    MatInputModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes, {
     initialNavigation: 'enabledBlocking'
 }),
