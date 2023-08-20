@@ -35,37 +35,44 @@
     }
 
     .mobile {
-        display: block;
+        display: flex;
         position: fixed;
         top: 95vh;
         width: 100%;
         height: 5vh;
         background-color: #3f3f3f;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
 
         .buttons {
-            width: max-content;
+            display: flex;
+            width: 100vw;
             height: max-content;
             margin: 0 auto;
             margin-top: 1px;
             color: white;
             font-size: 7vw;
             text-align: center;
-            p {
-                display: inline;
-                padding: 0;
-                margin: 0;
-                
-                margin-left: 42px;
-                margin-right: 42px;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-content: center;
+            align-items: center;
 
-                img {
-                    margin-top: 1vh;
-                    width: 24px;
-                    height: 24px;
-                }
-            }
+            
         }
     }
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 200,
+        'GRAD' 200,
+        'opsz' 48
 }
 
 

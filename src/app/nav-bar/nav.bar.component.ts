@@ -18,8 +18,8 @@ export class NavBarComponent implements AfterViewInit {
 
 
     private resetButtons(): void {
-        this.home_button_mobile.nativeElement.src = 'assets/playlist/Home.png'
-        this.collections_button_mobile.nativeElement.src = 'assets/playlist/Collection_button.png';
+        //this.home_button_mobile.nativeElement.src = 'assets/playlist/Home.png'
+        //this.collections_button_mobile.nativeElement.src = 'assets/playlist/Collection_button.png';
     }
 
     constructor(private router: Router) {
@@ -33,7 +33,7 @@ export class NavBarComponent implements AfterViewInit {
     protected selectMain() {
         this.router.navigate(['main']);
         this.resetButtons();
-        this.home_button_mobile.nativeElement.src='assets/playlist/Home_blur.png';
+        //this.home_button_mobile.nativeElement.src='assets/playlist/Home_blur.png';
     }
 
     protected selectChannels() {
@@ -49,7 +49,7 @@ export class NavBarComponent implements AfterViewInit {
     protected selectCollections() {
         this.router.navigate(['collection/playlists']);
         this.resetButtons();
-        this.collections_button_mobile.nativeElement.src='assets/playlist/Heart_fld.png';
+        //this.collections_button_mobile.nativeElement.src='assets/playlist/Heart_fld.png';
     }
 
     protected selectStream() {

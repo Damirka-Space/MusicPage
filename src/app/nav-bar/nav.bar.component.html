@@ -16,10 +16,10 @@
 
 <div class="mobile">
     <div class="buttons">
-        <p (click)="selectMain()"><img #home_button_mobile></p>
-        <p (click)="selectFind()">⌂</p>
-        <p (click)="selectStream()">⌂</p>
-        <p (click)="selectCollections()"><img #collections_button_mobile></p>
+        <div (click)="selectMain()"><mat-icon matListItemIcon class="material-symbols-outlined">home_app_logo</mat-icon></div>
+        <div (click)="selectFind()"><mat-icon matListItemIcon class="material-symbols-outlined">search</mat-icon></div>
+        <div (click)="selectChannels()"><mat-icon matListItemIcon class="material-symbols-outlined">library_music</mat-icon></div>
+        <div (click)="selectCollections()"><mat-icon matListItemIcon class="material-symbols-outlined">favorite</mat-icon></div>
 
     </div>
 </div>
