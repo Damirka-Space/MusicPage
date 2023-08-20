@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
 
+  brokerURL: 'ws://localhost:8090/api/channel/ws',
+
   auth_client_name: "music-server",
   auth_client_id: "server",
   auth_client_secret:"secret",

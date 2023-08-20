@@ -1,6 +1,8 @@
 export const environment = {
   production: true,
 
+  brokerURL: 'wss://damirka.space/api/channel/ws',
+
   auth_client_name: "music-server",
   auth_client_id: "server",
   auth_client_secret:"secret",

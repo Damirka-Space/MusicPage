@@ -3,6 +3,7 @@ import { RxStompService } from "./rx-stomp.service";
 import { channelRxStompConfig } from "../config/stomp.config";
 import { AuthService } from "./auth.service";
 import { Channel } from "../entities/channel";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -78,7 +79,9 @@ export class ChannelService {
             this.disconnect(channelId);
         }
 
-        channelRxStompConfig.connectHeaders = this.authService.getHeaders
+        channelRxStompConfig.connectHeaders = this.authService.getHeaders;
+
+        channelRxStompConfig.brokerURL = environment.brokerURL;
 
         this.stompService.configure(channelRxStompConfig);
         this.stompService.activate();
