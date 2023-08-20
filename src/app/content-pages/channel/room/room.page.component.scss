@@ -139,3 +139,15 @@
 
     text-align: center;
 }
+
+@media only screen and (max-device-width: 780px) {
+    
+    .no-entry {
+        margin: 0 auto;
+        color: whitesmoke;
+    
+        font-size: 3.5vw;
+    
+        text-align: center;
+    }
+}
