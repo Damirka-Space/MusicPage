@@ -8,6 +8,20 @@
     justify-content: center;
     align-items: center;
 
+    .channel-header {
+        display: flex;
+        margin: 0 auto;
+        text-align: center;
+        color: whitesmoke;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+
+        gap: 1vw;
+    }
+
     .message-box {
         width: 100%;
         height: 75%;
@@ -57,13 +71,32 @@
 
     .input {
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: center;
 
         .input-full {
             margin-top: 0.5vh;
-            width: 100%;
+            width: 95%;
             height: 100%;
 
             color: whitesmoke;
+
+            textarea {
+                resize: none;
+            }
+        }
+
+        .img-cell {
+            color: whitesmoke;
+            margin: 0 auto;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }
@@ -96,4 +129,13 @@
     height: 75%;
     padding-left: 50%;
     margin: 0 auto;
+}
+
+.no-entry {
+    margin: 0 auto;
+    color: whitesmoke;
+
+    font-size: 1.5vw;
+
+    text-align: center;
 }

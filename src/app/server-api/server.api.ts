@@ -140,6 +140,11 @@ abstract class ChannelFactory {
         let res = response as Channel[];
         return res;
     }
+
+    public static fromResponseOne(response: any): Channel {
+        let res = response as Channel;
+        return res;
+    }
 }
 
 abstract class MessageFactory {
@@ -248,6 +253,15 @@ export class ServerAPI implements API {
             headers : this.authService.getHeaders  
         }).pipe(map((val) => {
             return MessageFactory.fromResponse(val);
+        }));
+    }
+
+    getChannel(channelId: number): Observable<any> {
+        return this.http.get(this.url + environment.api_channel + "/get/" + channelId, { 
+            withCredentials : this.authService.isAuthorized, 
+            headers : this.authService.getHeaders  
+        }).pipe(map((val) => {
+            return ChannelFactory.fromResponseOne(val);
         }));
     }
 

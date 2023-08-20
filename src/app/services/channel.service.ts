@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { RxStompService } from "./rx-stomp.service";
 import { channelRxStompConfig } from "../config/stomp.config";
 import { AuthService } from "./auth.service";
+import { Channel } from "../entities/channel";
 
 
 @Injectable({
@@ -9,10 +10,19 @@ import { AuthService } from "./auth.service";
 })
 export class ChannelService {
 
+    private channel!: Channel;
     private connected = false;
 
     constructor(private stompService: RxStompService, private authService: AuthService) {
         
+    }
+
+    public set Channel(value: Channel) {
+        this.channel = value;
+    }
+
+    public get Channel() {
+        return this.channel;
     }
 
     public connect(channelId: number) {
@@ -61,10 +71,6 @@ export class ChannelService {
               headers: this.authService.getHeaders,
               body: JSON.stringify(msg) }
         )
-    }
-
-    public handleEvent(data: any) {
-        console.log(data.body);
     }
 
     public connectToChannel(channelId: number) {

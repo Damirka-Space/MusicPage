@@ -10,6 +10,8 @@ import { APIController } from "src/app/server-api/controller";
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { Payload } from "src/app/entities/payload";
+import { Meta, Title } from "@angular/platform-browser";
+import { Channel } from "src/app/entities/channel";
 
 @Component({
     selector: 'room-page-component',
@@ -20,18 +22,36 @@ export class RoomPageComponent extends PageComponent {
 
     @Output() protected messages: Message[] = []
 
+    private channel!: Channel;
+
     message: string = ""
 
     channelId = 0;
 
     isDownloading = true;
 
-    constructor(private channelService: ChannelService, private userService: UserService,
+    constructor(
+        private titleService: Title, private metaService: Meta,
+        private channelService: ChannelService, private userService: UserService,
         private route: ActivatedRoute, private authService: AuthService) {
         super();
         // ColorSelector.setBackgroundColor(new ColorHEX("#eaa2fc50"));
         ColorSelector.setHeadeColor(new ColorHEX("#d57eeb6d"));
         ContentBlockComponent.canScroll = false;
+    }
+
+    public get Title() {
+        return this.channel.title;
+    }
+
+    public get Description() {
+        return this.channel.description;
+    }
+    public get UserCount() {
+        return this.channel.userCount;
+    }
+    public get Owner() {
+        return this.channel.ownerUsername;
     }
 
     private handleEvent(data: any) {
@@ -49,16 +69,32 @@ export class RoomPageComponent extends PageComponent {
     }
 
     private loadMessages() {
-        APIController.getChat(this.channelId).subscribe((messages) => {
-            
-            this.messages = messages.reverse();
-            this.isDownloading = false;
+        APIController.getChannel(this.channelId).subscribe((channel) => {
+            this.channel = channel;
 
-            this.channelService.connectToChannel(this.channelId)
-            .subscribe((data) => {
-                this.handleEvent(data);
+            var title = "Канал №" + this.channelId.toString();
+            this.titleService.setTitle(title);
+            this.metaService.updateTag( { property:"og:title",content:title});
+            this.metaService.updateTag( { property:"og:type",content:"website"});
+            this.metaService.updateTag( { property:"og:url",content:window.location.href});
+            this.metaService.updateTag( { name:"description",content:"Место, где можно попросить воды"});
+            this.metaService.updateTag( { property:"og:description",content:"Место, где можно попросить воды"});
+            this.metaService.updateTag( { name: "theme-color", content:"#121212" });  
+
+            APIController.getChat(this.channelId).subscribe((messages) => {
+            
+                this.messages = messages.reverse();
+                this.isDownloading = false;
+                this.channelService.connectToChannel(this.channelId)
+                .subscribe((data) => {
+                    this.handleEvent(data);
+                })
             })
-        })
+        });
+    }
+
+    public get isAuthorized() {
+        return this.authService.isAuthorized
     }
 
     ngAfterViewInit() {
@@ -74,18 +110,25 @@ export class RoomPageComponent extends PageComponent {
                 })
             }
         });
-        
     }
 
-    onKeyDownEvent(event: any) {    
-        var msg = new Message();
-        msg.created = Date.now();
-        msg.message = this.message;
-        msg.sender = this.userService.getUser.username;
+    onKeyDown(event: KeyboardEvent) {
+        if(event.ctrlKey && event.key === "Enter") {
+            this.sendMessage(event);
+        }
+    }
 
-        this.message = "";
+    sendMessage(event: any) {    
+        if(this.message != "") {
+            var msg = new Message();
+            msg.created = Date.now();
+            msg.message = this.message;
+            msg.sender = this.userService.getUser.username;
 
-        this.channelService.sendMessage(this.channelId, msg.message);
+            this.message = "";
+
+            this.channelService.sendMessage(this.channelId, msg.message);
+        }
     }
 
     public convertDate(created: number) {

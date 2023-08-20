@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isAuthorized as n; else notAuthorized">
 
     <p>Доступные каналы</p>
 
@@ -30,3 +30,10 @@
         <channel-row-component [channel]="channel"></channel-row-component>
     </div>
 </div>
+
+<ng-template #notAuthorized>
+    <div class="no-entry">
+        <p> Вы не авторизированы </p>
+    </div>
+
+</ng-template>

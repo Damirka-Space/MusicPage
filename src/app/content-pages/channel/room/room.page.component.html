@@ -1,4 +1,14 @@
-<div class="container">
+<div class="container" *ngIf="isAuthorized as n; else notAuthorized">
+
+    <div class="channel-header" *ngIf="!isDownloading as n; else loading">
+        <div class="img-cell">
+            <mat-icon class="folder" matListItemIcon>library_music</mat-icon>
+        </div>
+        <p>Канал: {{ Title }}</p>
+    </div>
+
+    <mat-divider>
+    </mat-divider>
 
     <div class="message-box" *ngIf="!isDownloading as n; else loading">
         <div class="message" *ngFor="let message of messages" [class.right]="isMyMessage(message)">
@@ -23,8 +33,20 @@
         <mat-divider></mat-divider>
         <mat-form-field class="input-full">
             <mat-label>Сообщение</mat-label>
-            <input matInput (keydown.enter)="onKeyDownEvent($event)" [(ngModel)]="message">
-          </mat-form-field>
+            <textarea matInput [(ngModel)]="message" (keydown)="onKeyDown($event)">
+            </textarea>
+        </mat-form-field>
+
+        <div class="img-cell" (click)="sendMessage($event)">
+            <mat-icon matListItemIcon>send</mat-icon>
+        </div>
     </div>
 
 </div>
+
+<ng-template #notAuthorized>
+    <div class="no-entry">
+        <p> Вы не авторизированы </p>
+    </div>
+
+</ng-template>

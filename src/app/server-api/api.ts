@@ -14,6 +14,7 @@ export interface API {
     likeAlbum(albumID: number): void;
 
     getChat(channelID: number): Observable<any>;
+    getChannel(channelId: number): Observable<any>;
 
     saveToHistoryTrack(trackID: number): void;
 
