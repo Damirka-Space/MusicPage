@@ -1,5 +1,11 @@
-<div class="container">
+<div class="container" *ngIf="isDownloaded as n; else loading">
     <div class="row" *ngFor="let block of getBlocks()">
-        <block-component [block]="block"></block-component>
+        <album-block-component [block]="block"></album-block-component>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

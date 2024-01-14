@@ -16,11 +16,14 @@ export class PlaylistsCollectionsComponent extends PageComponent {
     
     @Output() protected blocks: Block[] = [];
 
+    private downloaded = false;
+
     constructor(private titleService:Title, private metaService: Meta) {
         super();
 
         APIController.collectionPlaylistsPage().subscribe(data => {
             this.blocks = data;
+            this.downloaded = true;
         });
         
         ContentBlockComponent.resetScroll();
@@ -39,5 +42,9 @@ export class PlaylistsCollectionsComponent extends PageComponent {
 
     public getBlocks() {
         return this.blocks;
+    }
+
+    public get isDownloaded() {
+        return this.downloaded;
     }
 }

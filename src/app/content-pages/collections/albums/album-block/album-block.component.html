@@ -1,0 +1,14 @@
+<div class="container">
+    <p>{{ getTitle() }}</p>
+
+    <ul class="hlist">
+        <div class="hscroll">
+            <li *ngFor="let card of getCards()">
+                <card-component [card]="card"></card-component>
+            </li>
+
+            <li class="card-padding">
+            </li>
+        </div>
+    </ul>
+</div>

@@ -1,0 +1,55 @@
+.container {
+    // display: inline-block;
+    font-size: 1.25vw;
+    color: whitesmoke;
+    margin-left: 3%;
+    margin-top: 1%;
+    width: 100%;
+
+    .hlist {
+        margin: 0;
+        padding: 0;
+        margin-right: 5%;
+    }
+
+    .hscroll {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 2vw;
+        width: 100%;
+        height: fit-content;
+        margin: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 1%;
+        margin-bottom: 1%;
+
+        li {
+            margin-right: 3vh;
+            list-style-type: none;
+        }
+
+        .card-padding {
+            min-width: 10vw;
+        }
+    }
+}
+
+@media only screen and (max-device-width: 480px) {
+    .container {
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        font-size: 5vw;
+
+        .hscroll {
+            margin-right: 0%;
+            justify-content: space-evenly;
+            li {
+                margin-right: 2vh;
+            } 
+        }
+    }
+}
+
+
