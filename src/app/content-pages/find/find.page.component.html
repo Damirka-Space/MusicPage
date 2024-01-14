@@ -3,8 +3,22 @@
         <div class="search-bar">
             <div class="search">
               <mat-icon class="search-icon">search</mat-icon>
-              <input class="search-field" placeholder="Трек, альбом, исполнитель" value="">
+              <input class="search-field" placeholder="Трек, альбом, исполнитель" [(ngModel)]="search">
             </div>
       </div>
     </div>
+
+    <div class="inner-container" *ngIf="isSearching() as n; else genres">
+        
+    </div>
+
+    <ng-template #genres>
+        <div class="inner-container">
+            <div class="genres-grid">
+                <div *ngFor="let genre of Genres">
+                    <genre-card-component [genre]="genre"></genre-card-component>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 </div>

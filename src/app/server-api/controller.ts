@@ -4,6 +4,7 @@ import { Block } from "../content-pages/main/block/block";
 import { Playlist } from "../content-pages/playlist/playlist";
 import { Track } from "../content-pages/playlist/table/track";
 import { API } from "./api";
+import { Genre } from "../entities/genre";
 
 
 export abstract class APIController {
@@ -63,6 +64,10 @@ export abstract class APIController {
 
     public static getTracks(playlistID: number): Observable<Track[]> {
         return this.api.getTracks(playlistID);
+    }
+
+    public static getGenres(): Observable<Genre[]> {
+        return this.api.getGenres();
     }
 
     public static getUser() : Observable<User> {

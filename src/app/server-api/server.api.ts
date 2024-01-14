@@ -13,6 +13,7 @@ import { AuthService } from "../services/auth.service";
 import { Injectable } from "@angular/core";
 import { Channel } from "../entities/channel";
 import { Message } from "../entities/message";
+import { Genre } from "../entities/genre";
 
 interface ITrack {
     id: number;
@@ -122,6 +123,14 @@ abstract class TracksFactory {
         })
 
         return tracks;
+    }
+}
+
+abstract class GenreFactory {
+    public static formResponse(response : any) : Genre[] {
+        let genres = response as Genre[];
+
+        return genres;
     }
 }
 
@@ -280,6 +289,15 @@ export class ServerAPI implements API {
     }).pipe(map((val) => {
             return TracksFactory.formResponse(val);
         }));
+    }
+
+    getGenres(): Observable<any> {
+        return this.http.get(this.url + environment.api_genres_get, { 
+            withCredentials : this.authService.isAuthorized, 
+            headers : this.authService.getHeaders 
+    }).pipe(map((val) => {
+        return GenreFactory.formResponse(val);
+    }));
     }
 
     public getUser(): Observable<any> {

@@ -32,6 +32,7 @@ export const environment = {
   api_history_save_album: "/history/save/album/",
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
+  api_genres_get: "/genre/list",
   api_track_get: "http://localhost:8090/api/track/get/",
   api_user_get: "http://localhost:8090/api/user",
   

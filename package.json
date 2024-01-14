@@ -27,6 +27,7 @@
     "@angular/router": "^14.0.0",
     "@nguniversal/express-engine": "^14.2.3",
     "@stomp/rx-stomp": "^2.0.0",
+    "crc-32": "^1.2.2",
     "express": "^4.15.2",
     "howler": "^2.2.3",
     "ngx-cookie-service": "^14.0.0",

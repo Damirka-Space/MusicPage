@@ -15,6 +15,9 @@ export class TestAPI implements API {
     constructor() {
         this.isAuthorized = false;
     }
+    getGenres(): Observable<any> {
+        throw new Error("Method not implemented.");
+    }
     
     saveToHistoryTrack(trackID: number): void {
         throw new Error("Method not implemented.");
