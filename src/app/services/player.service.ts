@@ -78,14 +78,18 @@ export class PlayerService {
     }
 
     public update() {
-        if(!navigator.mediaSession)
+        try {
+            if(!navigator.mediaSession)
             return;
 
-        navigator.mediaSession.setPositionState({
-            duration: this.getDuration,
-            playbackRate: this.currentTrack.rate(),
-            position: this.getPos
-          });
+            navigator.mediaSession.setPositionState({
+                duration: this.getDuration,
+                playbackRate: this.currentTrack.rate(),
+                position: this.getPos
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     public setPlaylistComponent(playlistComponent: PlaylistTableComponent) {

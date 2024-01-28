@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild, ViewEncapsulation } from "@angular/core";
+import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild, ViewEncapsulation } from "@angular/core";
 import { PlayerService } from "../services/player.service";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
     selector: 'player-component',
@@ -49,18 +50,21 @@ export class PlayerComponent {
         this.sliderIsClicked = true;
     }
 
-    constructor(private playerService : PlayerService) {
+    constructor(private playerService : PlayerService, @Inject(PLATFORM_ID) private platformId: Object) {
 
     }
 
     ngAfterViewInit() {
-        this.playerService.setPlayerComponent(this);
-        
-        setInterval(() => {
-            this.update();
-        }, 1)
 
-        this.setVolume(this.volume);
+        if(isPlatformBrowser(this.platformId)) {
+            this.playerService.setPlayerComponent(this);
+        
+            setInterval(() => {
+                this.update();
+            }, 1)
+
+            this.setVolume(this.volume);
+        }
     }
 
 

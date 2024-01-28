@@ -57,7 +57,7 @@ export class ContentBlockComponent implements AfterViewInit{
         try {
             window.removeEventListener('scroll', this.onScroll, true);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 

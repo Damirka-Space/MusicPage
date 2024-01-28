@@ -241,7 +241,8 @@ export class ServerAPI implements API {
     mainPage(): Observable<any> {
         return this.http.get(this.url + environment.api_main, { 
             withCredentials : this.authService.isAuthorized, 
-            headers : this.authService.getHeaders
+            headers : this.authService.getHeaders,
+            reportProgress: true
         }).pipe(map((val) => {
             return BlockFactory.fromResponse(val);
         }));
