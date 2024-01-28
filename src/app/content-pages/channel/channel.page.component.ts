@@ -39,7 +39,7 @@ export class ChannelPageComponent extends PageComponent {
         this.titleService.setTitle("Страница каналов");
         this.metaService.updateTag( { property:"og:title",content:"Страница каналов"});
         this.metaService.updateTag( { property:"og:type",content:"website"});
-        this.metaService.updateTag( { property:"og:url",content:window.location.href});
+        //this.metaService.updateTag( { property:"og:url",content:window.location.href});
         this.metaService.updateTag( { name:"description",content:"Место, где можно попросить воды"});
         this.metaService.updateTag( { property:"og:description",content:"Место, где можно попросить воды"});
         this.metaService.updateTag( { name: "theme-color", content:"#121212" });

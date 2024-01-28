@@ -43,7 +43,7 @@ export class MainPageComponent extends PageComponent {
         this.titleService.setTitle("Главная страница");
         this.metaService.updateTag( { property:"og:title",content:"Главная страница"});
         this.metaService.updateTag( { property:"og:type",content:"website"});
-        this.metaService.updateTag( { property:"og:url",content:window.location.href});
+        //this.metaService.updateTag( { property:"og:url",content:window.location.href});
         this.metaService.updateTag( { name:"description",content:"Добро пожаловать на главную страницу!"});
         this.metaService.updateTag( { property:"og:description",content:"Добро пожаловать на главную страницу!"});
         this.metaService.updateTag( { name: "theme-color", content:"#121212" });

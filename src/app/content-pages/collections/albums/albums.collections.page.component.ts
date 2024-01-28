@@ -32,7 +32,7 @@ export class AlbumsCollectionsComponent extends PageComponent {
         this.titleService.setTitle("Коллекции");
         this.metaService.updateTag( { property:"og:title",content:"Коллекции"});
         this.metaService.updateTag( { property:"og:type",content:"website"});
-        this.metaService.updateTag( { property:"og:url",content:window.location.href});
+        //this.metaService.updateTag( { property:"og:url",content:window.location.href});
         this.metaService.updateTag( { name:"description",content:"Коллекции"});
         this.metaService.updateTag( { property:"og:description",content:"Коллекции"});
         this.metaService.updateTag( { name: "theme-color", content:"#121212" });
