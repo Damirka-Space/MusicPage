@@ -21,7 +21,7 @@ export class AuthService {
     constructor(private http : HttpClient) {
         this.tokenReady = new Subscription();
 
-        if(window) {
+        if(window != undefined) {
             this.accessToken = window.localStorage.getItem("ACCESS_TOKEN_KEY");
             this.refreshToken = window.localStorage.getItem("REFRESH_TOKEN_KEY");
 
