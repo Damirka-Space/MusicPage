@@ -21,19 +21,22 @@ export class AuthService {
     constructor(private http : HttpClient) {
         this.tokenReady = new Subscription();
 
-        this.accessToken = window.localStorage.getItem("ACCESS_TOKEN_KEY");
-        this.refreshToken = window.localStorage.getItem("REFRESH_TOKEN_KEY");
+        if(window) {
+            this.accessToken = window.localStorage.getItem("ACCESS_TOKEN_KEY");
+            this.refreshToken = window.localStorage.getItem("REFRESH_TOKEN_KEY");
 
-        if(this.refreshToken != null) {
-            this.hasAuthorized = true;
-            this.getTokenInfo(this.refreshToken).subscribe(res => {
-                var isActive = res['active'] as boolean;
+            if(this.refreshToken != null) {
+                this.hasAuthorized = true;
+                this.getTokenInfo(this.refreshToken).subscribe(res => {
+                    var isActive = res['active'] as boolean;
 
-                if(isActive) {
-                    this.refreshTokens();
-                }
-            })
+                    if(isActive) {
+                        this.refreshTokens();
+                    }
+                })
+            }
         }
+        
     }
 
     private refreshTokens() {
