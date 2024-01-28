@@ -43,7 +43,7 @@ export class PlaylistPageComponent extends PageComponent {
                 this.metaService.updateTag( { property:"og:type", content:"music.album" });
                 this.metaService.updateTag( { name:"description", content:this.playlist.getDescription() });
                 this.metaService.updateTag( { name: "theme-color", content:"#e52b50" });
-                this.metaService.updateTag( { property:"og:url", content:window.location.href });                
+                //this.metaService.updateTag( { property:"og:url", content:window.location.href });                
             });
         });
     }
