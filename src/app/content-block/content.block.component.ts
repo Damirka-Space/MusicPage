@@ -49,7 +49,7 @@ export class ContentBlockComponent implements AfterViewInit{
             this.maxHistoryLength = window.history.length;
             this.currentHistory = this.maxHistoryLength;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 

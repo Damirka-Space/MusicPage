@@ -71,7 +71,7 @@ export class PlayerService {
             });
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }    
 
             // navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ });

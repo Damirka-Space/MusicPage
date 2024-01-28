@@ -46,7 +46,7 @@ export class PlaylistTableComponent {
         try {
             window.addEventListener("scroll", this.onScroll, true);
         } catch (error) {
-            console.log(error)
+            //console.log(error)
         }
 
         APIController.getTracks(this.playlistId).subscribe(data => {
@@ -62,7 +62,7 @@ export class PlaylistTableComponent {
         try {
             window.removeEventListener("scroll", this.onScroll, true);
         } catch (error) {
-            console.log(error)
+            //console.log(error)
         }
     }
 
