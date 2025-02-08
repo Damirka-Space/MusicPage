@@ -29,8 +29,8 @@ export const environment = {
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
   api_genres_get: "/genre/list",
-  api_track_get: "https://fs.damirka.space/tracks/",
-  api_user_get: "https://api.damirka.space/user",
-  api_login: "https://api.damirka.space/login",
-  api_logout: "https://auth.damirka.space/logout",
+  api_track_get: "https://fs.dam1rka.duckdns.org/tracks/",
+  api_user_get: "https://api.dam1rka.duckdns.org/user",
+  api_login: "https://api.dam1rka.duckdns.org/login",
+  api_logout: "https://auth.dam1rka.duckdns.org/logout",
 };
