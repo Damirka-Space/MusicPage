@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  brokerURL: 'wss://dam1rka.duckdns.org/api/channel/ws',
+  brokerURL: 'wss://api.dam1rka.duckdns.org/channel/ws',
 
   auth_client_name: "music-server",
   auth_client_id: "server",
@@ -9,12 +9,12 @@ export const environment = {
   auth_scopes: "profile music-server.read music-server.write",
   auth_base64: "Basic c2VydmVyOnNlY3JldA==",
   auth_redirect: "https://dam1rka.duckdns.org/user/authorized",
-  auth_login: "https://dam1rka.duckdns.org/auth/oauth2/authorize",
-  auth_logout: "https://dam1rka.duckdns.org/auth/logout",
-  auth_token: "https://dam1rka.duckdns.org/auth/oauth2/token",
-  auth_introspect: "https://dam1rka.duckdns.org/auth/oauth2/introspect",
+  auth_login: "https://auth.dam1rka.duckdns.org/oauth2/authorize",
+  auth_logout: "https://auth.dam1rka.duckdns.org/logout",
+  auth_token: "https://auth.dam1rka.duckdns.org/oauth2/token",
+  auth_introspect: "https://auth.dam1rka.duckdns.org/oauth2/introspect",
 
-  api_root: "https://dam1rka.duckdns.org/api",
+  api_root: "https://api.dam1rka.duckdns.org",
   api_main: "/main",
   api_channel: "/channel",
   api_channel_list: "/channel/list",
@@ -29,8 +29,8 @@ export const environment = {
   api_album_get: "/album/get/",
   api_tracks_get: "/album/tracks/get/",
   api_genres_get: "/genre/list",
-  api_track_get: "https://dam1rka.duckdns.org/fs/tracks/",
-  api_user_get: "https://dam1rka.duckdns.org/api/user",
-  api_login: "https://dam1rka.duckdns.org/api/login",
-  api_logout: "https://dam1rka.duckdns.org/auth/logout",
+  api_track_get: "https://fs.damirka.space/tracks/",
+  api_user_get: "https://api.damirka.space/user",
+  api_login: "https://api.damirka.space/login",
+  api_logout: "https://auth.damirka.space/logout",
 };
