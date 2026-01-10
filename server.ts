@@ -3,6 +3,7 @@ import 'zone.js/node';
 import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
+import * as cors from 'cors'
 import { existsSync } from 'fs';
 import { join } from 'path';
 
@@ -18,6 +19,8 @@ export function app(): express.Express {
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
   }));
+
+  server.use(cors())
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
