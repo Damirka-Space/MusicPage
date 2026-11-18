@@ -8,7 +8,7 @@ export const environment = {
   auth_client_secret:"secret",
   auth_scopes: "profile music-server.read music-server.write",
   auth_base64: "Basic c2VydmVyOnNlY3JldA==",
-  auth_redirect: "https://damirka.space/user/authorized",
+  auth_redirect: "https://music.damirka.space/user/authorized",
   auth_login: "https://auth.damirka.space/oauth2/authorize",
   auth_logout: "https://auth.damirka.space/logout",
   auth_token: "https://auth.damirka.space/oauth2/token",
